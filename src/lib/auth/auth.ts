@@ -1,6 +1,6 @@
 import ConfigStore from "configstore";
 const pkg = require("../../../package.json");
-import inquirer from "../inquirer/tokenInquirer";
+import inquirer from "../prompts/tokenPrompt";
 import { ClientConfig } from "snyk-api-client";
 
 const conf = new ConfigStore(pkg.name);

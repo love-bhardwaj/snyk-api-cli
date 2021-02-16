@@ -9,9 +9,9 @@ const builder = {
 };
 
 const handler = function (argv: any) {
-  console.log("From config handler: ", argv);
   if (argv["clear-token"]) {
     clearToken();
+    return console.log("Token cleared");
   }
 };
 
