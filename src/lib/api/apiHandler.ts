@@ -1,0 +1,52 @@
+import { API_SELECTION } from "../enums/enums";
+import apiList from "./apiList";
+import handleGeneralRequest from "./general/general";
+import handleUserRequest from "./users/users";
+import chalk from "chalk";
+
+export default async function (args: any) {
+  const { api } = args;
+
+  if (!api) {
+    return console.log(chalk.cyanBright("Argument --api required!"));
+  }
+
+  switch (api) {
+    case API_SELECTION.GENERAL:
+      await handleGeneralRequest(args);
+      break;
+    case API_SELECTION.USERS:
+      await handleUserRequest(args);
+      break;
+    case API_SELECTION.GROUPS:
+      break;
+    case API_SELECTION.ORGS:
+      break;
+    case API_SELECTION.INTEGRATIONS:
+      break;
+    case API_SELECTION.PROJECTS:
+      break;
+    case API_SELECTION.DEPENDENCIES:
+      break;
+    case API_SELECTION.LICENSES:
+      break;
+    case API_SELECTION.ENTITLEMENTS:
+      break;
+    case API_SELECTION.TEST:
+      break;
+    case API_SELECTION.MONITOR:
+      break;
+    case API_SELECTION.REPORTING:
+      break;
+    case API_SELECTION.AUDIT:
+      break;
+    default:
+      // General
+      console.log(
+        `API selection ${chalk.red(
+          api
+        )} not valid. Valid API selections are: [${chalk.greenBright(apiList)}]`
+      );
+      break;
+  }
+}
