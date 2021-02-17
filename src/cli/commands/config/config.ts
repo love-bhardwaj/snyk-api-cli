@@ -1,4 +1,6 @@
+import chalk from "chalk";
 import { clearToken } from "../../../lib/auth/auth";
+import { printRed } from "../../../lib/utils/printToConsole";
 
 const command = "config [options]";
 const describe = "Save the Snyk API token";
@@ -11,7 +13,7 @@ const builder = {
 const handler = function (argv: any) {
   if (argv["clear-token"]) {
     clearToken();
-    return console.log("Token cleared");
+    return printRed("API token cleared!");
   }
 };
 

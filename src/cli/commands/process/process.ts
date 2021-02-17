@@ -1,4 +1,5 @@
 import api from "../../../lib/api/apiHandler";
+import chalk from "chalk";
 import { processAuth } from "../../../lib/auth/auth";
 
 const command = "process [options]";
@@ -47,8 +48,13 @@ const handler = async function (argv: any) {
    * Since token is required for processing request
    * we process the auth here and then proceed with the API call
    */
-  await processAuth();
-  await api(argv);
+  try {
+    await processAuth();
+    await api(argv);
+  } catch (error) {
+    console.log(chalk.red("Snyk API token required!"));
+    process.exit(1);
+  }
 };
 
 export default { command, describe, builder, handler };

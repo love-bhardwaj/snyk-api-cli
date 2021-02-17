@@ -6,18 +6,18 @@ import {
   ProjectIdError,
   UserIdError,
 } from "../../../lib/errors/errors";
+import { printRed } from "../../../lib/utils/printToConsole";
 import chalk from "chalk";
-import CLI from "clui";
-import clearLine from "../../utils/clearLine";
 import userEndpoints from "./usersEndpoints";
 import prettyPrint from "../../utils/prettyPrint";
 import readJsonFile from "../../utils/readJsonFile";
+import ora from "ora";
 
-const Spinner = CLI.Spinner;
-let processing = new Spinner("Processing request");
+const apiSpinner = ora(chalk.blueBright("Calling Snyk API..."));
+apiSpinner.color = "yellow";
 
 export default async function (args: any) {
-  processing.start();
+  apiSpinner.start();
 
   try {
     switch (args["endpoint"]) {
@@ -25,52 +25,52 @@ export default async function (args: any) {
         const userId = args["user-id"];
         if (!userId) throw new UserIdError();
         const userDetails = await User.getUserDetails({ userId });
-        processing.stop();
-        clearLine();
+        apiSpinner.stop();
+        apiSpinner.clear();
         prettyPrint(userDetails.response);
         break;
       case USERS_API_ENDPOINTS.GET_MY_DETAILS:
         const myDetails = await User.getMyDetails();
-        processing.stop();
-        clearLine();
+        apiSpinner.stop();
+        apiSpinner.clear();
         prettyPrint(myDetails.response);
         break;
       case USERS_API_ENDPOINTS.GET_ORG_NOTI_SETTINGS:
         const orgId = args["org-id"];
         if (!orgId) throw new OrgIdError();
         const orgNotiSettings = await User.getOrgNotiSettings({ orgId });
-        processing.stop();
-        clearLine();
+        apiSpinner.stop();
+        apiSpinner.clear();
         prettyPrint(orgNotiSettings.response);
         break;
       case USERS_API_ENDPOINTS.MODIFY_ORG_NOTI_SETTINGS:
-        const org = args["org-id"];
+        const orgId1 = args["org-id"];
         const filePath = args["f"];
 
-        if (!org) throw new OrgIdError();
+        if (!orgId1) throw new OrgIdError();
         if (!filePath) throw new FilePathError();
         const modifyOrgNotiFile = readJsonFile(filePath);
         const modifiedNotiSettings = await User.modifyOrgNotiSettings(
-          { orgId: org },
+          { orgId: orgId1 },
           { requestBody: modifyOrgNotiFile }
         );
-        processing.stop();
-        clearLine();
+        apiSpinner.stop();
+        apiSpinner.clear();
         prettyPrint(modifiedNotiSettings.response);
         break;
       case USERS_API_ENDPOINTS.GET_PROJECT_NOTI_SETTINGS:
-        const orgId3 = args["org-id"];
+        const orgId2 = args["org-id"];
         const projectId = args["project-id"];
 
-        if (!orgId3) throw new OrgIdError();
+        if (!orgId2) throw new OrgIdError();
         if (!projectId) throw new ProjectIdError();
 
         const projectNotiSettings = await User.getProjNotiSettings({
-          orgId: orgId3,
+          orgId: orgId2,
           projectId,
         });
-        processing.stop();
-        clearLine();
+        apiSpinner.stop();
+        apiSpinner.clear();
         prettyPrint(projectNotiSettings.response);
         break;
       case USERS_API_ENDPOINTS.MODIFY_PROJECT_NOTI_SETTINGS:
@@ -88,14 +88,14 @@ export default async function (args: any) {
           { orgId: orgId4, projectId: projectId1 },
           { requestBody: modProjNotiSets }
         );
-        processing.stop();
-        clearLine();
+        apiSpinner.stop();
+        apiSpinner.clear();
         prettyPrint(modProjNotSetsRes.response);
         break;
 
       default:
-        processing.stop();
-        clearLine();
+        apiSpinner.stop();
+        apiSpinner.clear();
         return console.log(
           `The ${chalk.red(
             "endpoint"
@@ -112,8 +112,8 @@ export default async function (args: any) {
       errorMessage = error.message || "Unknown error";
     }
     // console.error(error);
-    processing.stop();
-    clearLine();
-    return console.log(chalk.red(errorMessage));
+    apiSpinner.stop();
+    apiSpinner.clear();
+    return printRed(errorMessage);
   }
 }
