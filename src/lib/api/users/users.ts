@@ -7,6 +7,7 @@ import {
   UserIdError,
 } from "../../../lib/errors/errors";
 import { printRed } from "../../../lib/utils/printToConsole";
+import { appDebugLog } from "../../../lib/utils/debugLogger";
 import chalk from "chalk";
 import userEndpoints from "./usersEndpoints";
 import prettyPrint from "../../utils/prettyPrint";
@@ -105,13 +106,13 @@ export default async function (args: any) {
         );
     }
   } catch (error) {
+    appDebugLog(error.stack ? error.stack : error);
     let errorMessage;
     if (error.response) {
       errorMessage = error.response.error || error.error.message;
     } else {
       errorMessage = error.message || "Unknown error";
     }
-    // console.error(error);
     apiSpinner.stop();
     apiSpinner.clear();
     return printRed(errorMessage);

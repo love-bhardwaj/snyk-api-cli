@@ -1,5 +1,6 @@
 import { General } from "snyk-api-client";
 import { GENERAL_API_ENDPOINTS } from "../../../lib/enums/enums";
+import { appDebugLog } from "../../../lib/utils/debugLogger";
 import chalk from "chalk";
 import generalEndpoints from "./generalEndpoints";
 import ora from "ora";
@@ -29,6 +30,7 @@ export default async function (args: any) {
         );
     }
   } catch (error) {
+    appDebugLog(error.stack ? error.stack : error);
     apiSpinner.stop();
     apiSpinner.clear();
     return console.log(chalk.red(error.error.message));
