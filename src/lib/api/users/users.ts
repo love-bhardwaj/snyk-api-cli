@@ -8,17 +8,14 @@ import {
 } from "../../../lib/errors/errors";
 import { printRed } from "../../../lib/utils/printToConsole";
 import { appDebugLog } from "../../../lib/utils/debugLogger";
+import { apiSpinnerStop, apiSpinnerStart } from "../../../lib/utils/spinners";
 import chalk from "chalk";
 import userEndpoints from "./usersEndpoints";
 import prettyPrint from "../../utils/prettyPrint";
 import readJsonFile from "../../utils/readJsonFile";
-import ora from "ora";
-
-const apiSpinner = ora(chalk.blueBright("Calling Snyk API..."));
-apiSpinner.color = "yellow";
 
 export default async function (args: any) {
-  apiSpinner.start();
+  apiSpinnerStart();
 
   try {
     switch (args["endpoint"]) {
@@ -26,22 +23,19 @@ export default async function (args: any) {
         const userId = args["user-id"];
         if (!userId) throw new UserIdError();
         const userDetails = await User.getUserDetails({ userId });
-        apiSpinner.stop();
-        apiSpinner.clear();
+        apiSpinnerStop();
         prettyPrint(userDetails.response);
         break;
       case USERS_API_ENDPOINTS.GET_MY_DETAILS:
         const myDetails = await User.getMyDetails();
-        apiSpinner.stop();
-        apiSpinner.clear();
+        apiSpinnerStop();
         prettyPrint(myDetails.response);
         break;
       case USERS_API_ENDPOINTS.GET_ORG_NOTI_SETTINGS:
         const orgId = args["org-id"];
         if (!orgId) throw new OrgIdError();
         const orgNotiSettings = await User.getOrgNotiSettings({ orgId });
-        apiSpinner.stop();
-        apiSpinner.clear();
+        apiSpinnerStop();
         prettyPrint(orgNotiSettings.response);
         break;
       case USERS_API_ENDPOINTS.MODIFY_ORG_NOTI_SETTINGS:
@@ -55,8 +49,7 @@ export default async function (args: any) {
           { orgId: orgId1 },
           { requestBody: modifyOrgNotiFile }
         );
-        apiSpinner.stop();
-        apiSpinner.clear();
+        apiSpinnerStop();
         prettyPrint(modifiedNotiSettings.response);
         break;
       case USERS_API_ENDPOINTS.GET_PROJECT_NOTI_SETTINGS:
@@ -70,8 +63,7 @@ export default async function (args: any) {
           orgId: orgId2,
           projectId,
         });
-        apiSpinner.stop();
-        apiSpinner.clear();
+        apiSpinnerStop();
         prettyPrint(projectNotiSettings.response);
         break;
       case USERS_API_ENDPOINTS.MODIFY_PROJECT_NOTI_SETTINGS:
@@ -89,14 +81,12 @@ export default async function (args: any) {
           { orgId: orgId4, projectId: projectId1 },
           { requestBody: modProjNotiSets }
         );
-        apiSpinner.stop();
-        apiSpinner.clear();
+        apiSpinnerStop();
         prettyPrint(modProjNotSetsRes.response);
         break;
 
       default:
-        apiSpinner.stop();
-        apiSpinner.clear();
+        apiSpinnerStop();
         return console.log(
           `The ${chalk.red(
             "endpoint"
@@ -113,8 +103,7 @@ export default async function (args: any) {
     } else {
       errorMessage = error.message || "Unknown error";
     }
-    apiSpinner.stop();
-    apiSpinner.clear();
+    apiSpinnerStop();
     return printRed(errorMessage);
   }
 }

@@ -1,8 +1,14 @@
 import ora from "ora";
 import chalk from "chalk";
 
-export function apiSpinner() {
-  const spinner = ora(chalk.blueBright("Calling Snyk API..."));
-  spinner.color = "yellow";
-  return spinner;
+const apiSpinner = ora(chalk.blueBright("Calling Snyk API..."));
+apiSpinner.color = "yellow";
+
+export function apiSpinnerStart() {
+  apiSpinner.start();
+}
+
+export function apiSpinnerStop() {
+  apiSpinner.stop();
+  apiSpinner.clear();
 }

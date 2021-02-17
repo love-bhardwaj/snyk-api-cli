@@ -1,26 +1,21 @@
 import { General } from "snyk-api-client";
 import { GENERAL_API_ENDPOINTS } from "../../../lib/enums/enums";
 import { appDebugLog } from "../../../lib/utils/debugLogger";
+import { apiSpinnerStart, apiSpinnerStop } from "../../../lib/utils/spinners";
 import chalk from "chalk";
 import generalEndpoints from "./generalEndpoints";
-import ora from "ora";
-
-const apiSpinner = ora(chalk.blueBright("Calling Snyk API..."));
-apiSpinner.color = "yellow";
 
 export default async function (args: any) {
-  apiSpinner.start();
+  apiSpinnerStart();
   try {
     switch (args["endpoint"]) {
       case GENERAL_API_ENDPOINTS.API_DOCS:
         const apiDocs = await General.getDocs();
-        apiSpinner.stop();
-        apiSpinner.clear();
+        apiSpinnerStop();
         console.log(apiDocs.response);
         break;
       default:
-        apiSpinner.stop();
-        apiSpinner.clear();
+        apiSpinnerStop();
         return console.log(
           `The ${chalk.red(
             "endpoint"
@@ -31,8 +26,7 @@ export default async function (args: any) {
     }
   } catch (error) {
     appDebugLog(error.stack ? error.stack : error);
-    apiSpinner.stop();
-    apiSpinner.clear();
+    apiSpinnerStop();
     return console.log(chalk.red(error.error.message));
   }
 }
