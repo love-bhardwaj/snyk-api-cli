@@ -1,5 +1,11 @@
 import { User } from "snyk-api-client";
 import { USERS_API_ENDPOINTS } from "../../../lib/enums/enums";
+import {
+  FilePathError,
+  OrgIdError,
+  ProjectIdError,
+  UserIdError,
+} from "../../../lib/errors/errors";
 import chalk from "chalk";
 import CLI from "clui";
 import clearLine from "../../utils/clearLine";
@@ -17,7 +23,7 @@ export default async function (args: any) {
     switch (args["endpoint"]) {
       case USERS_API_ENDPOINTS.GET_USER_DETAILS:
         const userId = args["user-id"];
-        if (!userId) throw new Error("--user-id is required for this endpoint");
+        if (!userId) throw new UserIdError();
         const userDetails = await User.getUserDetails({ userId });
         processing.stop();
         clearLine();
@@ -31,7 +37,7 @@ export default async function (args: any) {
         break;
       case USERS_API_ENDPOINTS.GET_ORG_NOTI_SETTINGS:
         const orgId = args["org-id"];
-        if (!orgId) throw new Error("--org-id is required for this endpoint");
+        if (!orgId) throw new OrgIdError();
         const orgNotiSettings = await User.getOrgNotiSettings({ orgId });
         processing.stop();
         clearLine();
@@ -41,8 +47,8 @@ export default async function (args: any) {
         const org = args["org-id"];
         const filePath = args["f"];
 
-        if (!org) throw new Error("--org-id is required for this endpoint");
-        if (!filePath) throw new Error("file path(-f or --file) required");
+        if (!org) throw new OrgIdError();
+        if (!filePath) throw new FilePathError();
         const modifyOrgNotiFile = readJsonFile(filePath);
         const modifiedNotiSettings = await User.modifyOrgNotiSettings(
           { orgId: org },
@@ -56,10 +62,8 @@ export default async function (args: any) {
         const orgId3 = args["org-id"];
         const projectId = args["project-id"];
 
-        if (!orgId3)
-          throw new Error("--org-id or -o is required for this endpoint");
-        if (!projectId)
-          throw new Error("--project-id or -p is required for this endpoint");
+        if (!orgId3) throw new OrgIdError();
+        if (!projectId) throw new ProjectIdError();
 
         const projectNotiSettings = await User.getProjNotiSettings({
           orgId: orgId3,
@@ -74,11 +78,9 @@ export default async function (args: any) {
         const projectId1 = args["p"];
         const filePath1 = args["f"];
 
-        if (!orgId4)
-          throw new Error("--org-id or -o is required for this endpoint");
-        if (!projectId1)
-          throw new Error("--project-id or -p is required for this endpoint");
-        if (!filePath1) throw new Error("file path(-f or --file) required");
+        if (!orgId4) throw new OrgIdError();
+        if (!projectId1) throw new ProjectIdError();
+        if (!filePath1) throw new FilePathError();
 
         const modProjNotiSets = readJsonFile(filePath1);
 
