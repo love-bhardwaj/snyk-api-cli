@@ -1,5 +1,5 @@
 import api from "../../../lib/api/apiHandler";
-import { checkAuth } from "../../../lib/auth/auth";
+import { processAuth } from "../../../lib/auth/auth";
 
 const command = "process [options]";
 const describe = "Process the API request";
@@ -43,7 +43,11 @@ const builder = {
 };
 
 const handler = async function (argv: any) {
-  await checkAuth();
+  /**
+   * Since token is required for processing request
+   * we process the auth here and then proceed with the API call
+   */
+  await processAuth();
   await api(argv);
 };
 

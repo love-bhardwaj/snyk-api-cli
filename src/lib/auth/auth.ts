@@ -1,13 +1,13 @@
 import ConfigStore from "configstore";
 const pkg = require("../../../package.json");
-import inquirer from "../prompts/tokenPrompt";
+import tokenPrompt from "../prompts/tokenPrompt";
 import { ClientConfig } from "snyk-api-client";
 
 const conf = new ConfigStore(pkg.name);
 
 const getApiToken = async () => {
   let apiToken = conf.get("snyk-api.token");
-  if (!apiToken) apiToken = await askForToken();
+  if (!apiToken) apiToken = await askForTokenAndSet();
   return apiToken;
 };
 
@@ -15,16 +15,23 @@ const saveTokenToConfig = (token: string) => {
   conf.set({ "snyk-api.token": token });
 };
 
-const askForToken = async () => {
-  const res = await inquirer();
-  conf.set({ "snyk-api.token": res.token });
-  return res.token;
+const saveTokenToApiClient = (token: string) => {
+  ClientConfig.set({ apiToken: token });
 };
 
-const checkAuth = async () => {
+const askForTokenAndSet = async () => {
+  const { token } = await tokenPrompt();
+  saveTokenToConfig(token);
+  return token;
+};
+
+const processAuth = async () => {
+  // If token not set, we prompt for token,
+  // the only way to exit without submitting prompt
+  // would be to exit the process
   if (!ClientConfig.getApiToken()) {
     const token = await getApiToken();
-    ClientConfig.set({ apiToken: token });
+    saveTokenToApiClient(token);
   }
 };
 
@@ -33,4 +40,4 @@ const clearToken = () => {
   conf.set({ "snyk-api.token": undefined });
 };
 
-export { getApiToken, saveTokenToConfig, checkAuth, clearToken };
+export { getApiToken, saveTokenToConfig, processAuth, clearToken };
