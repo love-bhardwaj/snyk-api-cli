@@ -10,6 +10,13 @@ export function appDebugLog(...messages: any) {
     appDebugLogger(chalk.greenBright(message));
   }
 }
+
+export function appErrorLog(...errors: any) {
+  for (const error of errors) {
+    appDebugLog(error.stack ? error.stack : error);
+  }
+}
+
 export function reqDebugLog(...messages: any) {
   for (const message of messages) {
     reqDebugLogger(chalk.blueBright(message));

@@ -1,6 +1,6 @@
 import { General } from "snyk-api-client";
 import { GENERAL_API_ENDPOINTS } from "../../../lib/enums/enums";
-import { appDebugLog } from "../../../lib/utils/debugLogger";
+import { appDebugLog, appErrorLog } from "../../../lib/utils/debugLogger";
 import { apiSpinnerStart, apiSpinnerStop } from "../../../lib/utils/spinners";
 import chalk from "chalk";
 import generalEndpoints from "./generalEndpoints";
@@ -25,7 +25,7 @@ export default async function (args: any) {
         );
     }
   } catch (error) {
-    appDebugLog(error.stack ? error.stack : error);
+    appErrorLog(error);
     apiSpinnerStop();
     return console.log(chalk.red(error.error.message));
   }

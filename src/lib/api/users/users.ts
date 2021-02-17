@@ -7,8 +7,9 @@ import {
   UserIdError,
 } from "../../../lib/errors/errors";
 import { printRed } from "../../../lib/utils/printToConsole";
-import { appDebugLog } from "../../../lib/utils/debugLogger";
+import { appDebugLog, appErrorLog } from "../../../lib/utils/debugLogger";
 import { apiSpinnerStop, apiSpinnerStart } from "../../../lib/utils/spinners";
+import handleApiError from "../../../lib/utils/handleApiError";
 import chalk from "chalk";
 import userEndpoints from "./usersEndpoints";
 import prettyPrint from "../../utils/prettyPrint";
@@ -53,8 +54,8 @@ export default async function (args: any) {
         prettyPrint(modifiedNotiSettings.response);
         break;
       case USERS_API_ENDPOINTS.GET_PROJECT_NOTI_SETTINGS:
-        const orgId2 = args["org-id"];
-        const projectId = args["project-id"];
+        const orgId2 = args["o"];
+        const projectId = args["p"];
 
         if (!orgId2) throw new OrgIdError();
         if (!projectId) throw new ProjectIdError();
@@ -96,13 +97,8 @@ export default async function (args: any) {
         );
     }
   } catch (error) {
-    appDebugLog(error.stack ? error.stack : error);
-    let errorMessage;
-    if (error.response) {
-      errorMessage = error.response.error || error.error.message;
-    } else {
-      errorMessage = error.message || "Unknown error";
-    }
+    appErrorLog(error);
+    const errorMessage = handleApiError(error);
     apiSpinnerStop();
     return printRed(errorMessage);
   }
