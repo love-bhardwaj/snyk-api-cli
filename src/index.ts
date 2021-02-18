@@ -1,17 +1,17 @@
 #!/usr/bin/env node
-import yargs from "yargs";
+import yargs from 'yargs';
 
-import authModule from "./cli/commands/auth/auth";
-import configModule from "./cli/commands/config/config";
-import processModule from "./cli/commands/process/process";
+import authModule from './cli/commands/auth/auth';
+import configModule from './cli/commands/config/config';
+import processModule from './cli/commands/process/process';
 
-yargs(process.argv.slice(2))
+const argv = yargs(process.argv.slice(2))
   .command(authModule)
   .command(configModule)
   .command(processModule)
-  .option("help", {
-    alias: "h",
+  .option('help', {
+    alias: 'h',
   })
-  .option("version", {
-    alias: "v",
+  .option('version', {
+    alias: 'v',
   }).argv;

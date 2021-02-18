@@ -1,21 +1,21 @@
-import { clearToken } from "../../../lib/auth/auth";
-import { printRed } from "../../../lib/utils/printToConsole";
-import { appDebugLog } from "../../../lib/utils/debugLogger";
+import { clearToken } from '../../../lib/auth/auth';
+import { printRed } from '../../../lib/utils/printToConsole';
+import { appDebugLog } from '../../../lib/utils/debugLogger';
 
-const command = "config [options]";
-const describe = "Save the Snyk API token";
+const command = 'config [options]';
+const describe = 'Save the Snyk API token';
 const builder = {
-  "clear-token": {
-    describe: "Clear the saved API token",
+  'clear-token': {
+    describe: 'Clear the saved API token',
   },
 };
 
-const handler = function (argv: any) {
+const handler = (argv: any) => {
   appDebugLog(`Config command with argv: ${JSON.stringify(argv)}`);
-  if (argv["clear-token"]) {
+  if (argv['clear-token']) {
     clearToken();
-    appDebugLog("API token cleared from config");
-    return printRed("API token cleared!");
+    appDebugLog('API token cleared from config');
+    return printRed('API token cleared!');
   }
 };
 

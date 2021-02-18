@@ -1,13 +1,13 @@
-import ConfigStore from "configstore";
-const pkg = require("../../../package.json");
-import tokenPrompt from "../prompts/tokenPrompt";
-import { ClientConfig } from "snyk-api-client";
+import ConfigStore from 'configstore';
+const pkg = require('../../../package.json');
+import tokenPrompt from '../prompts/tokenPrompt';
+import { ClientConfig } from 'snyk-api-client';
 
 const conf = new ConfigStore(pkg.name);
 
 const getApiToken = async (): Promise<string> => {
   try {
-    let apiToken = conf.get("snyk-api.token");
+    let apiToken = conf.get('snyk-api.token');
     if (!apiToken) apiToken = await askForTokenAndSet();
     return Promise.resolve(apiToken);
   } catch (error) {
@@ -16,7 +16,7 @@ const getApiToken = async (): Promise<string> => {
 };
 
 const saveTokenToConfig = (token: string) => {
-  conf.set({ "snyk-api.token": token });
+  conf.set({ 'snyk-api.token': token });
 };
 
 const saveTokenToApiClient = (token: string) => {
@@ -50,7 +50,7 @@ const processAuth = async (): Promise<void> => {
 
 const clearToken = () => {
   ClientConfig.set({ apiToken: undefined });
-  conf.set({ "snyk-api.token": undefined });
+  conf.set({ 'snyk-api.token': undefined });
 };
 
 export { getApiToken, saveTokenToConfig, processAuth, clearToken };

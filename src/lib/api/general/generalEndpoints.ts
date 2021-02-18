@@ -1,1 +1,1 @@
-export default ["api-docs"];
+export default ['api-docs'];

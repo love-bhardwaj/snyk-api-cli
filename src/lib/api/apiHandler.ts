@@ -1,13 +1,13 @@
-import { API_SELECTION } from "../enums/enums";
-import { apiSpinnerStart, apiSpinnerStop } from "../../lib/utils/spinners";
-import { appErrorLog, appDebugLog } from "../../lib/utils/debugLogger";
-import handleApiError from "../../lib/utils/handleApiError";
-import { printRed } from "../../lib/utils/printToConsole";
-import apiList from "./apiList";
-import handleGeneralRequest from "./general/general";
-import handleUserRequest from "./users/users";
-import handleGroupRequest from "./groups/groups";
-import chalk from "chalk";
+import { API_SELECTION } from '../enums/enums';
+import { apiSpinnerStart, apiSpinnerStop } from '../../lib/utils/spinners';
+import { appErrorLog, appDebugLog } from '../../lib/utils/debugLogger';
+import handleApiError from '../../lib/utils/handleApiError';
+import { printRed } from '../../lib/utils/printToConsole';
+import apiList from './apiList';
+import handleGeneralRequest from './general/general';
+import handleUserRequest from './users/users';
+import handleGroupRequest from './groups/groups';
+import chalk from 'chalk';
 
 export default async function (args: any) {
   const { api } = args;
@@ -46,11 +46,7 @@ export default async function (args: any) {
       default:
         // General
         console.log(
-          `API selection ${chalk.red(
-            api
-          )} not valid. Valid API selections are: [${chalk.greenBright(
-            apiList
-          )}]`
+          `API selection ${chalk.red(api)} not valid. Valid API selections are: [${chalk.greenBright(apiList)}]`,
         );
         break;
     }

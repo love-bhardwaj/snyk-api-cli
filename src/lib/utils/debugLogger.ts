@@ -1,9 +1,9 @@
-import chalk from "chalk";
-import debug from "debug";
+import chalk from 'chalk';
+import debug from 'debug';
 
-const appDebugLogger = debug("app");
-const reqDebugLogger = debug("req");
-const miscDebugLogger = debug("misc");
+const appDebugLogger = debug('app');
+const reqDebugLogger = debug('req');
+const miscDebugLogger = debug('misc');
 
 export function appDebugLog(...messages: any) {
   for (const message of messages) {

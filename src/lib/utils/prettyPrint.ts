@@ -1,4 +1,4 @@
-import * as util from "util";
+import * as util from 'util';
 
 export default function (obj: object) {
   console.log(
@@ -6,6 +6,6 @@ export default function (obj: object) {
       showHidden: false,
       depth: null,
       colors: true,
-    })
+    }),
   );
 }

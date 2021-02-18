@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import chalk from 'chalk';
 
 export function printRed(message: string) {
   return console.log(chalk.red(message));
