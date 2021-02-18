@@ -43,6 +43,12 @@ const builder = {
     describe: "Input JSON file(Request body)",
     alias: "f",
   },
+  "per-page": {
+    describe: "Number of items on a page",
+  },
+  page: {
+    describe: "Page number",
+  },
 };
 
 const handler = async function (argv: any) {

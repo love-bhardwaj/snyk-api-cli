@@ -25,8 +25,7 @@ export default async function (args: any) {
         );
     }
   } catch (error) {
-    appErrorLog(error);
     apiSpinnerStop();
-    return console.log(chalk.red(error.error.message));
+    throw error;
   }
 }

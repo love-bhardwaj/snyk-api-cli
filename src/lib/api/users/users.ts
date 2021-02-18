@@ -97,9 +97,7 @@ export default async function (args: any) {
         );
     }
   } catch (error) {
-    appErrorLog(error);
-    const errorMessage = handleApiError(error);
     apiSpinnerStop();
-    return printRed(errorMessage);
+    throw error;
   }
 }
