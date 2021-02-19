@@ -7,7 +7,7 @@ import chalk from 'chalk';
 import groupsEndpoints from './groupsEndpoints';
 import readJsonFile from '../../../lib/utils/readJsonFile';
 
-export default async function (args: any) {
+export default async (args: any) => {
   apiSpinnerStart();
   const endpoint = args[COMMAND_ARGS.ENDPOINT];
 
@@ -106,4 +106,4 @@ export default async function (args: any) {
     apiSpinnerStop();
     throw error;
   }
-}
+};

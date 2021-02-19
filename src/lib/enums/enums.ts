@@ -36,6 +36,20 @@ export const enum GROUPS_API_ENDPOINTS {
   DELETE_TAG_FROM_GROUP = 'delete-tag-from-group',
 }
 
+export const enum ORGS_API_ENDPOINTS {
+  LIST_USER_ORGS = 'list-user-orgs',
+  CREATE_NEW_ORG = 'create-new-org',
+  GET_ORG_NOTI_SETTINGS = 'get-org-noti-settings',
+  SET_ORG_NOTI_SETTINGS = 'set-org-noti-settings',
+  INVITE_USER = 'invite-user',
+  LIST_ORG_MEMBERS = 'list-org-members',
+  VIEW_ORG_SETTINGS = 'view-org-settings',
+  UPDATE_ORG_SETTINGS = 'update-org-settings',
+  UPDATE_MEMBER_ROLE = 'update-member-role',
+  REMOVE_MEMBER = 'remove-member',
+  REMOVE_ORG = 'remove-org',
+}
+
 export const enum COMMAND_ARGS {
   PROJECT_ID = 'p',
   ORG_ID = 'o',
