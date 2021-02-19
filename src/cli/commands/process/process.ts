@@ -1,7 +1,7 @@
 import api from '../../../lib/api/apiHandler';
 import chalk from 'chalk';
 import { processAuth } from '../../../lib/auth/auth';
-import { appDebugLog } from '../../../lib/utils/debugLogger';
+import { appDebugLog, appErrorLog } from '../../../lib/utils/debugLogger';
 import { printRed } from '../../../lib/utils/printToConsole';
 
 const command = 'process [options]';
@@ -59,7 +59,7 @@ const handler = async (argv: any) => {
     await processAuth();
     await api(argv);
   } catch (error) {
-    appDebugLog(error.stack ? error.stack : error);
+    appErrorLog(error);
     printRed('Snyk API token required!');
     process.exit(1);
   }

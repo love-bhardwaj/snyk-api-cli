@@ -1,6 +1,6 @@
 import * as util from 'util';
 
-export default function (obj: object) {
+export default (obj: object) => {
   console.log(
     util.inspect(obj, {
       showHidden: false,
@@ -8,4 +8,4 @@ export default function (obj: object) {
       colors: true,
     }),
   );
-}
+};

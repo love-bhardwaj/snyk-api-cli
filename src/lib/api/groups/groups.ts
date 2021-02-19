@@ -5,8 +5,6 @@ import { apiSpinnerStart, apiSpinnerStop } from '../../../lib/utils/spinners';
 import prettyPrint from '../../../lib/utils/prettyPrint';
 import chalk from 'chalk';
 import groupsEndpoints from './groupsEndpoints';
-import { appErrorLog } from '../../../lib/utils/debugLogger';
-import { printRed } from '../../../lib/utils/printToConsole';
 import readJsonFile from '../../../lib/utils/readJsonFile';
 
 export default async function (args: any) {

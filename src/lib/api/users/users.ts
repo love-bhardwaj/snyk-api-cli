@@ -1,10 +1,8 @@
 import { User } from 'snyk-api-client';
 import { USERS_API_ENDPOINTS, COMMAND_ARGS } from '../../../lib/enums/enums';
 import { FilePathError, OrgIdError, ProjectIdError, UserIdError } from '../../../lib/errors/errors';
-import { printRed } from '../../../lib/utils/printToConsole';
 import { appDebugLog, appErrorLog } from '../../../lib/utils/debugLogger';
 import { apiSpinnerStop, apiSpinnerStart } from '../../../lib/utils/spinners';
-import handleApiError from '../../../lib/utils/handleApiError';
 import chalk from 'chalk';
 import userEndpoints from './usersEndpoints';
 import prettyPrint from '../../utils/prettyPrint';

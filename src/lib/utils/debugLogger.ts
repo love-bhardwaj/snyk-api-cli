@@ -1,9 +1,10 @@
 import chalk from 'chalk';
 import debug from 'debug';
 
-const appDebugLogger = debug('app');
-const reqDebugLogger = debug('req');
-const miscDebugLogger = debug('misc');
+const appDebugLogger = debug('app: ');
+const reqDebugLogger = debug('req: ');
+const miscDebugLogger = debug('misc: ');
+const sensitiveLogger = debug('secret: ');
 
 export function appDebugLog(...messages: any) {
   for (const message of messages) {
@@ -25,5 +26,11 @@ export function reqDebugLog(...messages: any) {
 export function miscDebugLog(...messages: any) {
   for (const message of messages) {
     miscDebugLogger(chalk.yellowBright(message));
+  }
+}
+
+export function sensitiveLog(...messages: any) {
+  for (const message of messages) {
+    sensitiveLogger(chalk.greenBright(message));
   }
 }

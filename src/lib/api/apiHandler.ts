@@ -1,5 +1,4 @@
 import { API_SELECTION } from '../enums/enums';
-import { apiSpinnerStart, apiSpinnerStop } from '../../lib/utils/spinners';
 import { appErrorLog, appDebugLog } from '../../lib/utils/debugLogger';
 import handleApiError from '../../lib/utils/handleApiError';
 import { printRed } from '../../lib/utils/printToConsole';
