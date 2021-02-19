@@ -46,4 +46,6 @@ export const enum COMMAND_ARGS {
   FILE = 'f',
   PER_PAGE = 'per-page',
   PAGE = 'page',
+  CLEAR_TOKEN = 'clear-token',
+  AUTH_TOKEN = 'auth-token',
 }

@@ -1,4 +1,14 @@
-import { clearScreenDown } from 'readline';
+class AuthTokenError extends Error {
+  constructor() {
+    super('Auth token provided. Pass it using --auth-token');
+  }
+}
+
+class InvalidArgument extends Error {
+  constructor() {
+    super('Not a valid argument');
+  }
+}
 
 class UserIdError extends Error {
   constructor() {
@@ -30,4 +40,4 @@ class GroupIdError extends Error {
   }
 }
 
-export { UserIdError, OrgIdError, FilePathError, ProjectIdError, GroupIdError };
+export { AuthTokenError, InvalidArgument, UserIdError, OrgIdError, FilePathError, ProjectIdError, GroupIdError };

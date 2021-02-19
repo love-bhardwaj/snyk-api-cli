@@ -1,5 +1,4 @@
 import api from '../../../lib/api/apiHandler';
-import chalk from 'chalk';
 import { processAuth } from '../../../lib/auth/auth';
 import { appDebugLog, appErrorLog } from '../../../lib/utils/debugLogger';
 import { printRed } from '../../../lib/utils/printToConsole';
@@ -12,40 +11,50 @@ const builder = {
     describe: 'The API group you want to call, example: general, users, projects, etc',
     demand: true,
     alias: 'a',
+    string: true,
   },
   endpoint: {
     describe: 'The API endpoint you want to call, example: api-docs, get-projects',
     demand: true,
     alias: 'e',
+    string: true,
   },
   'group-id': {
     describe: 'Clear the saved API token',
     alias: 'g',
+    string: true,
   },
   'org-id': {
     describe: 'Snyk organization ID',
     alias: 'o',
+    string: true,
   },
   'project-id': {
     describe: 'Snyk project ID',
     alias: 'p',
+    string: true,
   },
   'user-id': {
     describe: 'Snyk user ID',
     alias: 'u',
+    string: true,
   },
   'issue-id': {
     describe: 'Vulnerability issue ID',
+    string: true,
   },
   file: {
     describe: 'Input JSON file(Request body)',
     alias: 'f',
+    string: true,
   },
   'per-page': {
     describe: 'Number of items on a page',
+    number: true,
   },
   page: {
     describe: 'Page number',
+    number: true,
   },
 };
 

@@ -14,7 +14,7 @@
     "test": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/**/*.test.ts'",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "tslint -p tsconfig.json"
+    "lint": "tslint src/**/*.ts -p tsconfig.json"
   },
   "keywords": [],
   "author": "",
