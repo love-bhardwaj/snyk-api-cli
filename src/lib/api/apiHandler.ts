@@ -6,6 +6,7 @@ import apiList from './apiList';
 import handleGeneralRequest from './general/general';
 import handleUserRequest from './users/users';
 import handleGroupRequest from './groups/groups';
+import handleOrgRequest from './organizations/organizations';
 import chalk from 'chalk';
 
 export default async function (args: any) {
@@ -23,6 +24,7 @@ export default async function (args: any) {
         await handleGroupRequest(args);
         break;
       case API_SELECTION.ORGS:
+        await handleOrgRequest(args);
         break;
       case API_SELECTION.INTEGRATIONS:
         break;

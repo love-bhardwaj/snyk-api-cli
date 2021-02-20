@@ -62,4 +62,5 @@ export const enum COMMAND_ARGS {
   PAGE = 'page',
   CLEAR_TOKEN = 'clear-token',
   AUTH_TOKEN = 'auth-token',
+  INCLUDE_GROUP_ADMINS = 'include-group-admins',
 }

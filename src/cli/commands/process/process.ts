@@ -2,6 +2,7 @@ import api from '../../../lib/api/apiHandler';
 import { processAuth } from '../../../lib/auth/auth';
 import { appDebugLog, appErrorLog } from '../../../lib/utils/debugLogger';
 import { printRed } from '../../../lib/utils/printToConsole';
+import objPrintable from '../../../lib/utils/objPrintable';
 
 const command = 'process [options]';
 const describe = 'Process the API request';
@@ -56,6 +57,10 @@ const builder = {
     describe: 'Page number',
     number: true,
   },
+  'include-group-admins': {
+    describe: 'Include group admins when listing organization members',
+    boolean: true,
+  },
 };
 
 const handler = async (argv: any) => {
@@ -63,7 +68,7 @@ const handler = async (argv: any) => {
    * Since token is required for processing request
    * we process the auth here and then proceed with the API call
    */
-  appDebugLog(`Process command with argv: ${JSON.stringify(argv)}`);
+  appDebugLog(`Process command with argv: ${objPrintable(argv)}`);
   try {
     await processAuth();
     await api(argv);
