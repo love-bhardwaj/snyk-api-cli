@@ -50,6 +50,21 @@ export const enum ORGS_API_ENDPOINTS {
   REMOVE_ORG = 'remove-org',
 }
 
+export const enum INTEGRATIONS_ENDPOINTS {
+  LIST_INTEGRATIONS = 'list-integrations',
+  ADD_NEW_INTEGRATION = 'add-new-integration',
+  UDPATE_INTEGRATION = 'update-integration',
+  DELETE_CREDENTIALS = 'delete-credentials',
+  PROVISION_NEW_BROKER_TOKEN = 'provision-new-broker-token',
+  SWITCH_BROKER_TOKEN = 'switch-broker-token',
+  CLONE_INTEGRATION = 'clone-integration',
+  GET_INTEGRATION_BY_TYPE = 'get-integration-by-type',
+  IMPORT_PROJECT = 'import-project',
+  GET_IMPORT_JOB_DETAILS = 'get-import-job-details',
+  GET_INTEGRATION_SETTINGS = 'get-integration-settings',
+  UPDATE_INTEGRATION_SETTINGS = 'update-integraion-settings',
+}
+
 export const enum COMMAND_ARGS {
   PROJECT_ID = 'p',
   ORG_ID = 'o',
