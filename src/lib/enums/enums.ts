@@ -62,7 +62,7 @@ export const enum INTEGRATIONS_ENDPOINTS {
   IMPORT_PROJECT = 'import-project',
   GET_IMPORT_JOB_DETAILS = 'get-import-job-details',
   GET_INTEGRATION_SETTINGS = 'get-integration-settings',
-  UPDATE_INTEGRATION_SETTINGS = 'update-integraion-settings',
+  UPDATE_INTEGRATION_SETTINGS = 'update-integration-settings',
 }
 
 export const enum COMMAND_ARGS {

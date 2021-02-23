@@ -11,9 +11,9 @@ import { apiSpinnerStart, apiSpinnerStop } from '../../../lib/utils/spinners';
 import { reqDebugLog } from '../../../lib/utils/debugLogger';
 import integrationEndpoints from './integrationEndpoints';
 import chalk from 'chalk';
-import objPrintable from 'lib/utils/objPrintable';
-import prettyPrint from 'lib/utils/prettyPrint';
-import readJsonFile from 'lib/utils/readJsonFile';
+import objPrintable from '../../../lib/utils/objPrintable';
+import prettyPrint from '../../../lib/utils/prettyPrint';
+import readJsonFile from '../../../lib/utils/readJsonFile';
 
 export default async (args: any) => {
   apiSpinnerStart();
@@ -35,7 +35,7 @@ export default async (args: any) => {
         const filePath = args[COMMAND_ARGS.FILE];
 
         if (!orgId1) throw new OrgIdError();
-        if (filePath) throw new FilePathError();
+        if (!filePath) throw new FilePathError();
 
         const fileContent = readJsonFile(filePath);
         const addNewIntegRes = await Integration.addNewIntegration({ orgId: orgId1 }, { requestBody: fileContent });
@@ -48,9 +48,9 @@ export default async (args: any) => {
         const integId = args[COMMAND_ARGS.INTEGRATION_ID];
         const filePath1 = args[COMMAND_ARGS.FILE];
 
-        if (orgId2) throw new OrgIdError();
-        if (integId) throw new IntegrationIdError();
-        if (filePath1) throw new FilePathError();
+        if (!orgId2) throw new OrgIdError();
+        if (!integId) throw new IntegrationIdError();
+        if (!filePath1) throw new FilePathError();
 
         const fileContent1 = readJsonFile(filePath1);
         const upExistingIntegRes = await Integration.updateIntegration(
@@ -211,6 +211,6 @@ export default async (args: any) => {
     }
   } catch (error) {
     apiSpinnerStop();
-    throw error();
+    throw error;
   }
 };

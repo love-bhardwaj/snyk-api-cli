@@ -10,5 +10,5 @@ export default [
   'import-project',
   'get-import-job-details',
   'get-integration-settings',
-  'update-integraion-settings',
+  'update-integration-settings',
 ];

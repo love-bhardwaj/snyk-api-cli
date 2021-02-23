@@ -1,0 +1,6 @@
+{
+    "type": "github",
+    "credentials": {
+        "token": "GITHUB_TOKEN"
+    }
+}
