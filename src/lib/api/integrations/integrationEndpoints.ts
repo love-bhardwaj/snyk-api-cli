@@ -1,7 +1,7 @@
 export default [
   'list-integrations',
   'add-new-integration',
-  'update-integration',
+  'update-existing-integration',
   'delete-credentials',
   'provision-new-broker-token',
   'switch-broker-token',

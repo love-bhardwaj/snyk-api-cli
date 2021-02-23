@@ -57,9 +57,21 @@ const builder = {
     describe: 'Page number',
     number: true,
   },
+  'integration-id': {
+    describe: 'Snyk integration ID',
+    string: true,
+  },
+  'integration-type': {
+    describe: 'Snyk integration type, used to get integration by type',
+    string: true,
+  },
   'include-group-admins': {
     describe: 'Include group admins when listing organization members',
     boolean: true,
+  },
+  'job-id': {
+    describe: 'Snyk import job ID',
+    string: true,
   },
 };
 

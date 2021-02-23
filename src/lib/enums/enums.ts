@@ -53,7 +53,7 @@ export const enum ORGS_API_ENDPOINTS {
 export const enum INTEGRATIONS_ENDPOINTS {
   LIST_INTEGRATIONS = 'list-integrations',
   ADD_NEW_INTEGRATION = 'add-new-integration',
-  UDPATE_INTEGRATION = 'update-integration',
+  UPDATE_EXISTING_INTEGRATION = 'update-existing-integration',
   DELETE_CREDENTIALS = 'delete-credentials',
   PROVISION_NEW_BROKER_TOKEN = 'provision-new-broker-token',
   SWITCH_BROKER_TOKEN = 'switch-broker-token',
@@ -78,4 +78,7 @@ export const enum COMMAND_ARGS {
   CLEAR_TOKEN = 'clear-token',
   AUTH_TOKEN = 'auth-token',
   INCLUDE_GROUP_ADMINS = 'include-group-admins',
+  INTEGRATION_ID = 'integration-id',
+  INTEGRATION_TYPE = 'integration-type',
+  JOB_ID = 'job-id',
 }
