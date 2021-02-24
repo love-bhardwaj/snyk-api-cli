@@ -5,6 +5,7 @@ import { apiSpinnerStart, apiSpinnerStop } from '../../../lib/utils/spinners';
 import chalk from 'chalk';
 import generalEndpoints from './generalEndpoints';
 import objPrintable from '../../../lib/utils/objPrintable';
+import { InvalidEndpointError } from '../../../lib/errors/errors';
 
 export default async function (args: any) {
   appDebugLog('Processing general API request');
@@ -20,8 +21,8 @@ export default async function (args: any) {
         break;
       default:
         apiSpinnerStop();
-        return console.log(
-          `The ${chalk.red('endpoint')} value passed is not acceptable, select one from [${chalk.greenBright(
+        throw new InvalidEndpointError(
+          `The --endpoint or -e value passed is not acceptable, select one from [${chalk.greenBright(
             generalEndpoints,
           )}]`,
         );

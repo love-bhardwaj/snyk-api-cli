@@ -1,6 +1,6 @@
 import { Org } from 'snyk-api-client';
 import { COMMAND_ARGS, ORGS_API_ENDPOINTS } from '../../../lib/enums/enums';
-import { FilePathError, OrgIdError, UserIdError } from '../../../lib/errors/errors';
+import { FilePathError, InvalidEndpointError, OrgIdError, UserIdError } from '../../../lib/errors/errors';
 import { apiSpinnerStart, apiSpinnerStop } from '../../../lib/utils/spinners';
 import { reqDebugLog } from '../../../lib/utils/debugLogger';
 import objPrintable from '../../../lib/utils/objPrintable';
@@ -154,10 +154,8 @@ export default async (args: any) => {
         return;
       default:
         apiSpinnerStop();
-        return console.log(
-          `The ${chalk.red('endpoint')} value passed is not acceptable, select one from [${chalk.greenBright(
-            orgEndpoints,
-          )}]`,
+        throw new InvalidEndpointError(
+          `The --endpoint or -e value passed is not acceptable, select one from [${chalk.greenBright(orgEndpoints)}]`,
         );
     }
   } catch (error) {

@@ -1,6 +1,12 @@
 import { User } from 'snyk-api-client';
 import { USERS_API_ENDPOINTS, COMMAND_ARGS } from '../../../lib/enums/enums';
-import { FilePathError, OrgIdError, ProjectIdError, UserIdError } from '../../../lib/errors/errors';
+import {
+  FilePathError,
+  InvalidEndpointError,
+  OrgIdError,
+  ProjectIdError,
+  UserIdError,
+} from '../../../lib/errors/errors';
 import { appDebugLog, appErrorLog } from '../../../lib/utils/debugLogger';
 import { apiSpinnerStop, apiSpinnerStart } from '../../../lib/utils/spinners';
 import chalk from 'chalk';
@@ -81,10 +87,8 @@ export default async function (args: any) {
 
       default:
         apiSpinnerStop();
-        return console.log(
-          `The ${chalk.red('endpoint')} value passed is not acceptable, select one from [${chalk.greenBright(
-            userEndpoints,
-          )}]`,
+        throw new InvalidEndpointError(
+          `The --endpoint or -e value passed is not acceptable, select one from [${chalk.greenBright(userEndpoints)}]`,
         );
     }
   } catch (error) {

@@ -1,6 +1,6 @@
 import { Group } from 'snyk-api-client';
 import { GROUPS_API_ENDPOINTS, COMMAND_ARGS } from '../../../lib/enums/enums';
-import { FilePathError, GroupIdError, OrgIdError } from '../../../lib/errors/errors';
+import { FilePathError, GroupIdError, InvalidEndpointError, OrgIdError } from '../../../lib/errors/errors';
 import { apiSpinnerStart, apiSpinnerStop } from '../../../lib/utils/spinners';
 import prettyPrint from '../../../lib/utils/prettyPrint';
 import chalk from 'chalk';
@@ -53,10 +53,11 @@ export default async (args: any) => {
         const orgId = args[COMMAND_ARGS.ORG_ID];
         const filePath1 = args[COMMAND_ARGS.FILE];
 
-        const addMembersFile = readJsonFile(filePath1);
-
         if (!groupId3) throw new GroupIdError();
         if (!orgId) throw new OrgIdError();
+        if (!filePath1) throw new FilePathError();
+
+        const addMembersFile = readJsonFile(filePath1);
 
         const addMemberRes = await Group.addMemberToOrg({ groupId: groupId3, orgId }, { requestBody: addMembersFile });
 
@@ -85,6 +86,7 @@ export default async (args: any) => {
         const filePath2 = args[COMMAND_ARGS.FILE];
 
         if (!groupId5) throw new GroupIdError();
+        if (!filePath2) throw new FilePathError();
 
         const deleteTagFile = readJsonFile(filePath2);
 
@@ -96,8 +98,8 @@ export default async (args: any) => {
         return;
       default:
         apiSpinnerStop();
-        return console.log(
-          `The ${chalk.red('endpoint')} value passed is not acceptable, select one from [${chalk.greenBright(
+        throw new InvalidEndpointError(
+          `The --endpoint or -e value passed is not acceptable, select one from [${chalk.greenBright(
             groupsEndpoints,
           )}]`,
         );

@@ -6,6 +6,7 @@ import {
   IntegrationIdError,
   IntegrationTypeError,
   JobIdError,
+  InvalidEndpointError,
 } from '../../../lib/errors/errors';
 import { apiSpinnerStart, apiSpinnerStop } from '../../../lib/utils/spinners';
 import { reqDebugLog } from '../../../lib/utils/debugLogger';
@@ -203,8 +204,8 @@ export default async (args: any) => {
         return;
       default:
         apiSpinnerStop();
-        return console.log(
-          `The ${chalk.red('endpoint')} value passed is not acceptable, select one from [${chalk.greenBright(
+        throw new InvalidEndpointError(
+          `The --endpoint or -e value passed is not acceptable, select one from [${chalk.greenBright(
             integrationEndpoints,
           )}]`,
         );

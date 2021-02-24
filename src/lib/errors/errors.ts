@@ -10,6 +10,11 @@ class InvalidArgument extends Error {
   }
 }
 
+class InvalidEndpointError extends Error {
+  constructor(message: string) {
+    super(message);
+  }
+}
 class UserIdError extends Error {
   constructor() {
     super('Error: The arg Snyk user ID(--user-id or -u) is required for this endpoint');
@@ -61,6 +66,7 @@ class JobIdError extends Error {
 export {
   AuthTokenError,
   InvalidArgument,
+  InvalidEndpointError,
   UserIdError,
   OrgIdError,
   FilePathError,

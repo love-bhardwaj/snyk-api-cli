@@ -1,14 +1,15 @@
 import { expect } from 'chai';
-import { run } from '../utils';
+import { run } from '../../utils';
 import {
   FilePathError,
   IntegrationIdError,
   IntegrationTypeError,
   JobIdError,
   OrgIdError,
-} from '../../src/lib/errors/errors';
+} from '../../../src/lib/errors/errors';
 
 const orgNotFoundErrString = 'Org test was not found or you may not have the correct permissions to access the org.';
+const endpointErrString = 'The --endpoint or -e value passed is not acceptable';
 const eontError = 'no such file or directory';
 const orgIdError = new OrgIdError();
 const integIdError = new IntegrationIdError();
@@ -17,6 +18,13 @@ const integTypeError = new IntegrationTypeError();
 const jobIdError = new JobIdError();
 
 describe('PROCESS: Test integration API related commands', () => {
+  describe('Invalid endpoint test:', () => {
+    it('Should print error for endpoint not valid', () => {
+      const res = run('process -a=integrations -e=something-invalid');
+      expect(res).to.have.string(endpointErrString);
+    });
+  });
+
   describe('List integrations endpoint:', () => {
     it('Should print error to console if no --org-id or -o', () => {
       const res = run('process -a=integrations -e=list-integrations');
@@ -46,7 +54,9 @@ describe('PROCESS: Test integration API related commands', () => {
     });
 
     it('Should call the API endpoint and return results', () => {
-      const res = run('process -a=integrations -e=add-new-integration -o=test -f=./test/json/addNewIntegration.json');
+      const res = run(
+        'process -a=integrations -e=add-new-integration -o=test -f=./test/json/integrations/addNewIntegration.json',
+      );
       expect(res).to.have.string(orgNotFoundErrString);
     });
   });
@@ -69,7 +79,7 @@ describe('PROCESS: Test integration API related commands', () => {
 
     it('Should call API and return the org error', () => {
       const res = run(
-        'process -a=integrations -e=update-existing-integration -o=test --integration-id=test -f=./test/json/updateExistingIntegration.json',
+        'process -a=integrations -e=update-existing-integration -o=test --integration-id=test -f=./test/json/integrations/updateExistingIntegration.json',
       );
       expect(res).to.have.string(orgNotFoundErrString);
     });
@@ -145,7 +155,7 @@ describe('PROCESS: Test integration API related commands', () => {
     });
     it('Should return results from the API', () => {
       const res = run(
-        'process -a=integrations -e=clone-integration -o=test --integration-id=test --file=./test/json/cloneIntegration.json',
+        'process -a=integrations -e=clone-integration -o=test --integration-id=test --file=./test/json/integrations/cloneIntegration.json',
       );
       expect(res).to.have.string(orgNotFoundErrString);
     });
@@ -184,13 +194,13 @@ describe('PROCESS: Test integration API related commands', () => {
 
     it('Should print error for file not found', () => {
       const res = run(
-        'process -a=integrations -e=import-project -o=test --integration-id=test --file=./test/json/something.json',
+        'process -a=integrations -e=import-project -o=test --integration-id=test --file=./test/json/integrations/something.json',
       );
       expect(res).to.have.string(eontError);
     });
     it('Should print the result from the API call', () => {
       const res = run(
-        'process -a=integrations -e=import-project -o=test --integration-id=test --file=./test/json/importProject.json',
+        'process -a=integrations -e=import-project -o=test --integration-id=test --file=./test/json/integrations/importProject.json',
       );
       expect(res).to.have.string(orgNotFoundErrString);
     });
@@ -206,6 +216,7 @@ describe('PROCESS: Test integration API related commands', () => {
     });
     it('Should print error for job ID not passed', () => {
       const res = run('process -a=integrations -e=get-import-job-details -o=test --integration-id=test');
+      expect(res).to.have.string(jobIdError.message);
     });
 
     it('Should return the response from the API', () => {
@@ -252,7 +263,7 @@ describe('PROCESS: Test integration API related commands', () => {
     });
     it('Should return the response from the API', () => {
       const res = run(
-        'process -a=integrations -e=update-integration-settings -o=test --integration-id=test -f=./test/json/updateIntegrationSettings.json',
+        'process -a=integrations -e=update-integration-settings -o=test --integration-id=test -f=./test/json/integrations/updateIntegrationSettings.json',
       );
       expect(res).to.have.string(orgNotFoundErrString);
     });
