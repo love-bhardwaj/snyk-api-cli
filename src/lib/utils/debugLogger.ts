@@ -2,9 +2,14 @@ import chalk from 'chalk';
 import debug from 'debug';
 
 const appDebugLogger = debug('app');
+const errorLogger = debug('error');
 const reqDebugLogger = debug('req');
 const miscDebugLogger = debug('misc');
 const sensitiveLogger = debug('secret');
+
+function JSONify(obj: any) {
+  return JSON.stringify(obj, null, 4);
+}
 
 export function appDebugLog(...messages: any) {
   for (const message of messages) {
@@ -14,13 +19,21 @@ export function appDebugLog(...messages: any) {
 
 export function appErrorLog(...errors: any) {
   for (const error of errors) {
-    appDebugLog(`${error.stack ? error.stack : error}`);
+    if (typeof error === 'object') {
+      errorLogger(JSONify(error));
+    } else {
+      errorLogger(`${error.stack ? error.stack : error}`);
+    }
   }
 }
 
 export function reqDebugLog(...messages: any) {
   for (const message of messages) {
-    reqDebugLogger(`${chalk.blueBright(message)}`);
+    if (typeof message === 'object') {
+      reqDebugLogger(`${chalk.blueBright(JSONify(message))}`);
+    } else {
+      reqDebugLogger(`${chalk.blueBright(message)}`);
+    }
   }
 }
 export function miscDebugLog(...messages: any) {

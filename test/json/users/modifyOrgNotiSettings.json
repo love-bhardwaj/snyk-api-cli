@@ -1,0 +1,16 @@
+{
+    "new-issues-remediations": {
+        "enabled": true,
+        "issueSeverity": "high",
+        "issueType": "vuln"
+    },
+    "project-imported": {
+        "enabled": true
+    },
+    "test-limit": {
+        "enabled": true
+    },
+    "weekly-report": {
+        "enabled": true
+    }
+}

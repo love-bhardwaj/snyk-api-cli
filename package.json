@@ -16,6 +16,7 @@
     "test-general": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/commands/process/general*.test.ts'",
     "test-integrations": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/commands/process/integrations*.test.ts'",
     "test-orgs": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/commands/process/organizations*.test.ts'",
+    "test-users": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/commands/process/users*.test.ts'",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint src/**/*.ts -p tsconfig.json"

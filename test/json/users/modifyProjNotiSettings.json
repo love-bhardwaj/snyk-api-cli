@@ -1,0 +1,7 @@
+{
+    "new-issues-remediations": {
+        "enabled": true,
+        "issueSeverity": "high",
+        "issueType": "vuln"
+    }
+}

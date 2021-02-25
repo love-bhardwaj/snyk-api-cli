@@ -7,7 +7,7 @@ import {
   ProjectIdError,
   UserIdError,
 } from '../../../lib/errors/errors';
-import { appDebugLog, appErrorLog } from '../../../lib/utils/debugLogger';
+import { appDebugLog, appErrorLog, reqDebugLog } from '../../../lib/utils/debugLogger';
 import { apiSpinnerStop, apiSpinnerStart } from '../../../lib/utils/spinners';
 import chalk from 'chalk';
 import userEndpoints from './usersEndpoints';
@@ -24,11 +24,13 @@ export default async function (args: any) {
         if (!userId) throw new UserIdError();
         const userDetails = await User.getUserDetails({ userId });
         apiSpinnerStop();
+        reqDebugLog(userDetails);
         prettyPrint(userDetails.response);
         break;
       case USERS_API_ENDPOINTS.GET_MY_DETAILS:
         const myDetails = await User.getMyDetails();
         apiSpinnerStop();
+        reqDebugLog(myDetails);
         prettyPrint(myDetails.response);
         break;
       case USERS_API_ENDPOINTS.GET_ORG_NOTI_SETTINGS:
@@ -36,6 +38,7 @@ export default async function (args: any) {
         if (!orgId) throw new OrgIdError();
         const orgNotiSettings = await User.getOrgNotiSettings({ orgId });
         apiSpinnerStop();
+        reqDebugLog(orgNotiSettings);
         prettyPrint(orgNotiSettings.response);
         break;
       case USERS_API_ENDPOINTS.MODIFY_ORG_NOTI_SETTINGS:
@@ -50,6 +53,7 @@ export default async function (args: any) {
           { requestBody: modifyOrgNotiFile },
         );
         apiSpinnerStop();
+        reqDebugLog(modifiedNotiSettings);
         prettyPrint(modifiedNotiSettings.response);
         break;
       case USERS_API_ENDPOINTS.GET_PROJECT_NOTI_SETTINGS:
@@ -64,6 +68,7 @@ export default async function (args: any) {
           projectId,
         });
         apiSpinnerStop();
+        reqDebugLog(projectNotiSettings);
         prettyPrint(projectNotiSettings.response);
         break;
       case USERS_API_ENDPOINTS.MODIFY_PROJECT_NOTI_SETTINGS:
@@ -82,6 +87,7 @@ export default async function (args: any) {
           { requestBody: modProjNotiSets },
         );
         apiSpinnerStop();
+        reqDebugLog(modProjNotSetsRes);
         prettyPrint(modProjNotSetsRes.response);
         break;
 

@@ -1,23 +1,13 @@
 import { expect } from 'chai';
 import { run, isValidJSON } from '../../utils';
-import {
-  OrgIdError,
-  IntegrationIdError,
-  FilePathError,
-  IntegrationTypeError,
-  JobIdError,
-  UserIdError,
-} from '../../../src/lib/errors/errors';
+import { OrgIdError, FilePathError, UserIdError } from '../../../src/lib/errors/errors';
 import { ORGS_API_ENDPOINTS } from '../../../src/lib/enums/enums';
 
 const orgNotFoundErrString = 'Org test was not found or you may not have the correct permissions to access the org.';
 const endpointErrString = 'The --endpoint or -e value passed is not acceptable';
 const eontError = 'no such file or directory';
 const orgIdError = new OrgIdError();
-const integIdError = new IntegrationIdError();
 const filePathError = new FilePathError();
-const integTypeError = new IntegrationTypeError();
-const jobIdError = new JobIdError();
 const userIdError = new UserIdError();
 
 describe('PROCESS: Test organizations API related commands', () => {
