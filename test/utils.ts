@@ -8,7 +8,6 @@ export const isValidJSON = (args: any) => {
   try {
     JSON.parse(args);
   } catch (e) {
-    console.error(e);
     return false;
   }
   return true;

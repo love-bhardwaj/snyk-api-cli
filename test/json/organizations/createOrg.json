@@ -1,11 +1,5 @@
 {
-    "id": "0356f641-c55c-488f-af05-c2122590f369",
     "name": "new-org",
-    "slug": "new-org",
-    "url": "https://snyk.io/org/new-org",
-    "created": "2021-01-07T16:07:16.237Z",
-    "group": {
-        "name": "test-group",
-        "id": "4a18d42f-0706-4ad0-b127-24078731fbed"
-    }
+    "groupId": "4a18d42f-0706-4ad0-b127-24078731fbed",
+    "sourceOrgId": "6b4a3261-b68f-43a0-9218-1f082e77f879"
 }
