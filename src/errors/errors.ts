@@ -63,6 +63,12 @@ class JobIdError extends Error {
   }
 }
 
+class IssueIdError extends Error {
+  constructor() {
+    super('Error: The arg Snyk issue ID(--issue-id) is required for this endpoint');
+  }
+}
+
 export {
   AuthTokenError,
   InvalidArgument,
@@ -75,4 +81,5 @@ export {
   IntegrationIdError,
   IntegrationTypeError,
   JobIdError,
+  IssueIdError,
 };

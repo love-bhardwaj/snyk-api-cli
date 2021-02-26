@@ -14,6 +14,25 @@ export const enum API_SELECTION {
   AUDIT = 'audit-logs',
 }
 
+export const enum COMMAND_ARGS {
+  PROJECT_ID = 'p',
+  ORG_ID = 'o',
+  GROUP_ID = 'g',
+  USER_ID = 'u',
+  ENDPOINT = 'e',
+  API = 'a',
+  FILE = 'f',
+  PER_PAGE = 'per-page',
+  PAGE = 'page',
+  CLEAR_TOKEN = 'clear-token',
+  AUTH_TOKEN = 'auth-token',
+  INCLUDE_GROUP_ADMINS = 'include-group-admins',
+  INTEGRATION_ID = 'integration-id',
+  INTEGRATION_TYPE = 'integration-type',
+  JOB_ID = 'job-id',
+  ISSUE_ID = 'issue-id',
+}
+
 export const enum GENERAL_API_ENDPOINTS {
   API_DOCS = 'api-docs',
 }
@@ -65,20 +84,27 @@ export const enum INTEGRATIONS_ENDPOINTS {
   UPDATE_INTEGRATION_SETTINGS = 'update-integration-settings',
 }
 
-export const enum COMMAND_ARGS {
-  PROJECT_ID = 'p',
-  ORG_ID = 'o',
-  GROUP_ID = 'g',
-  USER_ID = 'u',
-  ENDPOINT = 'e',
-  API = 'a',
-  FILE = 'f',
-  PER_PAGE = 'per-page',
-  PAGE = 'page',
-  CLEAR_TOKEN = 'clear-token',
-  AUTH_TOKEN = 'auth-token',
-  INCLUDE_GROUP_ADMINS = 'include-group-admins',
-  INTEGRATION_ID = 'integration-id',
-  INTEGRATION_TYPE = 'integration-type',
-  JOB_ID = 'job-id',
+export const enum PROJECTS_API_ENDPOINTS {
+  LIST_ALL_PROJECTS = 'list-all-projects',
+  RETRIEVE_SINGLE_PROJECT = 'list-single-project',
+  UPDATE_PROJECT = 'udpate-project',
+  DELETE_PROJECT = 'delete-project',
+  DEACTIVATE_PROJECT = 'deactivate-project',
+  ACTIVATE_PROJECT = 'activate-project',
+  LIST_ALL_AGGREGATE_ISSUES = 'list-all-aggregate-issues',
+  GET_PROJECT_DEP_GRAPH = 'get-project-dep-graph',
+  LIST_ALL_IGNORES = 'list-all-ignores',
+  RETRIEVE_IGNORE = 'retrieve-ignore',
+  ADD_IGNORE = 'add-ignore',
+  REPLACE_IGNORES = 'replace-ignores',
+  DELETE_IGNORES = 'delete-ignores',
+  LIST_ALL_JIRA_ISSUES = 'list-all-jira-issues',
+  CREATE_JIRA_ISSUE = 'create-jira-issue',
+  LIST_PROJECT_SETTINGS = 'list-project-settings',
+  UPDATE_PROJECT_SETTINGS = 'update-project-settings',
+  DELETE_PROJECT_SETTINGS = 'delete-project-settings',
+  MOVE_PROJECT = 'move-project',
+  ADD_TAG = 'add-tag',
+  REMOVE_PROJECT_TAG = 'remove-project-tag',
+  APPLY_ATTRIBUTES = 'apply-attributes',
 }
