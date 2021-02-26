@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { isValidJSON, run } from '../../utils';
-import { USERS_API_ENDPOINTS } from '../../../src/lib/enums/enums';
-import { OrgIdError, FilePathError, UserIdError, ProjectIdError } from '../../../src/lib/errors/errors';
+import { USERS_API_ENDPOINTS } from '../../../src/enums/enums';
+import { OrgIdError, FilePathError, UserIdError, ProjectIdError } from '../../../src/errors/errors';
 
 const orgNotFoundErrString = 'Org test was not found or you may not have the correct permissions to access the org.';
 const endpointErrString = 'The --endpoint or -e value passed is not acceptable';

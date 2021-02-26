@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 import debug from 'debug';
+import JSONify from './JSONify';
 
 const appDebugLogger = debug('app');
 const errorLogger = debug('error');
@@ -7,43 +8,39 @@ const reqDebugLogger = debug('req');
 const miscDebugLogger = debug('misc');
 const sensitiveLogger = debug('secret');
 
-function JSONify(obj: any) {
-  return JSON.stringify(obj, null, 4);
-}
-
 export function appDebugLog(...messages: any) {
   for (const message of messages) {
-    appDebugLogger(`${chalk.greenBright(message)}`);
+    typeof message === 'object'
+      ? appDebugLogger(`${chalk.green(JSONify(message))}`)
+      : appDebugLogger(`${chalk.greenBright(message)}`);
   }
 }
 
 export function appErrorLog(...errors: any) {
   for (const error of errors) {
-    if (typeof error === 'object') {
-      errorLogger(JSONify(error));
-    } else {
-      errorLogger(`${error.stack ? error.stack : error}`);
-    }
+    typeof error === 'object' ? errorLogger(JSONify(error)) : errorLogger(`${error.stack ? error.stack : error}`);
   }
 }
 
 export function reqDebugLog(...messages: any) {
   for (const message of messages) {
-    if (typeof message === 'object') {
-      reqDebugLogger(`${chalk.blueBright(JSONify(message))}`);
-    } else {
-      reqDebugLogger(`${chalk.blueBright(message)}`);
-    }
+    typeof message === 'object'
+      ? reqDebugLogger(`${chalk.blueBright(JSONify(message))}`)
+      : reqDebugLogger(`${chalk.blueBright(message)}`);
   }
 }
 export function miscDebugLog(...messages: any) {
   for (const message of messages) {
-    miscDebugLogger(`${chalk.yellowBright(message)}`);
+    typeof message === 'object'
+      ? miscDebugLogger(`${chalk.yellowBright(JSONify(message))}`)
+      : miscDebugLogger(`${chalk.yellowBright(message)}`);
   }
 }
 
 export function sensitiveLog(...messages: any) {
   for (const message of messages) {
-    sensitiveLogger(`${chalk.greenBright(message)}`);
+    typeof message === 'object'
+      ? sensitiveLogger(`${chalk.greenBright(JSONify(message))}`)
+      : sensitiveLogger(`${chalk.greenBright(message)}`);
   }
 }

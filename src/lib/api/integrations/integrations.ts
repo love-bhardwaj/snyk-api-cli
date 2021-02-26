@@ -1,5 +1,5 @@
 import { Integration } from 'snyk-api-client';
-import { COMMAND_ARGS, INTEGRATIONS_ENDPOINTS } from '../../../lib/enums/enums';
+import { COMMAND_ARGS, INTEGRATIONS_ENDPOINTS } from '../../../enums/enums';
 import {
   FilePathError,
   OrgIdError,
@@ -7,18 +7,18 @@ import {
   IntegrationTypeError,
   JobIdError,
   InvalidEndpointError,
-} from '../../../lib/errors/errors';
+} from '../../../errors/errors';
 import { apiSpinnerStart, apiSpinnerStop } from '../../../lib/utils/spinners';
-import { reqDebugLog } from '../../../lib/utils/debugLogger';
+import { appDebugLog, reqDebugLog } from '../../../lib/utils/debugLogger';
 import integrationEndpoints from './integrationEndpoints';
 import chalk from 'chalk';
-import objPrintable from '../../../lib/utils/objPrintable';
 import prettyPrint from '../../../lib/utils/prettyPrint';
 import readJsonFile from '../../../lib/utils/readJsonFile';
 
 export default async (args: any) => {
-  apiSpinnerStart();
   const endpoint = args[COMMAND_ARGS.ENDPOINT];
+  appDebugLog('Processing integrations API request');
+  apiSpinnerStart();
 
   try {
     switch (endpoint) {
@@ -28,7 +28,7 @@ export default async (args: any) => {
         if (!orgId) throw new OrgIdError();
         const listIntegRes = await Integration.listIntegrations({ orgId });
         apiSpinnerStop();
-        reqDebugLog(objPrintable(listIntegRes));
+        reqDebugLog(listIntegRes);
         prettyPrint(listIntegRes.response);
         return;
       case INTEGRATIONS_ENDPOINTS.ADD_NEW_INTEGRATION:
@@ -41,7 +41,7 @@ export default async (args: any) => {
         const fileContent = readJsonFile(filePath);
         const addNewIntegRes = await Integration.addNewIntegration({ orgId: orgId1 }, { requestBody: fileContent });
         apiSpinnerStop();
-        reqDebugLog(objPrintable(addNewIntegRes));
+        reqDebugLog(addNewIntegRes);
         prettyPrint(addNewIntegRes.response);
         return;
       case INTEGRATIONS_ENDPOINTS.UPDATE_EXISTING_INTEGRATION:
@@ -59,7 +59,7 @@ export default async (args: any) => {
           { requestBody: fileContent1 },
         );
         apiSpinnerStop();
-        reqDebugLog(objPrintable(upExistingIntegRes));
+        reqDebugLog(upExistingIntegRes);
         prettyPrint(upExistingIntegRes.response);
         return;
       case INTEGRATIONS_ENDPOINTS.DELETE_CREDENTIALS:
@@ -71,7 +71,7 @@ export default async (args: any) => {
 
         const deleteCredRes = await Integration.deleteCredentials({ orgId: orgId3, integrationId: integId1 });
         apiSpinnerStop();
-        reqDebugLog(objPrintable(deleteCredRes));
+        reqDebugLog(deleteCredRes);
         prettyPrint(deleteCredRes.response);
         return;
       case INTEGRATIONS_ENDPOINTS.PROVISION_NEW_BROKER_TOKEN:
@@ -83,7 +83,7 @@ export default async (args: any) => {
 
         const newBrokerTokenRes = await Integration.provisionBrokerToken({ orgId: orgId4, integrationId: integId2 });
         apiSpinnerStop();
-        reqDebugLog(objPrintable(newBrokerTokenRes));
+        reqDebugLog(newBrokerTokenRes);
         prettyPrint(newBrokerTokenRes.response);
         return;
 
@@ -96,7 +96,7 @@ export default async (args: any) => {
 
         const switchTokenRes = await Integration.switchBrokerToken({ orgId: orgId5, integrationId: integId3 });
         apiSpinnerStop();
-        reqDebugLog(objPrintable(switchTokenRes));
+        reqDebugLog(switchTokenRes);
         prettyPrint(switchTokenRes.response);
         return;
       case INTEGRATIONS_ENDPOINTS.CLONE_INTEGRATION:
@@ -114,7 +114,7 @@ export default async (args: any) => {
           { requestBody: fileContent2 },
         );
         apiSpinnerStop();
-        reqDebugLog(objPrintable(cloneIntegRes));
+        reqDebugLog(cloneIntegRes);
         prettyPrint(cloneIntegRes.response);
         return;
       case INTEGRATIONS_ENDPOINTS.GET_INTEGRATION_BY_TYPE:
@@ -126,7 +126,7 @@ export default async (args: any) => {
 
         const integByTypeRes = await Integration.getIntegrationByType({ orgId: orgId7, type: integType });
         apiSpinnerStop();
-        reqDebugLog(objPrintable(integByTypeRes));
+        reqDebugLog(integByTypeRes);
         prettyPrint(integByTypeRes.response);
         return;
 
@@ -146,7 +146,7 @@ export default async (args: any) => {
           { requestBody: fileContent3 },
         );
         apiSpinnerStop();
-        reqDebugLog(objPrintable(importProjectRes));
+        reqDebugLog(importProjectRes);
         prettyPrint(importProjectRes.response);
         return;
       case INTEGRATIONS_ENDPOINTS.GET_IMPORT_JOB_DETAILS:
@@ -164,7 +164,7 @@ export default async (args: any) => {
           jobId: jobId,
         });
         apiSpinnerStop();
-        reqDebugLog(objPrintable(importJobRes));
+        reqDebugLog(importJobRes);
         prettyPrint(importJobRes.response);
         return;
       case INTEGRATIONS_ENDPOINTS.GET_INTEGRATION_SETTINGS:
@@ -179,7 +179,7 @@ export default async (args: any) => {
           integrationId: integId7,
         });
         apiSpinnerStop();
-        reqDebugLog(objPrintable(getIntegSettingRes));
+        reqDebugLog(getIntegSettingRes);
         prettyPrint(getIntegSettingRes.response);
         return;
 

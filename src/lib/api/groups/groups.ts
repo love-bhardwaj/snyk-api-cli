@@ -1,15 +1,17 @@
 import { Group } from 'snyk-api-client';
-import { GROUPS_API_ENDPOINTS, COMMAND_ARGS } from '../../../lib/enums/enums';
-import { FilePathError, GroupIdError, InvalidEndpointError, OrgIdError } from '../../../lib/errors/errors';
-import { apiSpinnerStart, apiSpinnerStop } from '../../../lib/utils/spinners';
-import prettyPrint from '../../../lib/utils/prettyPrint';
+import { GROUPS_API_ENDPOINTS, COMMAND_ARGS } from '../../../enums/enums';
+import { FilePathError, GroupIdError, InvalidEndpointError, OrgIdError } from '../../../errors/errors';
+import { apiSpinnerStart, apiSpinnerStop } from '../../utils/spinners';
+import prettyPrint from '../../utils/prettyPrint';
 import chalk from 'chalk';
 import groupsEndpoints from './groupsEndpoints';
-import readJsonFile from '../../../lib/utils/readJsonFile';
+import readJsonFile from '../../utils/readJsonFile';
+import { appDebugLog, reqDebugLog } from '../../utils/debugLogger';
 
 export default async (args: any) => {
-  apiSpinnerStart();
   const endpoint = args[COMMAND_ARGS.ENDPOINT];
+  appDebugLog('Processing groups API request');
+  apiSpinnerStart();
 
   try {
     switch (endpoint) {
@@ -18,6 +20,7 @@ export default async (args: any) => {
         if (!groupId) throw new GroupIdError();
         const groupSettings = await Group.viewGroupSettings({ groupId });
         apiSpinnerStop();
+        reqDebugLog(groupSettings);
         prettyPrint(groupSettings.response);
         return;
       case GROUPS_API_ENDPOINTS.UPDATE_GROUP_SETTINGS:
@@ -34,6 +37,7 @@ export default async (args: any) => {
         );
 
         apiSpinnerStop();
+        reqDebugLog(updatedGroupSetRes);
         prettyPrint(updatedGroupSetRes.response);
         return;
       case GROUPS_API_ENDPOINTS.LIST_ALL_GROUP_MEMBERS:
@@ -45,6 +49,7 @@ export default async (args: any) => {
           groupId: groupId2,
         });
         apiSpinnerStop();
+        reqDebugLog(groupMembersRes);
         prettyPrint(groupMembersRes.response);
         return;
 
@@ -62,7 +67,7 @@ export default async (args: any) => {
         const addMemberRes = await Group.addMemberToOrg({ groupId: groupId3, orgId }, { requestBody: addMembersFile });
 
         apiSpinnerStop();
-
+        reqDebugLog(addMemberRes);
         prettyPrint(addMemberRes.response);
         return;
 
@@ -77,7 +82,7 @@ export default async (args: any) => {
         const listTagsRes = await Group.listAllTagsInGroup({ groupId: groupId4 }, { queryParams: { page, perPage } });
 
         apiSpinnerStop();
-
+        reqDebugLog(listTagsRes);
         prettyPrint(listTagsRes.response);
 
         return;
@@ -93,7 +98,7 @@ export default async (args: any) => {
         const deleteTagRes = await Group.deleteTagFromGroup({ groupId: groupId5 }, { requestBody: deleteTagFile });
 
         apiSpinnerStop();
-
+        reqDebugLog(deleteTagRes);
         prettyPrint(deleteTagRes.response);
         return;
       default:

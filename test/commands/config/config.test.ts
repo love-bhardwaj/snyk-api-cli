@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { run } from '../utils';
+import { run } from '../../utils';
 
 describe('CONFIG: command testing', () => {
   it('Should return error if not token passed', () => {

@@ -2,7 +2,7 @@ import api from '../../../lib/api/apiHandler';
 import { processAuth } from '../../../lib/auth/auth';
 import { appDebugLog, appErrorLog } from '../../../lib/utils/debugLogger';
 import { printRed } from '../../../lib/utils/printToConsole';
-import objPrintable from '../../../lib/utils/objPrintable';
+import objPrintable from '../../../lib/utils/JSONify';
 import handleApiError from '../../../lib/utils/handleApiError';
 
 const command = 'process [options]';
@@ -88,7 +88,6 @@ const handler = async (argv: any) => {
   } catch (error) {
     appErrorLog(error);
     const errorMessage = handleApiError(error);
-    // printRed('Snyk API token required!');
     printRed(errorMessage);
     process.exit(1);
   }

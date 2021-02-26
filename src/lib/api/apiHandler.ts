@@ -1,4 +1,4 @@
-import { API_SELECTION } from '../enums/enums';
+import { API_SELECTION } from '../../enums/enums';
 import { appErrorLog, appDebugLog } from '../../lib/utils/debugLogger';
 import handleApiError from '../../lib/utils/handleApiError';
 import { printRed } from '../../lib/utils/printToConsole';

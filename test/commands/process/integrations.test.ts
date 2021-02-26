@@ -6,7 +6,7 @@ import {
   IntegrationTypeError,
   JobIdError,
   OrgIdError,
-} from '../../../src/lib/errors/errors';
+} from '../../../src/errors/errors';
 
 const orgNotFoundErrString = 'Org test was not found or you may not have the correct permissions to access the org.';
 const endpointErrString = 'The --endpoint or -e value passed is not acceptable';

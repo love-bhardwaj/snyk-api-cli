@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { run } from '../utils';
+import { run } from '../../utils';
 
 describe('GENERAL: help command testing', () => {
   it('Should return the help output', () => {

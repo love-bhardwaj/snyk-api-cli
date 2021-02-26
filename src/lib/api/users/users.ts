@@ -1,13 +1,7 @@
 import { User } from 'snyk-api-client';
-import { USERS_API_ENDPOINTS, COMMAND_ARGS } from '../../../lib/enums/enums';
-import {
-  FilePathError,
-  InvalidEndpointError,
-  OrgIdError,
-  ProjectIdError,
-  UserIdError,
-} from '../../../lib/errors/errors';
-import { appDebugLog, appErrorLog, reqDebugLog } from '../../../lib/utils/debugLogger';
+import { USERS_API_ENDPOINTS, COMMAND_ARGS } from '../../../enums/enums';
+import { FilePathError, InvalidEndpointError, OrgIdError, ProjectIdError, UserIdError } from '../../../errors/errors';
+import { appDebugLog, reqDebugLog } from '../../../lib/utils/debugLogger';
 import { apiSpinnerStop, apiSpinnerStart } from '../../../lib/utils/spinners';
 import chalk from 'chalk';
 import userEndpoints from './usersEndpoints';
@@ -15,10 +9,12 @@ import prettyPrint from '../../utils/prettyPrint';
 import readJsonFile from '../../utils/readJsonFile';
 
 export default async function (args: any) {
+  const endpoint = args[COMMAND_ARGS.ENDPOINT];
+  appDebugLog('Processing users API request');
   apiSpinnerStart();
 
   try {
-    switch (args[COMMAND_ARGS.ENDPOINT]) {
+    switch (endpoint) {
       case USERS_API_ENDPOINTS.GET_USER_DETAILS:
         const userId = args[COMMAND_ARGS.USER_ID];
         if (!userId) throw new UserIdError();

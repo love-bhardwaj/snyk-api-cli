@@ -1,24 +1,24 @@
 import { Org } from 'snyk-api-client';
-import { COMMAND_ARGS, ORGS_API_ENDPOINTS } from '../../../lib/enums/enums';
-import { FilePathError, InvalidEndpointError, OrgIdError, UserIdError } from '../../../lib/errors/errors';
+import { COMMAND_ARGS, ORGS_API_ENDPOINTS } from '../../../enums/enums';
+import { FilePathError, InvalidEndpointError, OrgIdError, UserIdError } from '../../../errors/errors';
 import { apiSpinnerStart, apiSpinnerStop } from '../../../lib/utils/spinners';
-import { reqDebugLog } from '../../../lib/utils/debugLogger';
-import objPrintable from '../../../lib/utils/objPrintable';
+import { appDebugLog, reqDebugLog } from '../../../lib/utils/debugLogger';
 import orgEndpoints from './organizationsEndpoints';
 import chalk from 'chalk';
 import prettyPrint from '../../../lib/utils/prettyPrint';
 import readJsonFile from '../../../lib/utils/readJsonFile';
 
 export default async (args: any) => {
-  apiSpinnerStart();
   const endpoint = args[COMMAND_ARGS.ENDPOINT];
+  appDebugLog('Processing orgs API request');
+  apiSpinnerStart();
 
   try {
     switch (endpoint) {
       case ORGS_API_ENDPOINTS.LIST_USER_ORGS:
         const userOrgs = await Org.listUserOrgs();
         apiSpinnerStop();
-        reqDebugLog(objPrintable(userOrgs));
+        reqDebugLog(userOrgs);
         prettyPrint(userOrgs.response);
         return;
       case ORGS_API_ENDPOINTS.CREATE_NEW_ORG:
@@ -28,7 +28,7 @@ export default async (args: any) => {
         const newOrgFile = readJsonFile(filePath);
 
         const createOrgRes = await Org.createNewOrg({ requestBody: newOrgFile });
-        reqDebugLog(objPrintable(createOrgRes));
+        reqDebugLog(createOrgRes);
         apiSpinnerStop();
         prettyPrint(createOrgRes.response);
         return;
@@ -38,7 +38,7 @@ export default async (args: any) => {
         if (!orgId) throw new OrgIdError();
 
         const orgNotiRes = await Org.getOrgNotiSettings({ orgId });
-        reqDebugLog(objPrintable(orgNotiRes));
+        reqDebugLog(orgNotiRes);
         apiSpinnerStop();
         prettyPrint(orgNotiRes.response);
         return;
@@ -52,7 +52,7 @@ export default async (args: any) => {
         const orgNotiFile = readJsonFile(filePath1);
 
         const updateOrgNotiRes = await Org.setOrgNotiSettings({ orgId: orgId1 }, { requestBody: orgNotiFile });
-        reqDebugLog(objPrintable(updateOrgNotiRes));
+        reqDebugLog(updateOrgNotiRes);
 
         apiSpinnerStop();
         prettyPrint(updateOrgNotiRes.response);
@@ -67,7 +67,7 @@ export default async (args: any) => {
         const usersFile = readJsonFile(filePath2);
 
         const addUserRes = await Org.inviteUserToOrg({ orgId: orgId2 }, { requestBody: usersFile });
-        reqDebugLog(objPrintable(addUserRes));
+        reqDebugLog(addUserRes);
 
         apiSpinnerStop();
         prettyPrint(addUserRes.response);
@@ -79,7 +79,7 @@ export default async (args: any) => {
         if (!orgId3) throw new OrgIdError();
 
         const listMembersRes = await Org.listMembers({ orgId: orgId3 }, { queryParams: { includeGroupAdmins } });
-        reqDebugLog(objPrintable(listMembersRes));
+        reqDebugLog(listMembersRes);
         apiSpinnerStop();
         prettyPrint(listMembersRes.response);
         return;
@@ -89,7 +89,7 @@ export default async (args: any) => {
         if (!orgId4) throw new OrgIdError();
 
         const orgSettingsRes = await Org.viewOrgSettings({ orgId: orgId4 });
-        reqDebugLog(objPrintable(orgSettingsRes));
+        reqDebugLog(orgSettingsRes);
 
         apiSpinnerStop();
 
@@ -105,7 +105,7 @@ export default async (args: any) => {
         const fileContent = readJsonFile(filePath3);
 
         const updateSettingsRes = await Org.updateOrgSettings({ orgId: orgId5 }, { requestBody: fileContent });
-        reqDebugLog(objPrintable(updateSettingsRes));
+        reqDebugLog(updateSettingsRes);
 
         apiSpinnerStop();
 
@@ -126,7 +126,7 @@ export default async (args: any) => {
           { orgId: orgId6, userId: userId },
           { requestBody: updateRoleBody },
         );
-        reqDebugLog(objPrintable(updateMemberRole));
+        reqDebugLog(updateMemberRole);
         apiSpinnerStop();
         prettyPrint(updateMemberRole.response);
         return;
@@ -138,7 +138,7 @@ export default async (args: any) => {
         if (!userId1) throw new UserIdError();
 
         const removeMemberRes = await Org.removeOrgMember({ orgId: orgId7, userId: userId1 });
-        reqDebugLog(objPrintable(removeMemberRes));
+        reqDebugLog(removeMemberRes);
         apiSpinnerStop();
         prettyPrint(removeMemberRes.response);
         return;
@@ -148,7 +148,7 @@ export default async (args: any) => {
         if (!orgId8) throw new OrgIdError();
 
         const removeOrgRes = await Org.removeOrg({ orgId: orgId8 });
-        reqDebugLog(objPrintable(removeOrgRes));
+        reqDebugLog(removeOrgRes);
         apiSpinnerStop();
         prettyPrint(removeOrgRes.response);
         return;

@@ -1,23 +1,23 @@
 import { General } from 'snyk-api-client';
-import { GENERAL_API_ENDPOINTS, COMMAND_ARGS } from '../../../lib/enums/enums';
-import { appDebugLog, appErrorLog } from '../../../lib/utils/debugLogger';
-import { apiSpinnerStart, apiSpinnerStop } from '../../../lib/utils/spinners';
+import { GENERAL_API_ENDPOINTS, COMMAND_ARGS } from '../../../enums/enums';
+import { appDebugLog, reqDebugLog } from '../../utils/debugLogger';
+import { apiSpinnerStart, apiSpinnerStop } from '../../utils/spinners';
 import chalk from 'chalk';
 import generalEndpoints from './generalEndpoints';
-import objPrintable from '../../../lib/utils/objPrintable';
-import { InvalidEndpointError } from '../../../lib/errors/errors';
+import prettyPrint from '../../utils/prettyPrint';
+import { InvalidEndpointError } from '../../../errors/errors';
 
 export default async function (args: any) {
+  const endpoint = args[COMMAND_ARGS.ENDPOINT];
   appDebugLog('Processing general API request');
   apiSpinnerStart();
   try {
-    switch (args[COMMAND_ARGS.ENDPOINT]) {
+    switch (endpoint) {
       case GENERAL_API_ENDPOINTS.API_DOCS:
-        appDebugLog('Fetching API docs');
         const apiDocs = await General.getDocs();
-        appDebugLog(`API docs fetched ${objPrintable(apiDocs)}`);
         apiSpinnerStop();
-        console.log(apiDocs.response);
+        reqDebugLog(apiDocs);
+        prettyPrint(apiDocs.response);
         break;
       default:
         apiSpinnerStop();

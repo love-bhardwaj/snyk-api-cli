@@ -1,7 +1,7 @@
 import { clearToken, saveTokenToConfig } from '../../../lib/auth/auth';
 import { printGreen, printRed } from '../../../lib/utils/printToConsole';
 import { appDebugLog } from '../../../lib/utils/debugLogger';
-import { COMMAND_ARGS } from '../../../lib/enums/enums';
+import { COMMAND_ARGS } from '../../../enums/enums';
 import yargs from 'yargs';
 
 const command = 'config [options]';
