@@ -8,6 +8,7 @@ import handleUserRequest from './users/users';
 import handleGroupRequest from './groups/groups';
 import handleOrgRequest from './organizations/organizations';
 import handleIntegRequest from './integrations/integrations';
+import handleProjRequest from './projects/projects';
 import chalk from 'chalk';
 
 export default async function (args: any) {
@@ -31,6 +32,7 @@ export default async function (args: any) {
         await handleIntegRequest(args);
         break;
       case API_SELECTION.PROJECTS:
+        await handleProjRequest(args);
         break;
       case API_SELECTION.DEPENDENCIES:
         break;

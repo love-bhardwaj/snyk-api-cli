@@ -1,4 +1,16 @@
 import { execSync } from 'child_process';
+import { expect } from 'chai';
+import {
+  FilePathError,
+  GroupIdError,
+  IssueIdError,
+  OrgIdError,
+  ProjectIdError,
+  IntegrationIdError,
+  IntegrationTypeError,
+  JobIdError,
+  UserIdError,
+} from '../src/errors/errors';
 
 export const run = (args: string) => {
   return execSync(`ts-node src/index ${args}`).toString();
@@ -12,3 +24,55 @@ export const isValidJSON = (args: any) => {
   }
   return true;
 };
+
+export const expectOrgIdErr = (result: string) => {
+  expect(result).to.have.string(new OrgIdError().message);
+};
+
+export const expectProjectIdErr = (result: string) => {
+  expect(result).to.have.string(new ProjectIdError().message);
+};
+
+export const expectIssueIdErr = (result: string) => {
+  expect(result).to.have.string(new IssueIdError().message);
+};
+
+export const expectGroupIdErr = (result: string) => {
+  expect(result).to.have.string(new GroupIdError().message);
+};
+
+export const expectIntegIdErr = (result: string) => {
+  expect(result).to.have.string(new IntegrationIdError().message);
+};
+
+export const expectIntegTypeErr = (result: string) => {
+  expect(result).to.have.string(new IntegrationTypeError().message);
+};
+
+export const expectJobIdErr = (result: string) => {
+  expect(result).to.have.string(new JobIdError().message);
+};
+
+export const expectUserIdErr = (result: string) => {
+  expect(result).to.have.string(new UserIdError().message);
+};
+
+export const expectFilePathErr = (result: string) => {
+  expect(result).to.have.string(new FilePathError().message);
+};
+
+export const expectOrgNotFound = (result: string) => {
+  expect(result).to.have.string(orgNotFoundErrString);
+};
+
+export const expectEontErr = (result: string) => {
+  expect(result).to.have.string(eontError);
+};
+
+export const expectEndpointErr = (result: string) => {
+  expect(result).to.have.string(endpointErrString);
+};
+
+const endpointErrString = 'The --endpoint or -e value passed is not acceptable';
+const eontError = 'no such file or directory';
+const orgNotFoundErrString = 'Org test was not found or you may not have the correct permissions to access the org.';

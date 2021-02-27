@@ -7,7 +7,6 @@ import chalk from 'chalk';
 import projectsEndpoints from './projectsEndpoints';
 import prettyPrint from '../../utils/prettyPrint';
 import readJsonFile from '../../utils/readJsonFile';
-import { CONNREFUSED } from 'dns';
 
 export default async (args: any) => {
   const endpoint = args[COMMAND_ARGS.ENDPOINT];
