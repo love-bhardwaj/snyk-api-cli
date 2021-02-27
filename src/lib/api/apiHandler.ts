@@ -10,6 +10,7 @@ import handleOrgRequest from './organizations/organizations';
 import handleIntegRequest from './integrations/integrations';
 import handleProjRequest from './projects/projects';
 import handleDependenciesRequest from './dependencies/dependencies';
+import handleLicensesRequest from './licenses/licenses';
 import chalk from 'chalk';
 
 export default async function (args: any) {
@@ -39,6 +40,7 @@ export default async function (args: any) {
         await handleDependenciesRequest(args);
         break;
       case API_SELECTION.LICENSES:
+        await handleLicensesRequest(args);
         break;
       case API_SELECTION.ENTITLEMENTS:
         break;

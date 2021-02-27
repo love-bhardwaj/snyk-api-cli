@@ -110,7 +110,6 @@ const handler = async (argv: any) => {
     appErrorLog(error);
     const errorMessage = handleApiError(error);
     printRed(errorMessage);
-    process.exit(1);
   }
 };
 

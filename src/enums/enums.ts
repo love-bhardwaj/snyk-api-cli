@@ -114,3 +114,7 @@ export const enum PROJECTS_API_ENDPOINTS {
 export const enum DEPENDENCIES_API_ENDPOINTS {
   LIST_ALL_DEPENDENCIES = 'list-all-dependencies',
 }
+
+export const enum LICENSES_API_ENDPOINTS {
+  LIST_ALL_LICENSES = 'list-all-licenses',
+}
