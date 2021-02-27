@@ -24,6 +24,8 @@ export const enum COMMAND_ARGS {
   FILE = 'f',
   PER_PAGE = 'per-page',
   PAGE = 'page',
+  SORT_BY = 'sort-by',
+  ORDER = 'order',
   CLEAR_TOKEN = 'clear-token',
   AUTH_TOKEN = 'auth-token',
   INCLUDE_GROUP_ADMINS = 'include-group-admins',
@@ -107,4 +109,8 @@ export const enum PROJECTS_API_ENDPOINTS {
   ADD_TAG = 'add-tag',
   REMOVE_PROJECT_TAG = 'remove-project-tag',
   APPLY_ATTRIBUTES = 'apply-attributes',
+}
+
+export const enum DEPENDENCIES_API_ENDPOINTS {
+  LIST_ALL_DEPENDENCIES = 'list-all-dependencies',
 }
