@@ -7,6 +7,7 @@ import orgEndpoints from './organizationsEndpoints';
 import chalk from 'chalk';
 import prettyPrint from '../../../lib/utils/prettyPrint';
 import readJsonFile from '../../../lib/utils/readJsonFile';
+import inputValidation from '../../utils/inputValidation';
 
 export default async (args: any) => {
   const endpoint = args[COMMAND_ARGS.ENDPOINT];
@@ -22,8 +23,8 @@ export default async (args: any) => {
         prettyPrint(userOrgs.response);
         return;
       case ORGS_API_ENDPOINTS.CREATE_NEW_ORG:
+        inputValidation({ args, filePath: true });
         const filePath = args[COMMAND_ARGS.FILE];
-        if (!filePath) throw new FilePathError();
 
         const newOrgFile = readJsonFile(filePath);
 
@@ -33,9 +34,8 @@ export default async (args: any) => {
         prettyPrint(createOrgRes.response);
         return;
       case ORGS_API_ENDPOINTS.GET_ORG_NOTI_SETTINGS:
+        inputValidation({ args, orgId: true });
         const orgId = args[COMMAND_ARGS.ORG_ID];
-
-        if (!orgId) throw new OrgIdError();
 
         const orgNotiRes = await Org.getOrgNotiSettings({ orgId });
         reqDebugLog(orgNotiRes);
@@ -43,11 +43,9 @@ export default async (args: any) => {
         prettyPrint(orgNotiRes.response);
         return;
       case ORGS_API_ENDPOINTS.SET_ORG_NOTI_SETTINGS:
+        inputValidation({ args, orgId: true, filePath: true });
         const orgId1 = args[COMMAND_ARGS.ORG_ID];
         const filePath1 = args[COMMAND_ARGS.FILE];
-
-        if (!orgId1) throw new OrgIdError();
-        if (!filePath1) throw new FilePathError();
 
         const orgNotiFile = readJsonFile(filePath1);
 
@@ -58,11 +56,9 @@ export default async (args: any) => {
         prettyPrint(updateOrgNotiRes.response);
         return;
       case ORGS_API_ENDPOINTS.INVITE_USER:
+        inputValidation({ args, orgId: true, filePath: true });
         const orgId2 = args[COMMAND_ARGS.ORG_ID];
         const filePath2 = args[COMMAND_ARGS.FILE];
-
-        if (!orgId2) throw new OrgIdError();
-        if (!filePath2) throw new FilePathError();
 
         const usersFile = readJsonFile(filePath2);
 
@@ -73,10 +69,9 @@ export default async (args: any) => {
         prettyPrint(addUserRes.response);
         return;
       case ORGS_API_ENDPOINTS.LIST_ORG_MEMBERS:
+        inputValidation({ args, orgId: true });
         const orgId3 = args[COMMAND_ARGS.ORG_ID];
         const includeGroupAdmins = args[COMMAND_ARGS.INCLUDE_GROUP_ADMINS];
-
-        if (!orgId3) throw new OrgIdError();
 
         const listMembersRes = await Org.listMembers({ orgId: orgId3 }, { queryParams: { includeGroupAdmins } });
         reqDebugLog(listMembersRes);
@@ -84,9 +79,8 @@ export default async (args: any) => {
         prettyPrint(listMembersRes.response);
         return;
       case ORGS_API_ENDPOINTS.VIEW_ORG_SETTINGS:
+        inputValidation({ args, orgId: true });
         const orgId4 = args[COMMAND_ARGS.ORG_ID];
-
-        if (!orgId4) throw new OrgIdError();
 
         const orgSettingsRes = await Org.viewOrgSettings({ orgId: orgId4 });
         reqDebugLog(orgSettingsRes);
@@ -96,11 +90,9 @@ export default async (args: any) => {
         prettyPrint(orgSettingsRes.response);
         return;
       case ORGS_API_ENDPOINTS.UPDATE_ORG_SETTINGS:
+        inputValidation({ args, orgId: true, filePath: true });
         const orgId5 = args[COMMAND_ARGS.ORG_ID];
         const filePath3 = args[COMMAND_ARGS.FILE];
-
-        if (!orgId5) throw new OrgIdError();
-        if (!filePath3) throw new FilePathError();
 
         const fileContent = readJsonFile(filePath3);
 
@@ -112,13 +104,10 @@ export default async (args: any) => {
         prettyPrint(updateSettingsRes.response);
         return;
       case ORGS_API_ENDPOINTS.UPDATE_MEMBER_ROLE:
+        inputValidation({ args, orgId: true, userId: true, filePath: true });
         const orgId6 = args[COMMAND_ARGS.ORG_ID];
         const userId = args[COMMAND_ARGS.USER_ID];
         const filePath4 = args[COMMAND_ARGS.FILE];
-
-        if (!orgId6) throw new OrgIdError();
-        if (!userId) throw new UserIdError();
-        if (!filePath4) throw new FilePathError();
 
         const updateRoleBody = readJsonFile(filePath4);
 
@@ -131,11 +120,9 @@ export default async (args: any) => {
         prettyPrint(updateMemberRole.response);
         return;
       case ORGS_API_ENDPOINTS.REMOVE_MEMBER:
+        inputValidation({ args, orgId: true, userId: true });
         const orgId7 = args[COMMAND_ARGS.ORG_ID];
         const userId1 = args[COMMAND_ARGS.USER_ID];
-
-        if (!orgId7) throw new OrgIdError();
-        if (!userId1) throw new UserIdError();
 
         const removeMemberRes = await Org.removeOrgMember({ orgId: orgId7, userId: userId1 });
         reqDebugLog(removeMemberRes);
@@ -143,9 +130,8 @@ export default async (args: any) => {
         prettyPrint(removeMemberRes.response);
         return;
       case ORGS_API_ENDPOINTS.REMOVE_ORG:
+        inputValidation({ args, orgId: true });
         const orgId8 = args[COMMAND_ARGS.ORG_ID];
-
-        if (!orgId8) throw new OrgIdError();
 
         const removeOrgRes = await Org.removeOrg({ orgId: orgId8 });
         reqDebugLog(removeOrgRes);

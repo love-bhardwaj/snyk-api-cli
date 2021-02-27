@@ -7,6 +7,7 @@ import chalk from 'chalk';
 import projectsEndpoints from './projectsEndpoints';
 import prettyPrint from '../../utils/prettyPrint';
 import readJsonFile from '../../utils/readJsonFile';
+import inputValidation from '../../utils/inputValidation';
 
 export default async (args: any) => {
   const endpoint = args[COMMAND_ARGS.ENDPOINT];
@@ -16,8 +17,8 @@ export default async (args: any) => {
   try {
     switch (endpoint) {
       case PROJECTS_API_ENDPOINTS.LIST_ALL_PROJECTS:
+        inputValidation({ args, orgId: true });
         const orgId = args[COMMAND_ARGS.ORG_ID];
-        if (!orgId) throw new OrgIdError();
 
         const projectListRes = await Project.getAllProjects({ orgId });
         apiSpinnerStop();
@@ -25,11 +26,9 @@ export default async (args: any) => {
         prettyPrint(projectListRes.response);
         return;
       case PROJECTS_API_ENDPOINTS.RETRIEVE_SINGLE_PROJECT:
+        inputValidation({ args, orgId: true, projectId: true });
         const orgId1 = args[COMMAND_ARGS.ORG_ID];
         const projectId = args[COMMAND_ARGS.PROJECT_ID];
-
-        if (!orgId1) throw new OrgIdError();
-        if (!projectId) throw new ProjectIdError();
 
         const singleProjectRes = await Project.getSingleProject({ orgId: orgId1, projectId });
         apiSpinnerStop();
@@ -37,13 +36,10 @@ export default async (args: any) => {
         prettyPrint(singleProjectRes.response);
         return;
       case PROJECTS_API_ENDPOINTS.UPDATE_PROJECT:
+        inputValidation({ args, orgId: true, projectId: true, filePath: true });
         const orgId2 = args[COMMAND_ARGS.ORG_ID];
         const projectId1 = args[COMMAND_ARGS.PROJECT_ID];
         const filePath = args[COMMAND_ARGS.FILE];
-
-        if (!orgId2) throw new OrgIdError();
-        if (!projectId1) throw new ProjectIdError();
-        if (!filePath) throw new FilePathError();
 
         const fileContent = readJsonFile(filePath);
         const updateProjectRes = await Project.updateAProject(
@@ -56,11 +52,9 @@ export default async (args: any) => {
         return;
 
       case PROJECTS_API_ENDPOINTS.DELETE_PROJECT:
+        inputValidation({ args, orgId: true, projectId: true });
         const orgId3 = args[COMMAND_ARGS.ORG_ID];
         const projectId2 = args[COMMAND_ARGS.PROJECT_ID];
-
-        if (!orgId3) throw new OrgIdError();
-        if (!projectId2) throw new ProjectIdError();
 
         const deleteProjectRes = await Project.deleteAProject({ orgId: orgId3, projectId: projectId2 });
         apiSpinnerStop();
@@ -68,11 +62,9 @@ export default async (args: any) => {
         prettyPrint(deleteProjectRes.response);
 
       case PROJECTS_API_ENDPOINTS.DEACTIVATE_PROJECT:
+        inputValidation({ args, orgId: true, projectId: true });
         const orgId4 = args[COMMAND_ARGS.ORG_ID];
         const projectId3 = args[COMMAND_ARGS.PROJECT_ID];
-
-        if (!orgId4) throw new OrgIdError();
-        if (!projectId3) throw new ProjectIdError();
 
         const deacProjRes = await Project.deactivateAProject({ orgId: orgId4, projectId: projectId3 });
         apiSpinnerStop();
@@ -81,11 +73,9 @@ export default async (args: any) => {
         return;
 
       case PROJECTS_API_ENDPOINTS.ACTIVATE_PROJECT:
+        inputValidation({ args, orgId: true, projectId: true });
         const orgId5 = args[COMMAND_ARGS.ORG_ID];
         const projectId4 = args[COMMAND_ARGS.PROJECT_ID];
-
-        if (!orgId5) throw new OrgIdError();
-        if (!projectId4) throw new ProjectIdError();
 
         const actProjectRes = await Project.activateAProject({ orgId: orgId5, projectId: projectId4 });
         apiSpinnerStop();
@@ -94,11 +84,9 @@ export default async (args: any) => {
         return;
 
       case PROJECTS_API_ENDPOINTS.LIST_ALL_AGGREGATE_ISSUES:
+        inputValidation({ args, orgId: true, projectId: true });
         const orgId6 = args[COMMAND_ARGS.ORG_ID];
         const projectId5 = args[COMMAND_ARGS.PROJECT_ID];
-
-        if (!orgId6) throw new OrgIdError();
-        if (!projectId5) throw new ProjectIdError();
 
         const listAggIssuesRes = await Project.getAggProjectIssues({ orgId: orgId6, projectId: projectId5 });
         apiSpinnerStop();
@@ -107,11 +95,9 @@ export default async (args: any) => {
         return;
 
       case PROJECTS_API_ENDPOINTS.GET_PROJECT_DEP_GRAPH:
+        inputValidation({ args, orgId: true, projectId: true });
         const orgId7 = args[COMMAND_ARGS.ORG_ID];
         const projectId6 = args[COMMAND_ARGS.PROJECT_ID];
-
-        if (!orgId7) throw new OrgIdError();
-        if (!projectId6) throw new ProjectIdError();
 
         const depGraphRes = await Project.getProjectDepGraph({ orgId: orgId7, projectId: projectId6 });
         apiSpinnerStop();
@@ -120,11 +106,9 @@ export default async (args: any) => {
         return;
 
       case PROJECTS_API_ENDPOINTS.LIST_ALL_IGNORES:
+        inputValidation({ args, orgId: true, projectId: true });
         const orgId8 = args[COMMAND_ARGS.ORG_ID];
         const projectId7 = args[COMMAND_ARGS.PROJECT_ID];
-
-        if (!orgId8) throw new OrgIdError();
-        if (!projectId7) throw new ProjectIdError();
 
         const listAllIgnoresRes = await Project.listAllIgnores({ orgId: orgId8, projectId: projectId7 });
         apiSpinnerStop();
@@ -133,13 +117,10 @@ export default async (args: any) => {
         return;
 
       case PROJECTS_API_ENDPOINTS.RETRIEVE_IGNORE:
+        inputValidation({ args, orgId: true, projectId: true, issueId: true });
         const orgId9 = args[COMMAND_ARGS.ORG_ID];
         const projectId8 = args[COMMAND_ARGS.PROJECT_ID];
         const issueId = args[COMMAND_ARGS.ISSUE_ID];
-
-        if (!orgId9) throw new OrgIdError();
-        if (!projectId8) throw new ProjectIdError();
-        if (!issueId) throw new IssueIdError();
 
         const getIgnoreRes = await Project.retrieveIgnore({ orgId: orgId9, projectId: projectId8, issueId });
         apiSpinnerStop();
@@ -147,15 +128,11 @@ export default async (args: any) => {
         prettyPrint(getIgnoreRes.response);
         return;
       case PROJECTS_API_ENDPOINTS.ADD_IGNORE:
+        inputValidation({ args, orgId: true, projectId: true, issueId: true, filePath: true });
         const orgId10 = args[COMMAND_ARGS.ORG_ID];
         const projectId9 = args[COMMAND_ARGS.PROJECT_ID];
         const issueId1 = args[COMMAND_ARGS.ISSUE_ID];
         const filePath1 = args[COMMAND_ARGS.FILE];
-
-        if (!orgId10) throw new OrgIdError();
-        if (!projectId9) throw new ProjectIdError();
-        if (!issueId1) throw new IssueIdError();
-        if (!filePath1) throw new FilePathError();
 
         const fileContent1 = readJsonFile(filePath1);
         const addIgnoreRes = await Project.addIgnore(
@@ -167,15 +144,11 @@ export default async (args: any) => {
         prettyPrint(addIgnoreRes.response);
         return;
       case PROJECTS_API_ENDPOINTS.REPLACE_IGNORES:
+        inputValidation({ args, orgId: true, projectId: true, issueId: true, filePath: true });
         const orgId11 = args[COMMAND_ARGS.ORG_ID];
         const projectId10 = args[COMMAND_ARGS.PROJECT_ID];
         const issueId2 = args[COMMAND_ARGS.ISSUE_ID];
         const filePath2 = args[COMMAND_ARGS.FILE];
-
-        if (!orgId11) throw new OrgIdError();
-        if (!projectId10) throw new ProjectIdError();
-        if (!issueId2) throw new IssueIdError();
-        if (!filePath2) throw new FilePathError();
 
         const fileContent2 = readJsonFile(filePath2);
         const replaceIgnoreRes = await Project.replaceIgnores(
@@ -187,13 +160,10 @@ export default async (args: any) => {
         prettyPrint(replaceIgnoreRes.response);
         return;
       case PROJECTS_API_ENDPOINTS.DELETE_IGNORES:
+        inputValidation({ args, orgId: true, projectId: true, issueId: true });
         const orgId12 = args[COMMAND_ARGS.ORG_ID];
         const projectId11 = args[COMMAND_ARGS.PROJECT_ID];
         const issueId3 = args[COMMAND_ARGS.ISSUE_ID];
-
-        if (!orgId12) throw new OrgIdError();
-        if (!projectId11) throw new ProjectIdError();
-        if (!issueId3) throw new IssueIdError();
 
         const deleteIgnoreRes = await Project.deleteIgnores({
           orgId: orgId12,
@@ -205,11 +175,9 @@ export default async (args: any) => {
         prettyPrint(deleteIgnoreRes.response);
         return;
       case PROJECTS_API_ENDPOINTS.LIST_ALL_JIRA_ISSUES:
+        inputValidation({ args, orgId: true, projectId: true });
         const orgId13 = args[COMMAND_ARGS.ORG_ID];
         const projectId12 = args[COMMAND_ARGS.PROJECT_ID];
-
-        if (!orgId13) throw new OrgIdError();
-        if (!projectId12) throw new ProjectIdError();
 
         const jirListRes = await Project.listAllJiraIssues({ orgId: orgId13, projectId: projectId12 });
         apiSpinnerStop();
@@ -218,15 +186,11 @@ export default async (args: any) => {
         return;
 
       case PROJECTS_API_ENDPOINTS.CREATE_JIRA_ISSUE:
+        inputValidation({ args, orgId: true, projectId: true, issueId: true, filePath: true });
         const orgId14 = args[COMMAND_ARGS.ORG_ID];
         const projectId13 = args[COMMAND_ARGS.PROJECT_ID];
         const issueId4 = args[COMMAND_ARGS.ISSUE_ID];
         const filePath3 = args[COMMAND_ARGS.FILE];
-
-        if (!orgId14) throw new OrgIdError();
-        if (!projectId13) throw new ProjectIdError();
-        if (!issueId4) throw new IssueIdError();
-        if (!filePath3) throw new FilePathError();
 
         const fileContent3 = readJsonFile(filePath3);
         const createJiraRes = await Project.createJiraIssue(
@@ -238,11 +202,9 @@ export default async (args: any) => {
         prettyPrint(createJiraRes.response);
         return;
       case PROJECTS_API_ENDPOINTS.LIST_PROJECT_SETTINGS:
+        inputValidation({ args, orgId: true, projectId: true });
         const orgId15 = args[COMMAND_ARGS.ORG_ID];
         const projectId14 = args[COMMAND_ARGS.PROJECT_ID];
-
-        if (!orgId15) throw new OrgIdError();
-        if (!projectId14) throw new ProjectIdError();
 
         const projectSettingRes = await Project.listProjectSettings({ orgId: orgId15, projectId: projectId14 });
         apiSpinnerStop();
@@ -250,13 +212,10 @@ export default async (args: any) => {
         prettyPrint(projectSettingRes.response);
         return;
       case PROJECTS_API_ENDPOINTS.UPDATE_PROJECT_SETTINGS:
+        inputValidation({ args, orgId: true, projectId: true, filePath: true });
         const orgId16 = args[COMMAND_ARGS.ORG_ID];
         const projectId15 = args[COMMAND_ARGS.PROJECT_ID];
         const filePath4 = args[COMMAND_ARGS.FILE];
-
-        if (!orgId16) throw new OrgIdError();
-        if (!projectId15) throw new ProjectIdError();
-        if (!filePath4) throw new FilePathError();
 
         const fileContent4 = readJsonFile(filePath4);
         const updateSettingsRes = await Project.updateProjectSettings(
@@ -268,11 +227,9 @@ export default async (args: any) => {
         prettyPrint(updateSettingsRes.response);
         return;
       case PROJECTS_API_ENDPOINTS.DELETE_PROJECT_SETTINGS:
+        inputValidation({ args, orgId: true, projectId: true });
         const orgId17 = args[COMMAND_ARGS.ORG_ID];
         const projectId16 = args[COMMAND_ARGS.PROJECT_ID];
-
-        if (!orgId17) throw new OrgIdError();
-        if (!projectId16) throw new ProjectIdError();
 
         const delProjSetRes = await Project.deleteProjectSettings({ orgId: orgId17, projectId: projectId16 });
         apiSpinnerStop();
@@ -280,13 +237,10 @@ export default async (args: any) => {
         prettyPrint(delProjSetRes.response);
         return;
       case PROJECTS_API_ENDPOINTS.MOVE_PROJECT:
+        inputValidation({ args, orgId: true, projectId: true, filePath: true });
         const orgId18 = args[COMMAND_ARGS.ORG_ID];
         const projectId17 = args[COMMAND_ARGS.PROJECT_ID];
         const filePath5 = args[COMMAND_ARGS.FILE];
-
-        if (!orgId18) throw new OrgIdError();
-        if (!projectId17) throw new ProjectIdError();
-        if (!filePath5) throw new FilePathError();
 
         const fileContent5 = readJsonFile(filePath5);
         const moveProjectRes = await Project.moveProject(
@@ -298,13 +252,10 @@ export default async (args: any) => {
         prettyPrint(moveProjectRes.response);
         return;
       case PROJECTS_API_ENDPOINTS.ADD_TAG:
+        inputValidation({ args, orgId: true, projectId: true, filePath: true });
         const orgId19 = args[COMMAND_ARGS.ORG_ID];
         const projectId18 = args[COMMAND_ARGS.PROJECT_ID];
         const filePath6 = args[COMMAND_ARGS.FILE];
-
-        if (!orgId19) throw new OrgIdError();
-        if (!projectId18) throw new ProjectIdError();
-        if (!filePath6) throw new FilePathError();
 
         const fileContent6 = readJsonFile(filePath6);
         const addTagRes = await Project.addATag(
@@ -316,13 +267,10 @@ export default async (args: any) => {
         prettyPrint(addTagRes.response);
         return;
       case PROJECTS_API_ENDPOINTS.REMOVE_PROJECT_TAG:
+        inputValidation({ args, orgId: true, projectId: true, filePath: true });
         const orgId20 = args[COMMAND_ARGS.ORG_ID];
         const projectId19 = args[COMMAND_ARGS.PROJECT_ID];
         const filePath7 = args[COMMAND_ARGS.FILE];
-
-        if (!orgId20) throw new OrgIdError();
-        if (!projectId19) throw new ProjectIdError();
-        if (!filePath7) throw new FilePathError();
 
         const fileContent7 = readJsonFile(filePath7);
         const removeTagRes = await Project.removeATag(
@@ -334,13 +282,10 @@ export default async (args: any) => {
         prettyPrint(removeTagRes.response);
         return;
       case PROJECTS_API_ENDPOINTS.APPLY_ATTRIBUTES:
+        inputValidation({ args, orgId: true, projectId: true, filePath: true });
         const orgId21 = args[COMMAND_ARGS.ORG_ID];
         const projectId20 = args[COMMAND_ARGS.PROJECT_ID];
         const filePath8 = args[COMMAND_ARGS.FILE];
-
-        if (!orgId21) throw new OrgIdError();
-        if (!projectId20) throw new ProjectIdError();
-        if (!filePath8) throw new FilePathError();
 
         const fileContent8 = readJsonFile(filePath8);
         const applyAttRes = await Project.applyAttributes(

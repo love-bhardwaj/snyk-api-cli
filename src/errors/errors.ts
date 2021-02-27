@@ -10,6 +10,12 @@ class InvalidArgument extends Error {
   }
 }
 
+class MissingArgumnets extends Error {
+  constructor(errMessage: string) {
+    super(errMessage);
+  }
+}
+
 class InvalidEndpointError extends Error {
   constructor(message: string) {
     super(message);
@@ -72,6 +78,7 @@ class IssueIdError extends Error {
 export {
   AuthTokenError,
   InvalidArgument,
+  MissingArgumnets,
   InvalidEndpointError,
   UserIdError,
   OrgIdError,

@@ -1,8 +1,9 @@
 import { User } from 'snyk-api-client';
 import { USERS_API_ENDPOINTS, COMMAND_ARGS } from '../../../enums/enums';
-import { FilePathError, InvalidEndpointError, OrgIdError, ProjectIdError, UserIdError } from '../../../errors/errors';
+import { InvalidEndpointError } from '../../../errors/errors';
 import { appDebugLog, reqDebugLog } from '../../../lib/utils/debugLogger';
 import { apiSpinnerStop, apiSpinnerStart } from '../../../lib/utils/spinners';
+import inputValidation from '../../utils/inputValidation';
 import chalk from 'chalk';
 import userEndpoints from './usersEndpoints';
 import prettyPrint from '../../utils/prettyPrint';
@@ -16,8 +17,9 @@ export default async function (args: any) {
   try {
     switch (endpoint) {
       case USERS_API_ENDPOINTS.GET_USER_DETAILS:
+        inputValidation({ args, userId: true });
         const userId = args[COMMAND_ARGS.USER_ID];
-        if (!userId) throw new UserIdError();
+
         const userDetails = await User.getUserDetails({ userId });
         apiSpinnerStop();
         reqDebugLog(userDetails);
@@ -30,19 +32,19 @@ export default async function (args: any) {
         prettyPrint(myDetails.response);
         break;
       case USERS_API_ENDPOINTS.GET_ORG_NOTI_SETTINGS:
+        inputValidation({ args, orgId: true });
         const orgId = args[COMMAND_ARGS.ORG_ID];
-        if (!orgId) throw new OrgIdError();
+
         const orgNotiSettings = await User.getOrgNotiSettings({ orgId });
         apiSpinnerStop();
         reqDebugLog(orgNotiSettings);
         prettyPrint(orgNotiSettings.response);
         break;
       case USERS_API_ENDPOINTS.MODIFY_ORG_NOTI_SETTINGS:
+        inputValidation({ args, orgId: true, filePath: true });
         const orgId1 = args[COMMAND_ARGS.ORG_ID];
         const filePath = args[COMMAND_ARGS.FILE];
 
-        if (!orgId1) throw new OrgIdError();
-        if (!filePath) throw new FilePathError();
         const modifyOrgNotiFile = readJsonFile(filePath);
         const modifiedNotiSettings = await User.modifyOrgNotiSettings(
           { orgId: orgId1 },
@@ -53,11 +55,9 @@ export default async function (args: any) {
         prettyPrint(modifiedNotiSettings.response);
         break;
       case USERS_API_ENDPOINTS.GET_PROJECT_NOTI_SETTINGS:
+        inputValidation({ args, orgId: true, projectId: true });
         const orgId2 = args[COMMAND_ARGS.ORG_ID];
         const projectId = args[COMMAND_ARGS.PROJECT_ID];
-
-        if (!orgId2) throw new OrgIdError();
-        if (!projectId) throw new ProjectIdError();
 
         const projectNotiSettings = await User.getProjNotiSettings({
           orgId: orgId2,
@@ -68,13 +68,10 @@ export default async function (args: any) {
         prettyPrint(projectNotiSettings.response);
         break;
       case USERS_API_ENDPOINTS.MODIFY_PROJECT_NOTI_SETTINGS:
+        inputValidation({ args, orgId: true, projectId: true, filePath: true });
         const orgId4 = args[COMMAND_ARGS.ORG_ID];
         const projectId1 = args[COMMAND_ARGS.PROJECT_ID];
         const filePath1 = args[COMMAND_ARGS.FILE];
-
-        if (!orgId4) throw new OrgIdError();
-        if (!projectId1) throw new ProjectIdError();
-        if (!filePath1) throw new FilePathError();
 
         const modProjNotiSets = readJsonFile(filePath1);
 

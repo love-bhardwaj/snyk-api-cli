@@ -1,11 +1,12 @@
 import { Group } from 'snyk-api-client';
 import { GROUPS_API_ENDPOINTS, COMMAND_ARGS } from '../../../enums/enums';
-import { FilePathError, GroupIdError, InvalidEndpointError, OrgIdError } from '../../../errors/errors';
+import { InvalidEndpointError } from '../../../errors/errors';
 import { apiSpinnerStart, apiSpinnerStop } from '../../utils/spinners';
 import prettyPrint from '../../utils/prettyPrint';
 import chalk from 'chalk';
 import groupsEndpoints from './groupsEndpoints';
 import readJsonFile from '../../utils/readJsonFile';
+import inputValidation from '../../utils/inputValidation';
 import { appDebugLog, reqDebugLog } from '../../utils/debugLogger';
 
 export default async (args: any) => {
@@ -16,19 +17,18 @@ export default async (args: any) => {
   try {
     switch (endpoint) {
       case GROUPS_API_ENDPOINTS.VIEW_GROUP_SETTINGS:
+        inputValidation({ args, groupId: true });
         const { groupId } = args;
-        if (!groupId) throw new GroupIdError();
+
         const groupSettings = await Group.viewGroupSettings({ groupId });
         apiSpinnerStop();
         reqDebugLog(groupSettings);
         prettyPrint(groupSettings.response);
         return;
       case GROUPS_API_ENDPOINTS.UPDATE_GROUP_SETTINGS:
+        inputValidation({ args, groupId: true, filePath: true });
         const groupId1 = args[COMMAND_ARGS.GROUP_ID];
         const filePath = args[COMMAND_ARGS.FILE];
-
-        if (!groupId1) throw new GroupIdError();
-        if (!filePath) throw new FilePathError();
 
         const updateGroupSetFile = readJsonFile(filePath);
         const updatedGroupSetRes = await Group.updateGroupSettings(
@@ -41,9 +41,8 @@ export default async (args: any) => {
         prettyPrint(updatedGroupSetRes.response);
         return;
       case GROUPS_API_ENDPOINTS.LIST_ALL_GROUP_MEMBERS:
+        inputValidation({ args, groupId: true });
         const groupId2 = args[COMMAND_ARGS.GROUP_ID];
-
-        if (!groupId2) throw new GroupIdError();
 
         const groupMembersRes = await Group.listMembersInGroup({
           groupId: groupId2,
@@ -54,13 +53,10 @@ export default async (args: any) => {
         return;
 
       case GROUPS_API_ENDPOINTS.ADD_MEMBER_TO_ORG:
+        inputValidation({ args, groupId: true, orgId: true, filePath: true });
         const groupId3 = args[COMMAND_ARGS.GROUP_ID];
         const orgId = args[COMMAND_ARGS.ORG_ID];
         const filePath1 = args[COMMAND_ARGS.FILE];
-
-        if (!groupId3) throw new GroupIdError();
-        if (!orgId) throw new OrgIdError();
-        if (!filePath1) throw new FilePathError();
 
         const addMembersFile = readJsonFile(filePath1);
 
@@ -72,9 +68,8 @@ export default async (args: any) => {
         return;
 
       case GROUPS_API_ENDPOINTS.LIST_ALL_GROUP_TAGS:
+        inputValidation({ args, groupId: true });
         const groupId4 = args[COMMAND_ARGS.GROUP_ID];
-
-        if (!groupId4) throw new GroupIdError();
 
         const perPage = args[COMMAND_ARGS.PER_PAGE];
         const page = args[COMMAND_ARGS.PAGE];
@@ -87,11 +82,9 @@ export default async (args: any) => {
 
         return;
       case GROUPS_API_ENDPOINTS.DELETE_TAG_FROM_GROUP:
+        inputValidation({ args, groupId: true, filePath: true });
         const groupId5 = args[COMMAND_ARGS.GROUP_ID];
         const filePath2 = args[COMMAND_ARGS.FILE];
-
-        if (!groupId5) throw new GroupIdError();
-        if (!filePath2) throw new FilePathError();
 
         const deleteTagFile = readJsonFile(filePath2);
 
