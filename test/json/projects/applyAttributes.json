@@ -1,0 +1,11 @@
+{
+    "criticality": [
+        "high"
+    ],
+    "environment": [
+        "backend"
+    ],
+    "lifecycle": [
+        "development"
+    ]
+}

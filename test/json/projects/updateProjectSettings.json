@@ -1,0 +1,24 @@
+{
+    "autoDepUpgradeLimit": 2,
+    "autoDepUpgradeIgnoredDependencies": [
+        "tap",
+        "ava"
+    ],
+    "autoDepUpgradeEnabled": false,
+    "autoDepUpgradeMinAge": 21,
+    "pullRequestFailOnAnyVulns": false,
+    "pullRequestFailOnlyForHighSeverity": true,
+    "pullRequestTestEnabled": true,
+    "pullRequestAssignment": {
+        "enabled": true,
+        "type": "manual",
+        "assignees": [
+            "username"
+        ]
+    },
+    "autoRemediationPrs": {
+        "freshPrsEnabled": true,
+        "backlogPrsEnabled": false,
+        "usePatchRemediation": false
+    }
+}
