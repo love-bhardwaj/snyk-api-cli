@@ -34,6 +34,11 @@ export const enum COMMAND_ARGS {
   JOB_ID = 'job-id',
   ISSUE_ID = 'issue-id',
   ENTITLEMENT_KEY = 'entitlement-key',
+  ARTIFACT_ID = 'artifact-id',
+  PACKAGE_VERSION = 'package-version',
+  REPOSITORY = 'repository',
+  PACKAGE_NAME = 'package-name',
+  GEM_NAME = 'gem-name',
 }
 
 export const enum GENERAL_API_ENDPOINTS {
@@ -123,4 +128,24 @@ export const enum LICENSES_API_ENDPOINTS {
 export const enum ENTITLEMENTS_API_ENDPOINTS {
   LIST_ALL_ENTITLEMENTS = 'list-all-entitlements',
   GET_ENTITLEMENT_VALUE = 'get-entitlement-value',
+}
+
+export const enum TEST_API_ENDPOINTS {
+  TEST_MAVEN_PACKAGE = 'test-maven-package',
+  TEST_MAVEN_FILE = 'test-maven-file',
+  TEST_NPM_PACKAGE = 'test-npm-package',
+  TEST_NPM_FILE = 'test-npm-file',
+  TEST_GOPKG_FILE = 'test-gopkg-file',
+  TEST_VENDOR_FILE = 'test-vendor-file',
+  TEST_YARN_FILE = 'test-yarn-file',
+  TEST_GEM_PACKAGE = 'test-gem-package',
+  TEST_GEM_FILE = 'test-gem-file',
+  TEST_GRADLE_PACKAGE = 'test-gradle-package',
+  TEST_GRADLE_FILE = 'test-gradle-file',
+  TEST_SBT_PACAKGE = 'test-sbt-package',
+  TEST_SBT_FILE = 'test-sbt-file',
+  TEST_PIP_PACKAGE = 'test-pip-pacakge',
+  TEST_PIP_FILE = 'test-pip-file',
+  TEST_COMPOSER_FILE = 'test-composer-file',
+  TEST_DEP_GRAPH = 'test-dep-graph',
 }

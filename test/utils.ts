@@ -11,6 +11,8 @@ import {
   JobIdError,
   UserIdError,
   EntitlementKeyError,
+  ArtifactIdError,
+  VersionError,
 } from '../src/errors/errors';
 
 export const run = (args: string) => {
@@ -76,6 +78,14 @@ export const expectEndpointErr = (result: string) => {
 
 export const expectEntitlementErr = (result: string) => {
   expect(result).to.have.string(new EntitlementKeyError().message);
+};
+
+export const expectArtifactErr = (result: string) => {
+  expect(result).to.have.string(new ArtifactIdError().message);
+};
+
+export const expectVersionErr = (result: string) => {
+  expect(result).to.have.string(new VersionError().message);
 };
 
 const endpointErrString = 'The --endpoint or -e value passed is not acceptable';

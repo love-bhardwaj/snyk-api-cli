@@ -10,4 +10,8 @@ export default interface validationObject {
   integType?: boolean;
   jobId?: boolean;
   entitlementKey?: boolean;
+  artifactId?: boolean;
+  packageVersion?: boolean;
+  packageName?: boolean;
+  gemName?: boolean;
 }

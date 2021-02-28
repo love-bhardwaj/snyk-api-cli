@@ -1,0 +1,8 @@
+{
+    "encoding": "plain",
+    "files": {
+        "target": {
+            "contents": "dependencies { compile 'axis:axis:1.4' }"
+        }
+    }
+}

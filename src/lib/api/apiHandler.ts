@@ -12,6 +12,7 @@ import handleProjRequest from './projects/projects';
 import handleDependenciesRequest from './dependencies/dependencies';
 import handleLicensesRequest from './licenses/licenses';
 import handleEntitlementRequest from './entitlements/entitlements';
+import handleTestRequest from './test/test';
 import chalk from 'chalk';
 
 export default async function (args: any) {
@@ -47,6 +48,7 @@ export default async function (args: any) {
         await handleEntitlementRequest(args);
         break;
       case API_SELECTION.TEST:
+        await handleTestRequest(args);
         break;
       case API_SELECTION.MONITOR:
         break;

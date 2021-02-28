@@ -77,7 +77,31 @@ class IssueIdError extends Error {
 
 class EntitlementKeyError extends Error {
   constructor() {
-    super('Error: The arg entitlement(--entitlement-key) key is required');
+    super('Error: The arg entitlement key(--entitlement-key) is required');
+  }
+}
+
+class ArtifactIdError extends Error {
+  constructor() {
+    super('Error: The arg artifactory ID(--artifactory-id) is required');
+  }
+}
+
+class VersionError extends Error {
+  constructor() {
+    super('Error: The arg package version(--package-version) is required');
+  }
+}
+
+class PackageNameError extends Error {
+  constructor() {
+    super('Error: The arg pacakge name(--package-name) is required');
+  }
+}
+
+class GemNameError extends Error {
+  constructor() {
+    super('Error: The arg gem name(--gem-name) is required');
   }
 }
 
@@ -96,4 +120,8 @@ export {
   JobIdError,
   IssueIdError,
   EntitlementKeyError,
+  ArtifactIdError,
+  VersionError,
+  PackageNameError,
+  GemNameError,
 };

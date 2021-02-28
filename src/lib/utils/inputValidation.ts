@@ -11,6 +11,10 @@ import {
   IntegrationTypeError,
   JobIdError,
   EntitlementKeyError,
+  ArtifactIdError,
+  VersionError,
+  PackageNameError,
+  GemNameError,
 } from '../../errors/errors';
 
 export default (values: validationObject) => {
@@ -35,6 +39,14 @@ export default (values: validationObject) => {
   if (values.jobId && !args.jobId) errorMessages.push(new JobIdError().message);
 
   if (values.entitlementKey && !args.entitlementKey) errorMessages.push(new EntitlementKeyError().message);
+
+  if (values.artifactId && !args.artifactId) errorMessages.push(new ArtifactIdError().message);
+
+  if (values.packageVersion && !args.packageVersion) errorMessages.push(new VersionError().message);
+
+  if (values.packageName && !args.packageName) errorMessages.push(new PackageNameError().message);
+
+  if (values.gemName && !args.gemName) errorMessages.push(new GemNameError().message);
 
   if (errorMessages.length > 0) {
     const errMessageString = errorMessages.join(' ');

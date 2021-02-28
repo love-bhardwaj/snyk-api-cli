@@ -1,0 +1,8 @@
+{
+    "encoding": "plain",
+    "files": {
+        "target": {
+            "contents": "\\nname := \\\"subsearch\\\"\\n\\nassemblyJarName in assembly := s\\\"subsearch-0.2.0.jar\\\"\\n\\nscalaVersion := \\\"2.11.8\\\"\\n\\nscalacOptions ++= Seq(\\\"-unchecked\\\", \\\"-deprecation\\\")\\n\\nresolvers += Resolver.sonatypeRepo(\\\"public\\\")\\n\\nlibraryDependencies += \\\"org.scalatest\\\" % \\\"scalatest_2.11\\\" % \\\"2.2.1\\\" % \\\"test\\\"\\nlibraryDependencies += \\\"org.scalamock\\\" %% \\\"scalamock-scalatest-support\\\" % \\\"3.2.2\\\" % \\\"test\\\"\\nlibraryDependencies += \\\"net.databinder.dispatch\\\" %% \\\"dispatch-core\\\" % \\\"0.11.2\\\"\\nlibraryDependencies += \\\"org.slf4j\\\" % \\\"slf4j-simple\\\" % \\\"1.6.6\\\"\\nlibraryDependencies += \\\"com.github.scopt\\\" %% \\\"scopt\\\" % \\\"3.4.0\\\"\\nlibraryDependencies += \\\"pl.project13.scala\\\" %% \\\"rainbow\\\" % \\\"0.2\\\"\\nlibraryDependencies += \\\"dnsjava\\\" % \\\"dnsjava\\\" % \\\"2.1.7\\\"\\nlibraryDependencies += \\\"com.typesafe.akka\\\" %% \\\"akka-actor\\\" % \\\"2.4.1\\\"\\nlibraryDependencies += \\\"org.scala-lang.modules\\\" % \\\"scala-jline\\\" % \\\"2.12.1\\\"\\nlibraryDependencies += \\\"net.ruippeixotog\\\" %% \\\"scala-scraper\\\" % \\\"1.0.0\\\""
+        }
+    }
+}

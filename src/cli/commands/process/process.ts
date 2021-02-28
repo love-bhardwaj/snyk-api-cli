@@ -30,18 +30,9 @@ const builder: yargs.CommandBuilder = {
     demand: true,
     alias: 'e',
     string: true,
-    // choices: [
-    //   ...generalEndpoints,
-    //   ...usersEndpoints,
-    //   ...groupsEndpoints,
-    //   ...orgsEndpoints,
-    //   ...integEndpoints,
-    //   ...projectsEndpoints,
-    //   ...dependenciesEndpoints,
-    // ],
   },
   'group-id': {
-    describe: 'Clear the saved API token',
+    describe: 'Snyk group ID or in sime case the package group ID',
     alias: 'g',
     string: true,
   },
@@ -97,6 +88,26 @@ const builder: yargs.CommandBuilder = {
   order: { describe: 'Query parameter', string: true },
   'entitlement-key': {
     describe: 'Entitlement key to get entitlement value',
+    string: true,
+  },
+  'artifact-id': {
+    describe: 'Package Artifact ID',
+    string: true,
+  },
+  'package-version': {
+    describe: 'Package version',
+    string: true,
+  },
+  repository: {
+    describe: 'Repository hosting the pacakge',
+    string: true,
+  },
+  'package-name': {
+    describe: 'Package name',
+    string: true,
+  },
+  'gem-name': {
+    describe: 'Gem name',
     string: true,
   },
 };
