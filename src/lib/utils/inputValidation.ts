@@ -10,6 +10,7 @@ import {
   MissingArgumnets,
   IntegrationTypeError,
   JobIdError,
+  EntitlementKeyError,
 } from '../../errors/errors';
 
 export default (values: validationObject) => {
@@ -32,6 +33,8 @@ export default (values: validationObject) => {
   if (values.integType && !args.integrationType) errorMessages.push(new IntegrationTypeError().message);
 
   if (values.jobId && !args.jobId) errorMessages.push(new JobIdError().message);
+
+  if (values.entitlementKey && !args.entitlementKey) errorMessages.push(new EntitlementKeyError().message);
 
   if (errorMessages.length > 0) {
     const errMessageString = errorMessages.join(' ');

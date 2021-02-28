@@ -9,4 +9,5 @@ export default interface validationObject {
   groupId?: boolean;
   integType?: boolean;
   jobId?: boolean;
+  entitlementKey?: boolean;
 }

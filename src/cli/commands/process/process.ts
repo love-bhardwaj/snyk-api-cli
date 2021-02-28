@@ -95,6 +95,10 @@ const builder: yargs.CommandBuilder = {
   },
   'sort-by': { describe: 'Query parameter', string: true },
   order: { describe: 'Query parameter', string: true },
+  'entitlement-key': {
+    describe: 'Entitlement key to get entitlement value',
+    string: true,
+  },
 };
 
 const handler = async (argv: any) => {

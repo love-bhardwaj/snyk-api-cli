@@ -33,6 +33,7 @@ export const enum COMMAND_ARGS {
   INTEGRATION_TYPE = 'integration-type',
   JOB_ID = 'job-id',
   ISSUE_ID = 'issue-id',
+  ENTITLEMENT_KEY = 'entitlement-key',
 }
 
 export const enum GENERAL_API_ENDPOINTS {
@@ -117,4 +118,9 @@ export const enum DEPENDENCIES_API_ENDPOINTS {
 
 export const enum LICENSES_API_ENDPOINTS {
   LIST_ALL_LICENSES = 'list-all-licenses',
+}
+
+export const enum ENTITLEMENTS_API_ENDPOINTS {
+  LIST_ALL_ENTITLEMENTS = 'list-all-entitlements',
+  GET_ENTITLEMENT_VALUE = 'get-entitlement-value',
 }

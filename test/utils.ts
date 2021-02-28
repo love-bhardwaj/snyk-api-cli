@@ -10,6 +10,7 @@ import {
   IntegrationTypeError,
   JobIdError,
   UserIdError,
+  EntitlementKeyError,
 } from '../src/errors/errors';
 
 export const run = (args: string) => {
@@ -71,6 +72,10 @@ export const expectEontErr = (result: string) => {
 
 export const expectEndpointErr = (result: string) => {
   expect(result).to.have.string(endpointErrString);
+};
+
+export const expectEntitlementErr = (result: string) => {
+  expect(result).to.have.string(new EntitlementKeyError().message);
 };
 
 const endpointErrString = 'The --endpoint or -e value passed is not acceptable';

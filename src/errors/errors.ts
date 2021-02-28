@@ -75,6 +75,12 @@ class IssueIdError extends Error {
   }
 }
 
+class EntitlementKeyError extends Error {
+  constructor() {
+    super('Error: The arg entitlement(--entitlement-key) key is required');
+  }
+}
+
 export {
   AuthTokenError,
   InvalidArgument,
@@ -89,4 +95,5 @@ export {
   IntegrationTypeError,
   JobIdError,
   IssueIdError,
+  EntitlementKeyError,
 };
