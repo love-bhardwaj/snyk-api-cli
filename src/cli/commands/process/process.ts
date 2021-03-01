@@ -5,14 +5,6 @@ import { printRed } from '../../../lib/utils/printToConsole';
 import objPrintable from '../../../lib/utils/JSONify';
 import handleApiError from '../../../lib/utils/handleApiError';
 import yargs from 'yargs';
-import apiList from '../../../lib/api/apiList';
-import generalEndpoints from '../../../lib/api/general/generalEndpoints';
-import usersEndpoints from '../../../lib/api/users/usersEndpoints';
-import groupsEndpoints from '../../../lib/api/groups/groupsEndpoints';
-import orgsEndpoints from '../../../lib/api/organizations/organizationsEndpoints';
-import integEndpoints from '../../../lib/api/integrations/integrationEndpoints';
-import projectsEndpoints from '../../../lib/api/projects/projectsEndpoints';
-import dependenciesEndpoints from '../../../lib/api/dependencies/dependenciesEndpoints';
 
 const command = 'process [options]';
 const describe = 'Process the API request';

@@ -1,13 +1,6 @@
 import { Integration } from 'snyk-api-client';
 import { COMMAND_ARGS, INTEGRATIONS_ENDPOINTS } from '../../../enums/enums';
-import {
-  FilePathError,
-  OrgIdError,
-  IntegrationIdError,
-  IntegrationTypeError,
-  JobIdError,
-  InvalidEndpointError,
-} from '../../../errors/errors';
+import { InvalidEndpointError } from '../../../errors/errors';
 import { apiSpinnerStart, apiSpinnerStop } from '../../../lib/utils/spinners';
 import { appDebugLog, reqDebugLog } from '../../../lib/utils/debugLogger';
 import integrationEndpoints from './integrationEndpoints';

@@ -1,4 +1,4 @@
-export default interface validationObject {
+export default interface ValidationObject {
   args: any;
   orgId?: boolean;
   projectId?: boolean;

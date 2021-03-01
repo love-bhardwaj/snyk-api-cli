@@ -1,7 +1,7 @@
 import { appDebugLog, reqDebugLog } from '../../utils/debugLogger';
 import { Project } from 'snyk-api-client';
 import { COMMAND_ARGS, PROJECTS_API_ENDPOINTS } from '../../../enums/enums';
-import { FilePathError, InvalidEndpointError, IssueIdError, OrgIdError, ProjectIdError } from '../../../errors/errors';
+import { InvalidEndpointError } from '../../../errors/errors';
 import { apiSpinnerStart, apiSpinnerStop } from '../../utils/spinners';
 import chalk from 'chalk';
 import projectsEndpoints from './projectsEndpoints';

@@ -1,6 +1,6 @@
 import { Org } from 'snyk-api-client';
 import { COMMAND_ARGS, ORGS_API_ENDPOINTS } from '../../../enums/enums';
-import { FilePathError, InvalidEndpointError, OrgIdError, UserIdError } from '../../../errors/errors';
+import { InvalidEndpointError } from '../../../errors/errors';
 import { apiSpinnerStart, apiSpinnerStop } from '../../../lib/utils/spinners';
 import { appDebugLog, reqDebugLog } from '../../../lib/utils/debugLogger';
 import orgEndpoints from './organizationsEndpoints';

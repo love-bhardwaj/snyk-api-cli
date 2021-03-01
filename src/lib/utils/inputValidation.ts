@@ -1,4 +1,4 @@
-import validationObject from '../../types/validationObject';
+import ValidationObject from '../../types/validationObject';
 import {
   FilePathError,
   GroupIdError,
@@ -18,7 +18,7 @@ import {
   PackageGroupIdErr,
 } from '../../errors/errors';
 
-export default (values: validationObject) => {
+export default (values: ValidationObject) => {
   const errorMessages = [];
   const args = values['args'];
   if (values.userId && !args.userId) errorMessages.push(new UserIdError().message);
