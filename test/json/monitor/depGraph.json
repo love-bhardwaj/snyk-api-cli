@@ -1,0 +1,43 @@
+{
+    "depGraph": {
+        "schemaVersion": "1.2.0",
+        "pkgManager": {
+            "name": "maven"
+        },
+        "pkgs": [
+            {
+                "id": "app@1.0.0",
+                "info": {
+                    "name": "app",
+                    "version": "1.0.0"
+                }
+            },
+            {
+                "id": "ch.qos.logback:logback-core@1.0.13",
+                "info": {
+                    "name": "ch.qos.logback:logback-core",
+                    "version": "1.0.13"
+                }
+            }
+        ],
+        "graph": {
+            "rootNodeId": "root-node",
+            "nodes": [
+                {
+                    "nodeId": "root-node",
+                    "pkgId": "app@1.0.0",
+                    "deps": [
+                        {
+                            "nodeId": "ch.qos.logback:logback-core@1.0.13"
+                        }
+                    ]
+                },
+                {
+                    "nodeId": "ch.qos.logback:logback-core@1.0.13",
+                    "pkgId": "ch.qos.logback:logback-core@1.0.13",
+                    "deps": []
+                }
+            ]
+        }
+    }
+}

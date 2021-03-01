@@ -284,7 +284,7 @@ describe('PROCESS: Test API commands', () => {
       const res = run(
         `process -a=test -e=${TEST_API_ENDPOINTS.TEST_SBT_PACAKGE} --group-id=org.apache.flex.blazeds --package-version=4.7.2 --artifact-id=blazeds --repository=https://repo1.maven.org/maven2 --org-id=test`,
       );
-      expect(isValidJSON(res)).to.be.true;
+      expectOrgNotFound(res);
     });
   });
 

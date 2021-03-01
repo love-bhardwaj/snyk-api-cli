@@ -168,7 +168,7 @@ export default async (args: any) => {
         const deleteIgnoreRes = await Project.deleteIgnores({
           orgId: orgId12,
           projectId: projectId11,
-          ignoreId: issueId3,
+          issueId: issueId3,
         });
         apiSpinnerStop();
         reqDebugLog(deleteIgnoreRes);

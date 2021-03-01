@@ -7,7 +7,6 @@ import testEndpoints from './testEndpoints';
 import chalk from 'chalk';
 import inputValidation from '../../utils/inputValidation';
 import prettyPrint from '../../utils/prettyPrint';
-import readJson from '../../utils/readJsonFile';
 import readJsonFile from '../../utils/readJsonFile';
 
 export default async (args: any) => {
@@ -36,7 +35,7 @@ export default async (args: any) => {
         inputValidation({ args, filePath: true });
         const filePath = args[COMMAND_ARGS.FILE];
 
-        const fileContent = readJson(filePath);
+        const fileContent = readJsonFile(filePath);
 
         let queryParams1: any = {};
         if (args[COMMAND_ARGS.ORG_ID]) queryParams1.org = args[COMMAND_ARGS.ORG_ID];

@@ -149,3 +149,7 @@ export const enum TEST_API_ENDPOINTS {
   TEST_COMPOSER_FILE = 'test-composer-file',
   TEST_DEP_GRAPH = 'test-dep-graph',
 }
+
+export const enum MONITOR_API_ENDPOINTS {
+  MONITOR_DEP_GRAPH = 'monitor-dep-graph',
+}
