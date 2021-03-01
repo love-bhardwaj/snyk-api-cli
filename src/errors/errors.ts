@@ -105,6 +105,12 @@ class GemNameError extends Error {
   }
 }
 
+export class PackageGroupIdErr extends Error {
+  constructor() {
+    super('Error: The arg package group ID(--group-id or -g) is required');
+  }
+}
+
 export {
   AuthTokenError,
   InvalidArgument,

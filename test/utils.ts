@@ -13,6 +13,9 @@ import {
   EntitlementKeyError,
   ArtifactIdError,
   VersionError,
+  PackageNameError,
+  GemNameError,
+  PackageGroupIdErr,
 } from '../src/errors/errors';
 
 export const run = (args: string) => {
@@ -86,6 +89,18 @@ export const expectArtifactErr = (result: string) => {
 
 export const expectVersionErr = (result: string) => {
   expect(result).to.have.string(new VersionError().message);
+};
+
+export const expectPackageNameErr = (result: string) => {
+  expect(result).to.have.string(new PackageNameError().message);
+};
+
+export const expectGemNameErr = (result: string) => {
+  expect(result).to.have.string(new GemNameError().message);
+};
+
+export const expectPackageGroupIdErr = (result: string) => {
+  expect(result).to.have.string(new PackageGroupIdErr().message);
 };
 
 const endpointErrString = 'The --endpoint or -e value passed is not acceptable';

@@ -15,6 +15,7 @@ import {
   VersionError,
   PackageNameError,
   GemNameError,
+  PackageGroupIdErr,
 } from '../../errors/errors';
 
 export default (values: validationObject) => {
@@ -47,6 +48,8 @@ export default (values: validationObject) => {
   if (values.packageName && !args.packageName) errorMessages.push(new PackageNameError().message);
 
   if (values.gemName && !args.gemName) errorMessages.push(new GemNameError().message);
+
+  if (values.packageGroupId && !args.groupId) errorMessages.push(new PackageGroupIdErr().message);
 
   if (errorMessages.length > 0) {
     const errMessageString = errorMessages.join(' ');

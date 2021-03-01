@@ -14,4 +14,5 @@ export default interface validationObject {
   packageVersion?: boolean;
   packageName?: boolean;
   gemName?: boolean;
+  packageGroupId?: boolean;
 }
