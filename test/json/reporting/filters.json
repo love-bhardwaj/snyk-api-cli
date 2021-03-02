@@ -1,0 +1,44 @@
+{
+    "filters": {
+        "orgs": [
+            "test"
+        ],
+        "severity": [
+            "high",
+            "medium",
+            "low"
+        ],
+        "exploitMaturity": [
+            "mature",
+            "proof-of-concept",
+            "no-known-exploit",
+            "no-data"
+        ],
+        "types": [
+            "vuln",
+            "license",
+            "configuration"
+        ],
+        "languages": [
+            "javascript",
+            "ruby",
+            "java",
+            "scala",
+            "python",
+            "golang",
+            "php",
+            "dotnet",
+            "swift-objective-c",
+            "docker",
+            "terraform",
+            "kubernetes",
+            "helm"
+        ],
+        "projects": [],
+        "isFixed": false,
+        "priorityScore": {
+            "min": 0,
+            "max": 1000
+        }
+    }
+}

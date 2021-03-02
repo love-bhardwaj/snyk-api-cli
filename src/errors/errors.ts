@@ -110,3 +110,15 @@ export class PackageGroupIdErr extends Error {
     super('Error: The arg package group ID(--group-id or -g) is required');
   }
 }
+
+export class FromArgErr extends Error {
+  constructor() {
+    super('Error: The arg from(--from) is required');
+  }
+}
+
+export class ToArgErr extends Error {
+  constructor() {
+    super('Error: The arg to(--to) is required');
+  }
+}

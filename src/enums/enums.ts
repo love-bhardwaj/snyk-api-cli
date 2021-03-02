@@ -26,6 +26,9 @@ export const enum COMMAND_ARGS {
   PAGE = 'page',
   SORT_BY = 'sort-by',
   ORDER = 'order',
+  GROUP_BY = 'group-by',
+  FROM = 'from',
+  TO = 'to',
   CLEAR_TOKEN = 'clear-token',
   AUTH_TOKEN = 'auth-token',
   INCLUDE_GROUP_ADMINS = 'include-group-admins',
@@ -152,4 +155,14 @@ export const enum TEST_API_ENDPOINTS {
 
 export const enum MONITOR_API_ENDPOINTS {
   MONITOR_DEP_GRAPH = 'monitor-dep-graph',
+}
+
+export const enum REPORTING_API_ENDPOINTS {
+  LIST_LATEST_ISSUES = 'list-latest-issues',
+  LIST_ISSUES = 'list-issues',
+  LATEST_ISSUE_COUNTS = 'latest-issue-counts',
+  ISSUE_COUNTS = 'issue-counts',
+  LATEST_PROJECT_COUNTS = 'latest-project-counts',
+  PROJECT_COUNTS = 'project-counts',
+  TEST_COUNTS = 'test-counts',
 }

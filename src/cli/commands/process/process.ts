@@ -24,7 +24,7 @@ const builder: yargs.CommandBuilder = {
     string: true,
   },
   'group-id': {
-    describe: 'Snyk group ID or in sime case the package group ID',
+    describe: 'Snyk group ID or in some cases the package group ID',
     alias: 'g',
     string: true,
   },
@@ -76,8 +76,26 @@ const builder: yargs.CommandBuilder = {
     describe: 'Snyk import job ID',
     string: true,
   },
-  'sort-by': { describe: 'Query parameter', string: true },
-  order: { describe: 'Query parameter', string: true },
+  'sort-by': {
+    describe: 'The key to sort by query parameter',
+    string: true,
+  },
+  order: {
+    describe: 'Order or direction of sort results  query parameter',
+    string: true,
+  },
+  'group-by': {
+    describe: 'Group by query parameter',
+    string: true,
+  },
+  from: {
+    describe: 'The date you wish to fetch results from, in the format YYYY-MM-DD Example: 2017-07-01',
+    string: true,
+  },
+  to: {
+    describe: 'The date you wish to fetch results until, in the format YYYY-MM-DD Example: 2017-07-07',
+    string: true,
+  },
   'entitlement-key': {
     describe: 'Entitlement key to get entitlement value',
     string: true,

@@ -11,6 +11,7 @@ import handleLicensesRequest from './licenses/licenses';
 import handleEntitlementRequest from './entitlements/entitlements';
 import handleTestRequest from './test/test';
 import handleMonitor from './monitor/monitor';
+import handleReporting from './reporting/reporting';
 import chalk from 'chalk';
 
 export default async function (args: any) {
@@ -52,6 +53,7 @@ export default async function (args: any) {
         await handleMonitor(args);
         break;
       case API_SELECTION.REPORTING:
+        await handleReporting(args);
         break;
       case API_SELECTION.AUDIT:
         break;

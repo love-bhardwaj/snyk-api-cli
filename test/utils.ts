@@ -105,4 +105,4 @@ export const expectPackageGroupIdErr = (result: string) => {
 
 const endpointErrString = 'The --endpoint or -e value passed is not acceptable';
 const eontError = 'no such file or directory';
-const orgNotFoundErrString = 'Org test was not found or you may not have the correct permissions to access the org.';
+const orgNotFoundErrString = 'do not have permission to access';

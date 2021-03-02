@@ -23,6 +23,7 @@
     "test-entitlements": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/commands/process/entitlements*.test.ts'",
     "test-test-api": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/commands/process/test-api*.test.ts'",
     "test-monitor": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/commands/process/monitor*.test.ts'",
+    "test-reporting": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/commands/process/reporting*.test.ts'",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint src/**/*.ts -p tsconfig.json"
