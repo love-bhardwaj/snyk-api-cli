@@ -34,8 +34,8 @@ export default async (args: any) => {
         reqDebugLog(listLatesIssuesRes);
         prettyPrint(listLatesIssuesRes.response);
         break;
-      case REPORTING_API_ENDPOINTS.LIST_LATEST_ISSUES:
-        inputValidation({ args, from: true, to: true });
+      case REPORTING_API_ENDPOINTS.LIST_ISSUES:
+        inputValidation({ args, from: true, to: true, filePath: true });
 
         const from = args[COMMAND_ARGS.FROM];
         const to = args[COMMAND_ARGS.TO];
@@ -43,7 +43,7 @@ export default async (args: any) => {
         const filePath1 = args[COMMAND_ARGS.FILE];
         const fileContent1 = readJsonFile(filePath1);
 
-        let queryParams1: any = {};
+        let queryParams1: any = { from, to };
         if (args[COMMAND_ARGS.PAGE]) queryParams1.page = args[COMMAND_ARGS.PAGE];
         if (args[COMMAND_ARGS.PER_PAGE]) queryParams1.perPage = args[COMMAND_ARGS.PER_PAGE];
         if (args[COMMAND_ARGS.SORT_BY]) queryParams1.sortBy = args[COMMAND_ARGS.SORT_BY];
@@ -57,7 +57,7 @@ export default async (args: any) => {
         break;
 
       case REPORTING_API_ENDPOINTS.LATEST_ISSUE_COUNTS:
-        inputValidation({ args });
+        inputValidation({ args, filePath: true });
 
         const filePath2 = args[COMMAND_ARGS.FILE];
         const fileContent2 = readJsonFile(filePath2);
@@ -75,7 +75,7 @@ export default async (args: any) => {
         break;
 
       case REPORTING_API_ENDPOINTS.ISSUE_COUNTS:
-        inputValidation({ args, from: true, to: true });
+        inputValidation({ args, from: true, to: true, filePath: true });
 
         const from1 = args[COMMAND_ARGS.FROM];
         const to1 = args[COMMAND_ARGS.TO];
@@ -83,7 +83,7 @@ export default async (args: any) => {
         const filePath3 = args[COMMAND_ARGS.FILE];
         const fileContent3 = readJsonFile(filePath3);
 
-        let queryParams3: any = {};
+        let queryParams3: any = { from: from1, to: to1 };
         if (args[COMMAND_ARGS.GROUP_BY]) queryParams3.groupBy = args[COMMAND_ARGS.GROUP_BY];
 
         const issueCountsRes = await Report.getIssueCounts({ requestBody: fileContent3, queryParams: queryParams3 });
@@ -106,10 +106,11 @@ export default async (args: any) => {
       case REPORTING_API_ENDPOINTS.PROJECT_COUNTS:
         inputValidation({ args, filePath: true, from: true, to: true });
 
-        const filePath5 = args[COMMAND_ARGS.FILE];
-        const fileContent5 = readJsonFile(filePath5);
         const from2 = args[COMMAND_ARGS.FROM];
         const to2 = args[COMMAND_ARGS.TO];
+
+        const filePath5 = args[COMMAND_ARGS.FILE];
+        const fileContent5 = readJsonFile(filePath5);
 
         const queryParams4: any = { from: from2, to: to2 };
         const projectCountsRes = await Report.getProjectCountsOverTime({
@@ -124,10 +125,11 @@ export default async (args: any) => {
       case REPORTING_API_ENDPOINTS.TEST_COUNTS:
         inputValidation({ args, filePath: true, from: true, to: true });
 
-        const filePath6 = args[COMMAND_ARGS.FILE];
-        const fileContent6 = readJsonFile(filePath6);
         const from3 = args[COMMAND_ARGS.FROM];
         const to3 = args[COMMAND_ARGS.TO];
+
+        const filePath6 = args[COMMAND_ARGS.FILE];
+        const fileContent6 = readJsonFile(filePath6);
 
         const queryParams5: any = { from: from3, to: to3 };
         if (args[COMMAND_ARGS.GROUP_BY]) queryParams5.groupBy = args[COMMAND_ARGS.GROUP_BY];

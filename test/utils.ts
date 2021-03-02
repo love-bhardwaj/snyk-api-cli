@@ -16,6 +16,8 @@ import {
   PackageNameError,
   GemNameError,
   PackageGroupIdErr,
+  ToArgErr,
+  FromArgErr,
 } from '../src/errors/errors';
 
 export const run = (args: string) => {
@@ -101,6 +103,14 @@ export const expectGemNameErr = (result: string) => {
 
 export const expectPackageGroupIdErr = (result: string) => {
   expect(result).to.have.string(new PackageGroupIdErr().message);
+};
+
+export const expectToArgErr = (result: string) => {
+  expect(result).to.have.string(new ToArgErr().message);
+};
+
+export const expectFromArgErr = (result: string) => {
+  expect(result).to.have.string(new FromArgErr().message);
 };
 
 const endpointErrString = 'The --endpoint or -e value passed is not acceptable';
