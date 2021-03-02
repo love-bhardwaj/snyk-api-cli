@@ -10,8 +10,9 @@ import handleDependenciesRequest from './dependencies/dependencies';
 import handleLicensesRequest from './licenses/licenses';
 import handleEntitlementRequest from './entitlements/entitlements';
 import handleTestRequest from './test/test';
-import handleMonitor from './monitor/monitor';
-import handleReporting from './reporting/reporting';
+import handleMonitorRequest from './monitor/monitor';
+import handleReportingRequest from './reporting/reporting';
+import handleAuditLogsRequest from './audit-logs/auditLogs';
 import chalk from 'chalk';
 
 export default async function (args: any) {
@@ -50,12 +51,13 @@ export default async function (args: any) {
         await handleTestRequest(args);
         break;
       case API_SELECTION.MONITOR:
-        await handleMonitor(args);
+        await handleMonitorRequest(args);
         break;
       case API_SELECTION.REPORTING:
-        await handleReporting(args);
+        await handleReportingRequest(args);
         break;
       case API_SELECTION.AUDIT:
+        await handleAuditLogsRequest(args);
         break;
       default:
         // General

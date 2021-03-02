@@ -25,6 +25,7 @@ export const enum COMMAND_ARGS {
   PER_PAGE = 'per-page',
   PAGE = 'page',
   SORT_BY = 'sort-by',
+  SORT_ORDER = 'sort-order',
   ORDER = 'order',
   GROUP_BY = 'group-by',
   FROM = 'from',
@@ -165,4 +166,9 @@ export const enum REPORTING_API_ENDPOINTS {
   LATEST_PROJECT_COUNTS = 'latest-project-counts',
   PROJECT_COUNTS = 'project-counts',
   TEST_COUNTS = 'test-counts',
+}
+
+export const enum AUDIT_LOGS_API_ENDPOINTS {
+  GROUP_LEVEL_LOGS = 'group-level-logs',
+  ORG_LEVEL_LOGS = 'org-level-logs',
 }

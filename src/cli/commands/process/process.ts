@@ -80,6 +80,10 @@ const builder: yargs.CommandBuilder = {
     describe: 'The key to sort by query parameter',
     string: true,
   },
+  'sort-order': {
+    describe: 'The sort order of the returned audit logs by date. Values: ASC, DESC. Default: DESC.',
+    string: true,
+  },
   order: {
     describe: 'Order or direction of sort results  query parameter',
     string: true,
