@@ -1,4 +1,4 @@
-# Snyk API CLI Tool [Snyk API](https://snyk.docs.apiary.io/#reference/users/user-details/get-user-details) [![Known Vulnerabilities](https://snyk.io/test/github.com/lovebhardwajsnyk/snyk-api-cli/badge.svg)](https://snyk.io/test/github/lovebhardwajsnyk/snyk-api-client)
+# Snyk API CLI Tool [![Known Vulnerabilities](https://snyk.io/test/github/lovebhardwajsnyk/snyk-api-cli/badge.svg)](https://snyk.io/test/github/lovebhardwajsnyk/snyk-api-cli)
 
 Simple CLI tool that enables you to consume Snyk API from the shell/command line. You don't have to worry about what kind of request it is and the configuration settings for the request. Everything is done automatically behind the scenes for you.
 
@@ -29,7 +29,7 @@ $ snyk-api process --api=general --endpoint=api-docs
 
 The result is a JSON response from the API if everything went well, otherwise it will throw an error
 
-```JSON
+```
 {
     "what orgs can the current token access?": "https://snyk.io/api/v1/orgs",
     "what projects are owned by this org?": "https://snyk.io/api/v1/org/:id/projects",
