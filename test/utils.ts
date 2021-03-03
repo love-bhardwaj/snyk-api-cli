@@ -115,4 +115,4 @@ export const expectFromArgErr = (result: string) => {
 
 const endpointErrString = 'The --endpoint or -e value passed is not acceptable';
 const eontError = 'no such file or directory';
-const orgNotFoundErrString = 'do not have permission to access';
+const orgNotFoundErrString = 'to access';
