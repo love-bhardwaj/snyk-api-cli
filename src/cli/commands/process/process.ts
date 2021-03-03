@@ -15,7 +15,6 @@ const builder: yargs.CommandBuilder = {
     demand: true,
     alias: 'a',
     string: true,
-    // choices: apiList,
   },
   endpoint: {
     describe: 'The API endpoint you want to call, example: api-docs, get-projects',
@@ -48,7 +47,7 @@ const builder: yargs.CommandBuilder = {
     string: true,
   },
   file: {
-    describe: 'Input JSON file(Request body)',
+    describe: 'Path to JSON file that will be passed to API as the Request body',
     alias: 'f',
     string: true,
   },

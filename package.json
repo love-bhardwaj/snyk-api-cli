@@ -1,7 +1,7 @@
 {
   "name": "snyk-api",
   "version": "0.0.1-0",
-  "description": "",
+  "description": "CLI tool to consume Snyk API",
   "main": "dist/index.js",
   "files": [
     "dist/**/*"
@@ -33,9 +33,27 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint src/**/*.ts -p tsconfig.json"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "snyk-api",
+    "cli"
+  ],
+  "author": {
+    "name": "Love Bhardwaj",
+    "email": "love.bhardwaj@snyk.io"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/lovebhardwajsnyk/snyk-api-cli",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lovebhardwajsnyk/snyk-api-cli"
+  },
+  "bugs": {
+    "url": "https://github.com/lovebhardwajsnyk/snyk-api-cli/issues",
+    "email": "love.bhardwaj@snyk.io"
+  },
+  "engines": {
+    "node": ">=7.6.0"
+  },
   "dependencies": {
     "chalk": "^4.1.0",
     "configstore": "^5.0.1",
