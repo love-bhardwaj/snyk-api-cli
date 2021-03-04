@@ -11,3 +11,7 @@ export function printGreen(message: string) {
 export function printBlue(message: string) {
   return console.log(chalk.blueBright(message));
 }
+
+export function printWhite(message: string) {
+  return console.log(chalk.white(message));
+}
