@@ -1,4 +1,4 @@
-export const enum API_SELECTION {
+export enum API_SELECTION {
   GENERAL = 'general',
   USERS = 'users',
   GROUPS = 'groups',
@@ -14,7 +14,7 @@ export const enum API_SELECTION {
   AUDIT = 'audit-logs',
 }
 
-export const enum COMMAND_ARGS {
+export enum COMMAND_ARGS {
   PROJECT_ID = 'p',
   ORG_ID = 'o',
   GROUP_ID = 'g',
@@ -45,11 +45,11 @@ export const enum COMMAND_ARGS {
   GEM_NAME = 'gem-name',
 }
 
-export const enum GENERAL_API_ENDPOINTS {
+export enum GENERAL_API_ENDPOINTS {
   API_DOCS = 'api-docs',
 }
 
-export const enum USERS_API_ENDPOINTS {
+export enum USERS_API_ENDPOINTS {
   GET_USER_DETAILS = 'get-user-details',
   GET_MY_DETAILS = 'get-my-details',
   GET_ORG_NOTI_SETTINGS = 'get-org-noti-settings',
@@ -58,7 +58,7 @@ export const enum USERS_API_ENDPOINTS {
   MODIFY_PROJECT_NOTI_SETTINGS = 'modify-project-noti-settings',
 }
 
-export const enum GROUPS_API_ENDPOINTS {
+export enum GROUPS_API_ENDPOINTS {
   VIEW_GROUP_SETTINGS = 'view-group-settings',
   UPDATE_GROUP_SETTINGS = 'update-group-settings',
   LIST_ALL_GROUP_MEMBERS = 'list-all-group-members',
@@ -67,7 +67,7 @@ export const enum GROUPS_API_ENDPOINTS {
   DELETE_TAG_FROM_GROUP = 'delete-tag-from-group',
 }
 
-export const enum ORGS_API_ENDPOINTS {
+export enum ORGS_API_ENDPOINTS {
   LIST_USER_ORGS = 'list-user-orgs',
   CREATE_NEW_ORG = 'create-new-org',
   GET_ORG_NOTI_SETTINGS = 'get-org-noti-settings',
@@ -81,7 +81,7 @@ export const enum ORGS_API_ENDPOINTS {
   REMOVE_ORG = 'remove-org',
 }
 
-export const enum INTEGRATIONS_ENDPOINTS {
+export enum INTEGRATIONS_ENDPOINTS {
   LIST_INTEGRATIONS = 'list-integrations',
   ADD_NEW_INTEGRATION = 'add-new-integration',
   UPDATE_EXISTING_INTEGRATION = 'update-existing-integration',
@@ -96,7 +96,7 @@ export const enum INTEGRATIONS_ENDPOINTS {
   UPDATE_INTEGRATION_SETTINGS = 'update-integration-settings',
 }
 
-export const enum PROJECTS_API_ENDPOINTS {
+export enum PROJECTS_API_ENDPOINTS {
   LIST_ALL_PROJECTS = 'list-all-projects',
   RETRIEVE_SINGLE_PROJECT = 'list-single-project',
   UPDATE_PROJECT = 'udpate-project',
@@ -121,20 +121,20 @@ export const enum PROJECTS_API_ENDPOINTS {
   APPLY_ATTRIBUTES = 'apply-attributes',
 }
 
-export const enum DEPENDENCIES_API_ENDPOINTS {
+export enum DEPENDENCIES_API_ENDPOINTS {
   LIST_ALL_DEPENDENCIES = 'list-all-dependencies',
 }
 
-export const enum LICENSES_API_ENDPOINTS {
+export enum LICENSES_API_ENDPOINTS {
   LIST_ALL_LICENSES = 'list-all-licenses',
 }
 
-export const enum ENTITLEMENTS_API_ENDPOINTS {
+export enum ENTITLEMENTS_API_ENDPOINTS {
   LIST_ALL_ENTITLEMENTS = 'list-all-entitlements',
   GET_ENTITLEMENT_VALUE = 'get-entitlement-value',
 }
 
-export const enum TEST_API_ENDPOINTS {
+export enum TEST_API_ENDPOINTS {
   TEST_MAVEN_PACKAGE = 'test-maven-package',
   TEST_MAVEN_FILE = 'test-maven-file',
   TEST_NPM_PACKAGE = 'test-npm-package',
@@ -154,11 +154,11 @@ export const enum TEST_API_ENDPOINTS {
   TEST_DEP_GRAPH = 'test-dep-graph',
 }
 
-export const enum MONITOR_API_ENDPOINTS {
+export enum MONITOR_API_ENDPOINTS {
   MONITOR_DEP_GRAPH = 'monitor-dep-graph',
 }
 
-export const enum REPORTING_API_ENDPOINTS {
+export enum REPORTING_API_ENDPOINTS {
   LIST_LATEST_ISSUES = 'list-latest-issues',
   LIST_ISSUES = 'list-issues',
   LATEST_ISSUE_COUNTS = 'latest-issue-counts',
@@ -168,7 +168,7 @@ export const enum REPORTING_API_ENDPOINTS {
   TEST_COUNTS = 'test-counts',
 }
 
-export const enum AUDIT_LOGS_API_ENDPOINTS {
+export enum AUDIT_LOGS_API_ENDPOINTS {
   GROUP_LEVEL_LOGS = 'group-level-logs',
   ORG_LEVEL_LOGS = 'org-level-logs',
 }
