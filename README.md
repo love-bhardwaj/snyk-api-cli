@@ -19,7 +19,13 @@ The tool requires your Snyk API token to authenticate and use the API. There are
 
 If in a case you want to clear the API token, you can use the following command `$ snyk-api config --clear-token`
 
-## Using the CLI
+## CLI Commands
+
+### Config
+
+The config command can be used to clear the API auth token and store the API auth token as shown above.
+
+### Process
 
 Using the snyk-api is very simple. You need to use the process command to process an Snyk API request. Every process will require two arguments the `--api` and the `--endpoint` parameters. As the name suggests the `--api` arg is the groups of Snyk API you want to call and the `--endpoint` arg is the API endpoint you want to call. The example below call the `GET` API docs endpoint under the general API group.
 
@@ -83,3 +89,27 @@ The complete list of options and arguments available are:
       --package-name          Package name                              [string]
       --gem-name              Gem name                                  [string]
 ```
+
+### List
+
+The list command can be used to list the available API groups and the endpoints available under the group. It will list the information in formatted tables with the available information.
+
+Example to list all the API groups available:
+
+`$ snyk-api list`
+
+The output:
+
+![List API Group Available](docs/images/api-table.png)
+
+To list endpoints available under a specific API group:
+
+`$ snyk-api list --api=general`
+
+The output:
+
+![List API Endpoints Available](docs/image/general-endpoint-table.png)
+
+## Issues and Bugs
+
+Please open a issue if you encounter any bugs or errors
