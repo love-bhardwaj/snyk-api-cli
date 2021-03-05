@@ -16,6 +16,9 @@ import {
   getAuditLogsTable,
   getApiTable,
 } from './tables';
+import { InvalidArgumentErr, InvalidEndpointError } from '../../errors/errors';
+import apiList from '../api/apiList';
+import chalk from 'chalk';
 import JSONify from '../utils/JSONify';
 
 export default (args: any) => {
@@ -77,6 +80,12 @@ export default (args: any) => {
         const auditTable = getAuditLogsTable();
         console.log(auditTable);
         break;
+      default:
+        throw new InvalidArgumentErr(
+          `
+          Invalid arguments provided, select one from: [${chalk.green(apiList)}]
+          `,
+        );
     }
   } else {
     const apiTable = getApiTable();

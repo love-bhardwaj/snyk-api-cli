@@ -1,24 +1,7 @@
-import { API_SELECTION, COMMAND_ARGS } from '../../../enums/enums';
 import yargs from 'yargs';
-import { appDebugLog } from '../../../lib/utils/debugLogger';
-import JSONify from '../../../lib/utils/JSONify';
-import {
-  getApiTable,
-  getAuditLogsTable,
-  getDependencyTable,
-  getEntitlementsTable,
-  getGeneralTable,
-  getGroupsTable,
-  getIntegrationTable,
-  getLicenseTable,
-  getMonitorTable,
-  getOrgTable,
-  getProjectTable,
-  getReportingTable,
-  getTestTable,
-  getUserTable,
-} from '../../../lib/list/tables';
-import handler from '../../../lib/list/listHandler';
+import listHandler from '../../../lib/list/listHandler';
+import { appErrorLog } from '../../../lib/utils/debugLogger';
+import { printRed } from '../../../lib/utils/printToConsole';
 
 const command = 'list [options]';
 const describe = 'List API and related endpoints available';
@@ -29,6 +12,16 @@ const builder: yargs.CommandBuilder = {
     alias: 'a',
     string: true,
   },
+};
+
+const handler = (args: any) => {
+  try {
+    listHandler(args);
+  } catch (error) {
+    appErrorLog(error);
+    const errorMessage = error.message;
+    printRed(errorMessage);
+  }
 };
 
 export default { command, describe, builder, handler };

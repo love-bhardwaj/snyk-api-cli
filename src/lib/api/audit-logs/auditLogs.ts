@@ -70,9 +70,11 @@ export default async (args: any) => {
       default:
         apiSpinnerStop();
         throw new InvalidEndpointError(
-          `The --endpoint or -e value passed is not acceptable, select one from [${chalk.greenBright(
+          `
+          The --endpoint or -e value passed is not acceptable, select one from [${chalk.greenBright(
             auditLogsEndpoints,
-          )}]`,
+          )}]
+          `,
         );
     }
   } catch (error) {

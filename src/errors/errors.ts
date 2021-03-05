@@ -4,9 +4,9 @@ export class AuthTokenError extends Error {
   }
 }
 
-export class InvalidArgument extends Error {
-  constructor() {
-    super('Error: Not a valid argument');
+export class InvalidArgumentErr extends Error {
+  constructor(message: string) {
+    super(message);
   }
 }
 

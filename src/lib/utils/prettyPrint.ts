@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 export default (obj: object) => {
-  console.log(JSON.stringify(obj, null, 4));
+  console.log(chalk.green(JSON.stringify(obj, null, 4)));
 };

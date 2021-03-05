@@ -1,4 +1,5 @@
 import { API_SELECTION } from '../../enums/enums';
+import { InvalidArgumentErr, InvalidEndpointError } from '../../errors/errors';
 import apiList from './apiList';
 import handleGeneralRequest from './general/general';
 import handleUserRequest from './users/users';
@@ -9,7 +10,7 @@ import handleProjRequest from './projects/projects';
 import handleDependenciesRequest from './dependencies/dependencies';
 import handleLicensesRequest from './licenses/licenses';
 import handleEntitlementRequest from './entitlements/entitlements';
-import handleTestRequest from './test/test';
+import handleTestRequest from './test-api/test';
 import handleMonitorRequest from './monitor/monitor';
 import handleReportingRequest from './reporting/reporting';
 import handleAuditLogsRequest from './audit-logs/auditLogs';
@@ -60,11 +61,12 @@ export default async function (args: any) {
         await handleAuditLogsRequest(args);
         break;
       default:
-        // General
-        console.log(
-          `API selection ${chalk.red(api)} not valid. Valid API selections are: [${chalk.greenBright(apiList)}]`,
+        throw new InvalidEndpointError(
+          `
+          API selection ${chalk.red(api)} not valid. Valid API selections are: [${chalk.greenBright(apiList)}].
+          For more details run ${chalk.yellow('snyk-api list')}
+          `,
         );
-        break;
     }
   } catch (error) {
     throw error;
