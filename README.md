@@ -108,7 +108,7 @@ To list endpoints available under a specific API group:
 
 The output:
 
-![List API Endpoints Available](docs/image/general-endpoint-table.png)
+![List API Endpoints Available](docs/images/general-endpoint-table.png)
 
 ## Issues and Bugs
 
