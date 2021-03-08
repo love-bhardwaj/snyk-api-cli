@@ -123,6 +123,10 @@ const builder: yargs.CommandBuilder = {
     describe: 'Gem name',
     string: true,
   },
+  'webhook-id': {
+    describe: 'Webhook ID for the Snyk webhook',
+    string: true,
+  },
 };
 
 const handler = async (argv: any) => {

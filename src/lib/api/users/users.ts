@@ -9,7 +9,7 @@ import userEndpoints from './usersEndpoints';
 import prettyPrint from '../../utils/prettyPrint';
 import readJsonFile from '../../utils/readJsonFile';
 
-export default async function (args: any) {
+export default async (args: any) => {
   const endpoint = args[COMMAND_ARGS.ENDPOINT];
   appDebugLog('Processing users API request');
   apiSpinnerStart();
@@ -94,4 +94,4 @@ export default async function (args: any) {
     apiSpinnerStop();
     throw error;
   }
-}
+};

@@ -18,6 +18,7 @@ import {
   PackageGroupIdErr,
   ToArgErr,
   FromArgErr,
+  WebhookIdErr,
 } from '../src/errors/errors';
 
 export const run = (args: string) => {
@@ -113,6 +114,9 @@ export const expectFromArgErr = (result: string) => {
   expect(result).to.have.string(new FromArgErr().message);
 };
 
+export const expectWebhookArgErr = (result: string) => {
+  expect(result).to.have.string(new WebhookIdErr().message);
+};
 const endpointErrString = 'The --endpoint or -e value passed is not acceptable';
 const eontError = 'no such file or directory';
 const orgNotFoundErrString = 'to access';

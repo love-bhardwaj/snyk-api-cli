@@ -18,6 +18,7 @@ import {
   PackageGroupIdErr,
   FromArgErr,
   ToArgErr,
+  WebhookIdErr,
 } from '../../errors/errors';
 
 export default (values: ValidationObject) => {
@@ -56,6 +57,8 @@ export default (values: ValidationObject) => {
   if (values.from && !args.from) errorMessages.push(new FromArgErr().message);
 
   if (values.to && !args.to) errorMessages.push(new ToArgErr().message);
+
+  if (values.webhookId && !args.webhookId) errorMessages.push(new WebhookIdErr().message);
 
   if (errorMessages.length > 0) {
     const errMessageString = errorMessages.join(' ');

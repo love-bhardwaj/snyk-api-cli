@@ -25,6 +25,7 @@
     "test-monitor": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/commands/process/monitor*.test.ts'",
     "test-reporting": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/commands/process/reporting*.test.ts'",
     "test-audit-logs": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/commands/process/auditLogs*.test.ts'",
+    "test-webhooks": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/commands/process/webhooks*.test.ts'",
     "test-list": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/commands/list/list*.test.ts'",
     "build": "tsc",
     "prepare": "npm run build",
@@ -62,7 +63,7 @@
     "debug": "^4.3.1",
     "ora": "^5.3.0",
     "prompts": "^2.4.0",
-    "snyk-api-client": "^0.0.1-5",
+    "snyk-api-client": "^0.0.1-6",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
