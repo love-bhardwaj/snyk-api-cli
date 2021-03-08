@@ -12,6 +12,7 @@ export enum API_SELECTION {
   MONITOR = 'monitor',
   REPORTING = 'reporting',
   AUDIT = 'audit-logs',
+  WEBHOOKS = 'webhooks',
 }
 
 export enum COMMAND_ARGS {
@@ -43,6 +44,7 @@ export enum COMMAND_ARGS {
   REPOSITORY = 'repository',
   PACKAGE_NAME = 'package-name',
   GEM_NAME = 'gem-name',
+  WEBHOOK_ID = 'webhook-id',
 }
 
 export enum GENERAL_API_ENDPOINTS {
@@ -171,4 +173,12 @@ export enum REPORTING_API_ENDPOINTS {
 export enum AUDIT_LOGS_API_ENDPOINTS {
   GROUP_LEVEL_LOGS = 'group-level-logs',
   ORG_LEVEL_LOGS = 'org-level-logs',
+}
+
+export enum WEBHOOK_API_ENDPOINTS {
+  CREATE_WEBHOOK = 'create-webhook',
+  LIST_WEBHOOKS = 'list-webhooks',
+  RETRIEVE_WEBHOOK = 'retrieve-webhook',
+  DELETE_WEBHOOK = 'delete-webhook',
+  PING_WEBHOOK = 'ping-webhook',
 }

@@ -122,3 +122,9 @@ export class ToArgErr extends Error {
     super('Error: The arg to(--to) is required');
   }
 }
+
+export class WebhookIdErr extends Error {
+  constructor() {
+    super('Error: The arg webhook-id(--webhook-id) is required');
+  }
+}

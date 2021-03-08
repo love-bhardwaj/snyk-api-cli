@@ -2,7 +2,6 @@ import {
   run,
   expectEndpointErr,
   expectFilePathErr,
-  expectEontErr,
   expectOrgNotFound,
   expectFromArgErr,
   expectToArgErr,
@@ -28,11 +27,6 @@ describe('PROCESS: Test reporting API related commands', () => {
       expectFilePathErr(res);
     });
 
-    it('Should print error for file not found', () => {
-      const res = run(`process -a=reporting -e=${REPORTING_API_ENDPOINTS.LIST_LATEST_ISSUES} --file=test.json`);
-      expectEontErr(res);
-    });
-
     it('Should return the results from the API', () => {
       const res = run(
         `process -a=reporting -e=${REPORTING_API_ENDPOINTS.LIST_LATEST_ISSUES} --file=./test/json/reporting/filters.json`,
@@ -45,13 +39,6 @@ describe('PROCESS: Test reporting API related commands', () => {
     it('Should print error for file path not provided', () => {
       const res = run(`process -a=reporting -e=${REPORTING_API_ENDPOINTS.LIST_ISSUES}`);
       expectFilePathErr(res);
-    });
-
-    it('Should print error for file not found', () => {
-      const res = run(
-        `process -a=reporting -e=${REPORTING_API_ENDPOINTS.LIST_ISSUES} --file=test.json --from=${fromDate} --to=${toDate}`,
-      );
-      expectEontErr(res);
     });
 
     it('Should print error for from arg missing', () => {
@@ -80,10 +67,7 @@ describe('PROCESS: Test reporting API related commands', () => {
       const res = run(`process -a=reporting -e=${REPORTING_API_ENDPOINTS.LATEST_ISSUE_COUNTS}`);
       expectFilePathErr(res);
     });
-    it('Should print error for no file found', () => {
-      const res = run(`process -a=reporting -e=${REPORTING_API_ENDPOINTS.LATEST_ISSUE_COUNTS} --file=test.json`);
-      expectEontErr(res);
-    });
+
     it('Should return results from API', () => {
       const res = run(
         `process -a=reporting -e=${REPORTING_API_ENDPOINTS.LATEST_ISSUE_COUNTS} --file=./test/json/reporting/filters.json`,

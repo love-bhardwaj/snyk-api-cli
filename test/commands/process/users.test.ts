@@ -8,7 +8,6 @@ import {
   expectUserIdErr,
   expectEndpointErr,
   expectProjectIdErr,
-  expectEontErr,
 } from '../../utils';
 import { USERS_API_ENDPOINTS } from '../../../src/enums/enums';
 
@@ -61,12 +60,7 @@ describe('PROCESS: Test users API related commands', () => {
       const res = run(`process -a=users -e=${USERS_API_ENDPOINTS.MODIFY_ORG_NOTI_SETTINGS} --org-id=test`);
       expectFilePathErr(res);
     });
-    it('Should print error when file not found', () => {
-      const res = run(
-        `process -a=users -e=${USERS_API_ENDPOINTS.MODIFY_ORG_NOTI_SETTINGS} --org-id=test --file=test.json`,
-      );
-      expectEontErr(res);
-    });
+
     it('Should return the results from the API', () => {
       const res = run(
         `process -a=users -e=${USERS_API_ENDPOINTS.MODIFY_ORG_NOTI_SETTINGS} --org-id=test --file=./test/json/users/modifyOrgNotiSettings.json`,
@@ -107,12 +101,7 @@ describe('PROCESS: Test users API related commands', () => {
       );
       expectFilePathErr(res);
     });
-    it('Should print error for file does not exist', () => {
-      const res = run(
-        `process -a=users -e=${USERS_API_ENDPOINTS.MODIFY_PROJECT_NOTI_SETTINGS} --org-id=test --project-id=test --file=test.json`,
-      );
-      expectEontErr(res);
-    });
+
     it('Should return results from the API', () => {
       const res = run(
         `process -a=users -e=${USERS_API_ENDPOINTS.MODIFY_PROJECT_NOTI_SETTINGS} --org-id=test --project-id=test --file=./test/json/users/modifyProjNotiSettings.json`,

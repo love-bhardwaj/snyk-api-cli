@@ -15,6 +15,7 @@ import {
   getReportingTable,
   getAuditLogsTable,
   getApiTable,
+  getWebhooksTable,
 } from './tables';
 import { InvalidArgumentErr, InvalidEndpointError } from '../../errors/errors';
 import apiList from '../api/apiList';
@@ -80,6 +81,9 @@ export default (args: any) => {
         const auditTable = getAuditLogsTable();
         console.log(auditTable);
         break;
+      case API_SELECTION.WEBHOOKS:
+        const webhooksTable = getWebhooksTable();
+        console.log(webhooksTable);
       default:
         throw new InvalidArgumentErr(
           `

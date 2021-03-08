@@ -14,6 +14,7 @@ import handleTestRequest from './test-api/test';
 import handleMonitorRequest from './monitor/monitor';
 import handleReportingRequest from './reporting/reporting';
 import handleAuditLogsRequest from './audit-logs/auditLogs';
+import handleWebhooksRequest from './webhooks/webhooks';
 import chalk from 'chalk';
 
 export default async function (args: any) {
@@ -59,6 +60,9 @@ export default async function (args: any) {
         break;
       case API_SELECTION.AUDIT:
         await handleAuditLogsRequest(args);
+        break;
+      case API_SELECTION.WEBHOOKS:
+        await handleWebhooksRequest(args);
         break;
       default:
         throw new InvalidEndpointError(

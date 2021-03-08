@@ -17,4 +17,5 @@ export default interface ValidationObject {
   packageGroupId?: boolean;
   from?: boolean;
   to?: boolean;
+  webhookId?: boolean;
 }

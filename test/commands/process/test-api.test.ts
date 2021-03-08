@@ -2,7 +2,6 @@ import {
   run,
   isValidJSON,
   expectFilePathErr,
-  expectEontErr,
   expectArtifactErr,
   expectVersionErr,
   expectPackageNameErr,
@@ -50,10 +49,7 @@ describe('PROCESS: Test API commands', () => {
       const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_MAVEN_FILE}`);
       expectFilePathErr(res);
     });
-    it('Should print error for file not valid', () => {
-      const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_MAVEN_FILE} --file=mavenFile.json`);
-      expectEontErr(res);
-    });
+
     it('Should return results from API', () => {
       const res = run(
         `process -a=test -e=${TEST_API_ENDPOINTS.TEST_MAVEN_FILE} --file=./test/json/test-api/mavenFile.json`,
@@ -97,10 +93,7 @@ describe('PROCESS: Test API commands', () => {
       const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_NPM_FILE}`);
       expectFilePathErr(res);
     });
-    it('Should print error for file not found', () => {
-      const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_NPM_FILE} --file=test.json`);
-      expectEontErr(res);
-    });
+
     it('Should return the results from the API', () => {
       const res = run(
         `process -a=test -e=${TEST_API_ENDPOINTS.TEST_NPM_FILE} --file=./test/json/test-api/npmFile.json`,
@@ -119,10 +112,6 @@ describe('PROCESS: Test API commands', () => {
     it('Should print error for file path not provided', () => {
       const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_GOPKG_FILE}`);
       expectFilePathErr(res);
-    });
-    it('Should print error for file not found', () => {
-      const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_GOPKG_FILE} --file=test.json`);
-      expectEontErr(res);
     });
     /*
     it('Should return the results from the API', () => {
@@ -145,10 +134,7 @@ describe('PROCESS: Test API commands', () => {
       const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_VENDOR_FILE}`);
       expectFilePathErr(res);
     });
-    it('Should print error for file not found', () => {
-      const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_VENDOR_FILE} --file=test.json`);
-      expectEontErr(res);
-    });
+
     /*
     it('Should return the results from the API', () => {
       const res = run(
@@ -170,10 +156,7 @@ describe('PROCESS: Test API commands', () => {
       const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_YARN_FILE}`);
       expectFilePathErr(res);
     });
-    it('Should print error for file not found', () => {
-      const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_YARN_FILE} --file=test.json`);
-      expectEontErr(res);
-    });
+
     /*
     it('Should return the results from the API', () => {
       const res = run(
@@ -212,10 +195,7 @@ describe('PROCESS: Test API commands', () => {
       const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_GEM_FILE}`);
       expectFilePathErr(res);
     });
-    it('Should print error for file not found', () => {
-      const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_GEM_FILE} --file=test.json`);
-      expectEontErr(res);
-    });
+
     it('Should return results with query parameters', () => {
       const res = run(
         `process -a=test -e=${TEST_API_ENDPOINTS.TEST_GEM_FILE} --file=./test/json/test-api/gemFile.json --org-id=test`,
@@ -253,10 +233,7 @@ describe('PROCESS: Test API commands', () => {
       const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_GRADLE_FILE}`);
       expectFilePathErr(res);
     });
-    it('Should print error for file not found', () => {
-      const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_GRADLE_FILE} --file=test.json`);
-      expectEontErr(res);
-    });
+
     it('Should return results with query parameters', () => {
       const res = run(
         `process -a=test -e=${TEST_API_ENDPOINTS.TEST_GRADLE_FILE} --file=./test/json/test-api/gradleFile.json --repository=https://repo1.maven.org/maven2 --org-id=test`,
@@ -293,10 +270,7 @@ describe('PROCESS: Test API commands', () => {
       const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_SBT_FILE}`);
       expectFilePathErr(res);
     });
-    it('Should print error for file not valid', () => {
-      const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_SBT_FILE} --file=test.json`);
-      expectEontErr(res);
-    });
+
     it('Should return results from API with query parameters', () => {
       const res = run(
         `process -a=test -e=${TEST_API_ENDPOINTS.TEST_SBT_FILE} --file=./test/json/test-api/sbtFile.json --org-id=test`,
@@ -327,10 +301,7 @@ describe('PROCESS: Test API commands', () => {
       const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_PIP_FILE}`);
       expectFilePathErr(res);
     });
-    it('Should print error for file not valid', () => {
-      const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_PIP_FILE} --file=test.json`);
-      expectEontErr(res);
-    });
+
     it('Should return result with query parameters', () => {
       const res = run(
         `process -a=test -e=${TEST_API_ENDPOINTS.TEST_PIP_FILE} --file=./test/json/test-api/pipFile.json --org-id=test`,
@@ -344,10 +315,7 @@ describe('PROCESS: Test API commands', () => {
       const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_COMPOSER_FILE}`);
       expectFilePathErr(res);
     });
-    it('Should print error for file not valid', () => {
-      const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_COMPOSER_FILE} --file=test.json`);
-      expectEontErr(res);
-    });
+
     it('Should return result with query parameters', () => {
       const res = run(
         `process -a=test -e=${TEST_API_ENDPOINTS.TEST_PIP_FILE} --file=./test/json/test-api/composerFile.json --org-id=test`,
@@ -361,10 +329,7 @@ describe('PROCESS: Test API commands', () => {
       const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_DEP_GRAPH}`);
       expectFilePathErr(res);
     });
-    it('Should print error for file not valid', () => {
-      const res = run(`process -a=test -e=${TEST_API_ENDPOINTS.TEST_DEP_GRAPH} --file=test.json`);
-      expectEontErr(res);
-    });
+
     it('Should return result with query parameters', () => {
       const res = run(
         `process -a=test -e=${TEST_API_ENDPOINTS.TEST_DEP_GRAPH} --file=./test/json/test-api/depGraph.json --org-id=test`,

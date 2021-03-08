@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import {
   run,
-  expectEontErr,
   expectEndpointErr,
   expectGroupIdErr,
   expectOrgIdErr,
@@ -42,12 +41,7 @@ describe('PROCESS: Test groups API related commands', () => {
       const res = run(`process -a=groups -e=${GROUPS_API_ENDPOINTS.UPDATE_GROUP_SETTINGS} --group-id=test`);
       expectFilePathErr(res);
     });
-    it('Should throw error if file not found', () => {
-      const res = run(
-        `process -a=groups -e=${GROUPS_API_ENDPOINTS.UPDATE_GROUP_SETTINGS} --group-id=test --file=./test/something.json`,
-      );
-      expectEontErr(res);
-    });
+
     it('Should return the result from the API', () => {
       const res = run(
         `process -a=groups -e=${GROUPS_API_ENDPOINTS.UPDATE_GROUP_SETTINGS} --group-id=test --file=./test/json/groups/updateGroupSettings.json`,
@@ -80,12 +74,7 @@ describe('PROCESS: Test groups API related commands', () => {
       const res = run(`process -a=groups -e=${GROUPS_API_ENDPOINTS.ADD_MEMBER_TO_ORG} --group-id=test --org-id=test`);
       expectFilePathErr(res);
     });
-    it('Should print error if file not found', () => {
-      const res = run(
-        `process -a=groups -e=${GROUPS_API_ENDPOINTS.ADD_MEMBER_TO_ORG} --group-id=test --org-id=test --file=./test/json/something.json`,
-      );
-      expectEontErr(res);
-    });
+
     it('Should return results from API', () => {
       const res = run(
         `process -a=groups -e=${GROUPS_API_ENDPOINTS.ADD_MEMBER_TO_ORG} --group-id=test --org-id=test --file=./test/json/groups/addMemberToOrg.json`,
@@ -114,12 +103,6 @@ describe('PROCESS: Test groups API related commands', () => {
     it('Should print error if file path not provided', () => {
       const res = run(`process -a=groups -e=${GROUPS_API_ENDPOINTS.DELETE_TAG_FROM_GROUP} --group-id=test`);
       expectFilePathErr(res);
-    });
-    it('Should print error if file not found', () => {
-      const res = run(
-        `process -a=groups -e=${GROUPS_API_ENDPOINTS.DELETE_TAG_FROM_GROUP} --group-id=test --file=somethig.json`,
-      );
-      expectEontErr(res);
     });
     it('Should return results from API', () => {
       const res = run(

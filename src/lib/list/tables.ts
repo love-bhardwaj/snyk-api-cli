@@ -15,6 +15,7 @@ import {
   REPORTING_API_ENDPOINTS,
   TEST_API_ENDPOINTS,
   USERS_API_ENDPOINTS,
+  WEBHOOK_API_ENDPOINTS,
 } from '../../enums/enums';
 
 function getGreen(text: string) {
@@ -48,6 +49,7 @@ export const getApiTable = () => {
     [`11. ${getGreen(API_SELECTION.MONITOR)}`, getBlue('https://snyk.docs.apiary.io/#reference/monitor')],
     [`12. ${getGreen(API_SELECTION.MONITOR)}`, getBlue('https://snyk.docs.apiary.io/#reference/reporting-api')],
     [`13. ${getGreen(API_SELECTION.AUDIT)}`, getBlue('https://snyk.docs.apiary.io/#reference/audit-logs')],
+    [`14. ${getGreen(API_SELECTION.WEBHOOKS)}`, getBlue('https://snyk.docs.apiary.io/#reference/webhooks')],
   );
   return `
   The following is the list of API groups that are currently supported
@@ -670,7 +672,7 @@ export const getAuditLogsTable = () => {
       getBlue('https://snyk.docs.apiary.io/#reference/audit-logs/group-level-audit-logs/get-group-level-audit-logs'),
     ],
     [
-      `1. ${getGreen(AUDIT_LOGS_API_ENDPOINTS.ORG_LEVEL_LOGS)}`,
+      `2. ${getGreen(AUDIT_LOGS_API_ENDPOINTS.ORG_LEVEL_LOGS)}`,
       getBlue(
         'https://snyk.docs.apiary.io/#reference/audit-logs/organization-level-audit-logs/get-organization-level-audit-logs',
       ),
@@ -683,5 +685,43 @@ export const getAuditLogsTable = () => {
 ${testTable.toString()}
 
   Usage with process command: ${chalk.green('snyk-api process --api=audit-logs --endpoint=[API Endpoint]')}
+  `;
+};
+
+export const getWebhooksTable = () => {
+  const webhooksTable = new Table({
+    head: [getBoldWhite('API Endpoints'), getBoldWhite('Docs')],
+    style: { 'padding-left': 1, 'padding-right': 1 },
+  });
+
+  webhooksTable.push(
+    [
+      `1. ${getGreen(WEBHOOK_API_ENDPOINTS.CREATE_WEBHOOK)}`,
+      getBlue('https://snyk.docs.apiary.io/#reference/webhooks/webhook-collection/create-a-webhook'),
+    ],
+    [
+      `2. ${getGreen(WEBHOOK_API_ENDPOINTS.LIST_WEBHOOKS)}`,
+      getBlue('https://snyk.docs.apiary.io/#reference/webhooks/webhook-collection/list-webhooks'),
+    ],
+    [
+      `3. ${getGreen(WEBHOOK_API_ENDPOINTS.RETRIEVE_WEBHOOK)}`,
+      getBlue('https://snyk.docs.apiary.io/#reference/webhooks/webhook/retrieve-a-webhook'),
+    ],
+    [
+      `4. ${getGreen(WEBHOOK_API_ENDPOINTS.DELETE_WEBHOOK)}`,
+      getBlue('https://snyk.docs.apiary.io/#reference/webhooks/webhook/delete-a-webhook'),
+    ],
+    [
+      `5. ${getGreen(WEBHOOK_API_ENDPOINTS.PING_WEBHOOK)}`,
+      getBlue('https://snyk.docs.apiary.io/#reference/webhooks/ping-a-webhook'),
+    ],
+  );
+
+  return `
+  The following are the endpoints currently available under the Audit Logs API
+
+${webhooksTable.toString()}
+
+  Usage with process command: ${chalk.green('snyk-api process --api=webhooks --endpoint=[API Endpoint]')}
   `;
 };

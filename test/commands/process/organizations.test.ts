@@ -1,13 +1,5 @@
 import { expect } from 'chai';
-import {
-  run,
-  isValidJSON,
-  expectFilePathErr,
-  expectOrgIdErr,
-  expectEontErr,
-  expectOrgNotFound,
-  expectEndpointErr,
-} from '../../utils';
+import { run, isValidJSON, expectFilePathErr, expectOrgIdErr, expectOrgNotFound, expectEndpointErr } from '../../utils';
 import { OrgIdError, FilePathError, UserIdError } from '../../../src/errors/errors';
 import { ORGS_API_ENDPOINTS } from '../../../src/enums/enums';
 
@@ -38,10 +30,7 @@ describe('PROCESS: Test organizations API related commands', () => {
       const res = run(`process -a=orgs -e=${ORGS_API_ENDPOINTS.CREATE_NEW_ORG}`);
       expectFilePathErr(res);
     });
-    it('Should print error for file note found', () => {
-      const res = run(`process -a=orgs -e=${ORGS_API_ENDPOINTS.CREATE_NEW_ORG} --file=test.json`);
-      expectEontErr(res);
-    });
+
     it('Should return the result from the API', () => {
       const res = run(
         `process -a=orgs -e=${ORGS_API_ENDPOINTS.CREATE_NEW_ORG} --file=./test/json/organizations/createOrg.json`,
@@ -71,10 +60,7 @@ describe('PROCESS: Test organizations API related commands', () => {
       const res = run(`process -a=orgs -e=${ORGS_API_ENDPOINTS.SET_ORG_NOTI_SETTINGS} -o=test`);
       expectFilePathErr(res);
     });
-    it('Should print error for file not found', () => {
-      const res = run(`process -a=orgs -e=${ORGS_API_ENDPOINTS.SET_ORG_NOTI_SETTINGS} -o=test --file=test.json`);
-      expectEontErr(res);
-    });
+
     it('Should return the result from the API', () => {
       const res = run(
         `process -a=orgs -e=${ORGS_API_ENDPOINTS.SET_ORG_NOTI_SETTINGS} -o=test --file=./test/json/organizations/setOrgNotiSettings.json`,
@@ -92,10 +78,7 @@ describe('PROCESS: Test organizations API related commands', () => {
       const res = run(`process -a=orgs -e=${ORGS_API_ENDPOINTS.INVITE_USER} -o=test`);
       expectFilePathErr(res);
     });
-    it('Should print error for file not found', () => {
-      const res = run(`process -a=orgs -e=${ORGS_API_ENDPOINTS.INVITE_USER} -o=test --file=test.json`);
-      expectEontErr(res);
-    });
+
     it('Should return the results from the API', () => {
       const res = run(
         `process -a=orgs -e=${ORGS_API_ENDPOINTS.INVITE_USER} -o=test --file=./test/json/organizations/inviteUser.json`,
@@ -135,10 +118,7 @@ describe('PROCESS: Test organizations API related commands', () => {
       const res = run(`process -a=orgs -e=${ORGS_API_ENDPOINTS.UPDATE_ORG_SETTINGS} -o=test`);
       expectFilePathErr(res);
     });
-    it('Should print error for file not valid', () => {
-      const res = run(`process -a=orgs -e=${ORGS_API_ENDPOINTS.UPDATE_ORG_SETTINGS} -o=test --file=test.json`);
-      expectEontErr(res);
-    });
+
     it('Should return the results from the API', () => {
       const res = run(
         `process -a=orgs -e=${ORGS_API_ENDPOINTS.UPDATE_ORG_SETTINGS} -o=test --file=./test/json/organizations/updateOrgSettings.json`,
@@ -160,12 +140,7 @@ describe('PROCESS: Test organizations API related commands', () => {
       const res = run(`process -a=orgs -e=${ORGS_API_ENDPOINTS.UPDATE_MEMBER_ROLE} -o=test --user-id=test`);
       expectFilePathErr(res);
     });
-    it('Should print error for file not present', () => {
-      const res = run(
-        `process -a=orgs -e=${ORGS_API_ENDPOINTS.UPDATE_MEMBER_ROLE} -o=test --user-id=test --file=test.json`,
-      );
-      expectEontErr(res);
-    });
+
     it('Should return the results from the API', () => {
       const res = run(
         `process -a=orgs -e=${ORGS_API_ENDPOINTS.UPDATE_MEMBER_ROLE} -o=test --user-id=test --file=./test/json/organizations/updateMemberInOrg.json`,
