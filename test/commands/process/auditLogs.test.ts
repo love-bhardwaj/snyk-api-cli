@@ -20,6 +20,7 @@ describe('PROCESS: Test audit logs API related commands', () => {
       const res = run(`process -a=audit-logs -e=${AUDIT_LOGS_API_ENDPOINTS.GROUP_LEVEL_LOGS}`);
       expectGroupIdErr(res);
     });
+
     it('Should return the results from the API', () => {
       const res = run(
         `process -a=audit-logs -e=${AUDIT_LOGS_API_ENDPOINTS.GROUP_LEVEL_LOGS} --group-id=test --page=1 --sort-order=DESC --from=2021-02-01 --to=2021-03-01`,

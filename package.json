@@ -12,6 +12,7 @@
   "scripts": {
     "dev": "ts-node ./src/index.ts",
     "test": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/**/*.test.ts'",
+    "test-unit": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/unit/*.test.ts'",
     "test-groups": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/commands/process/groups*.test.ts'",
     "test-general": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/commands/process/general*.test.ts'",
     "test-integrations": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/commands/process/integrations*.test.ts'",

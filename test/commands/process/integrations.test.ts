@@ -1,6 +1,5 @@
 import {
   run,
-  expectEontErr,
   expectOrgIdErr,
   expectFilePathErr,
   expectOrgNotFound,
@@ -39,11 +38,6 @@ describe('PROCESS: Test integration API related commands', () => {
     it('Should print error to console if no file path provided --file or -f', () => {
       const res = run('process -a=integrations -e=add-new-integration -o=test');
       expectFilePathErr(res);
-    });
-
-    it('Should print error if file path is not valid', () => {
-      const res = run('process -a=integrations -e=add-new-integration -o=test -f=./test/something');
-      expectEontErr(res);
     });
 
     it('Should call the API endpoint and return results', () => {
@@ -140,12 +134,7 @@ describe('PROCESS: Test integration API related commands', () => {
       const res = run('process -a=integrations -e=clone-integration -o=test --integration-id=test');
       expectFilePathErr(res);
     });
-    it('Should print error for file not found', () => {
-      const res = run(
-        'process -a=integrations -e=clone-integration -o=test --integration-id=test --file=./test/something.json',
-      );
-      expectEontErr(res);
-    });
+
     it('Should return results from the API', () => {
       const res = run(
         'process -a=integrations -e=clone-integration -o=test --integration-id=test --file=./test/json/integrations/cloneIntegration.json',
@@ -185,12 +174,6 @@ describe('PROCESS: Test integration API related commands', () => {
       expectFilePathErr(res);
     });
 
-    it('Should print error for file not found', () => {
-      const res = run(
-        'process -a=integrations -e=import-project -o=test --integration-id=test --file=./test/json/integrations/something.json',
-      );
-      expectEontErr(res);
-    });
     it('Should print the result from the API call', () => {
       const res = run(
         'process -a=integrations -e=import-project -o=test --integration-id=test --file=./test/json/integrations/importProject.json',
@@ -248,12 +231,7 @@ describe('PROCESS: Test integration API related commands', () => {
       const res = run('process -a=integrations -e=update-integration-settings -o=test --integration-id=test');
       expectFilePathErr(res);
     });
-    it('Should print error if file not present', () => {
-      const res = run(
-        'process -a=integrations -e=update-integration-settings -o=test --integration-id=test -f=./test/something.json',
-      );
-      expectEontErr(res);
-    });
+
     it('Should return the response from the API', () => {
       const res = run(
         'process -a=integrations -e=update-integration-settings -o=test --integration-id=test -f=./test/json/integrations/updateIntegrationSettings.json',

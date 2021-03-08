@@ -49,6 +49,7 @@ export const getApiTable = () => {
     [`11. ${getGreen(API_SELECTION.MONITOR)}`, getBlue('https://snyk.docs.apiary.io/#reference/monitor')],
     [`12. ${getGreen(API_SELECTION.MONITOR)}`, getBlue('https://snyk.docs.apiary.io/#reference/reporting-api')],
     [`13. ${getGreen(API_SELECTION.AUDIT)}`, getBlue('https://snyk.docs.apiary.io/#reference/audit-logs')],
+    [`14. ${getGreen(API_SELECTION.WEBHOOKS)}`, getBlue('https://snyk.docs.apiary.io/#reference/webhooks')],
   );
   return `
   The following is the list of API groups that are currently supported

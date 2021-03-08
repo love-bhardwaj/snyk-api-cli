@@ -1,9 +1,7 @@
-import { expect } from 'chai';
 import {
   run,
   expectOrgNotFound,
   expectEndpointErr,
-  expectEontErr,
   expectOrgIdErr,
   expectProjectIdErr,
   expectIssueIdErr,
@@ -63,12 +61,7 @@ describe('PROCESS: Test projects API related commands', () => {
       );
       expectFilePathErr(res);
     });
-    it('Should print error for file not found', () => {
-      const res = run(
-        `process -a=projects -e=${PROJECTS_API_ENDPOINTS.UPDATE_PROJECT} --org-id=test --project-id=test --file=./test/json/projects/test.json`,
-      );
-      expectEontErr(res);
-    });
+
     it('Should return the result from API', () => {
       const res = run(
         `process -a=projects -e=${PROJECTS_API_ENDPOINTS.UPDATE_PROJECT} --org-id=test --project-id=test --file=./test/json/projects/updateProject.json`,
@@ -215,12 +208,7 @@ describe('PROCESS: Test projects API related commands', () => {
       );
       expectFilePathErr(res);
     });
-    it('Should print error for file not found', () => {
-      const res = run(
-        `process -a=projects -e=${PROJECTS_API_ENDPOINTS.ADD_IGNORE} -o=test --project-id=test --issue-id=test --file=test.json`,
-      );
-      expectEontErr(res);
-    });
+
     it('Should return the result from API', () => {
       const res = run(
         `process -a=projects -e=${PROJECTS_API_ENDPOINTS.ADD_IGNORE} -o=test --project-id=test --issue-id=test --file=test/json/projects/addIgnore.json`,
@@ -250,12 +238,7 @@ describe('PROCESS: Test projects API related commands', () => {
       );
       expectFilePathErr(res);
     });
-    it('Should print error for file not found', () => {
-      const res = run(
-        `process -a=projects -e=${PROJECTS_API_ENDPOINTS.REPLACE_IGNORES} --org-id=test --project-id=test --issue-id=test --file=test.json`,
-      );
-      expectEontErr(res);
-    });
+
     it('Should return the result from API', () => {
       const res = run(
         `process -a=projects -e=${PROJECTS_API_ENDPOINTS.REPLACE_IGNORES} --org-id=test --project-id=test --issue-id=test --file=test/json/projects/replaceIgnores.json`,
@@ -325,12 +308,7 @@ describe('PROCESS: Test projects API related commands', () => {
       );
       expectFilePathErr(res);
     });
-    it('Should print error for file not found', () => {
-      const res = run(
-        `process -a=projects -e=${PROJECTS_API_ENDPOINTS.CREATE_JIRA_ISSUE} --org-id=test --project-id=test --issue-id=test --file=test.json`,
-      );
-      expectEontErr(res);
-    });
+
     it('Should return the result from API', () => {
       const res = run(
         `process -a=projects -e=${PROJECTS_API_ENDPOINTS.CREATE_JIRA_ISSUE} --org-id=test --project-id=test --issue-id=test --file=test/json/projects/createJir.json`,
@@ -370,12 +348,7 @@ describe('PROCESS: Test projects API related commands', () => {
       );
       expectFilePathErr(res);
     });
-    it('Should print error for file not found', () => {
-      const res = run(
-        `process -a=projects -e=${PROJECTS_API_ENDPOINTS.UPDATE_PROJECT_SETTINGS} --org-id=test --project-id=test --file=test.json`,
-      );
-      expectEontErr(res);
-    });
+
     it('Should return the result from API', () => {
       const res = run(
         `process -a=projects -e=${PROJECTS_API_ENDPOINTS.UPDATE_PROJECT_SETTINGS} --org-id=test --project-id=test --file=./test/json/projects/updateProjectSettings.json`,
@@ -414,12 +387,7 @@ describe('PROCESS: Test projects API related commands', () => {
       const res = run(`process -a=projects -e=${PROJECTS_API_ENDPOINTS.MOVE_PROJECT} --org-id=test --project-id=test`);
       expectFilePathErr(res);
     });
-    it('Should print error for file not found', () => {
-      const res = run(
-        `process -a=projects -e=${PROJECTS_API_ENDPOINTS.MOVE_PROJECT} --org-id=test --project-id=test --file=test.json`,
-      );
-      expectEontErr(res);
-    });
+
     it('Should return the result from API', () => {
       const res = run(
         `process -a=projects -e=${PROJECTS_API_ENDPOINTS.MOVE_PROJECT} --org-id=test --project-id=test --file=./test/json/projects/moveProject.json`,
@@ -440,12 +408,7 @@ describe('PROCESS: Test projects API related commands', () => {
       const res = run(`process -a=projects -e=${PROJECTS_API_ENDPOINTS.ADD_TAG} --org-id=test --project-id=test`);
       expectFilePathErr(res);
     });
-    it('Should print error for file not found', () => {
-      const res = run(
-        `process -a=projects -e=${PROJECTS_API_ENDPOINTS.ADD_TAG} --org-id=test --project-id=test --file=test.json`,
-      );
-      expectEontErr(res);
-    });
+
     it('Should return the result from API', () => {
       const res = run(
         `process -a=projects -e=${PROJECTS_API_ENDPOINTS.ADD_TAG} --org-id=test --project-id=test --file=./test/json/projects/addTag.json`,
@@ -468,12 +431,7 @@ describe('PROCESS: Test projects API related commands', () => {
       );
       expectFilePathErr(res);
     });
-    it('Should print error for file not found', () => {
-      const res = run(
-        `process -a=projects -e=${PROJECTS_API_ENDPOINTS.REMOVE_PROJECT_TAG} --org-id=test --project-id=test --file=test.json`,
-      );
-      expectEontErr(res);
-    });
+
     it('Should return the result from API', () => {
       const res = run(
         `process -a=projects -e=${PROJECTS_API_ENDPOINTS.REMOVE_PROJECT_TAG} --org-id=test --project-id=test --file=./test/json/projects/removeTag.json`,
@@ -496,12 +454,7 @@ describe('PROCESS: Test projects API related commands', () => {
       );
       expectFilePathErr(res);
     });
-    it('Should print error for file not found', () => {
-      const res = run(
-        `process -a=projects -e=${PROJECTS_API_ENDPOINTS.APPLY_ATTRIBUTES} --org-id=test --project-id=test --file=test.json`,
-      );
-      expectEontErr(res);
-    });
+
     it('Should return the result from API', () => {
       const res = run(
         `process -a=projects -e=${PROJECTS_API_ENDPOINTS.APPLY_ATTRIBUTES} --org-id=test --project-id=test --file=./test/json/projects/applyAttributes.json`,
