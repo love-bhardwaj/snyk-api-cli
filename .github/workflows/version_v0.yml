@@ -1,6 +1,9 @@
 name: Pre merge tests
 
 on:
+  pull_request:
+    branches:
+      - development
   push:
     branches:
       - main
