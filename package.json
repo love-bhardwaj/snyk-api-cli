@@ -11,6 +11,7 @@
   },
   "scripts": {
     "dev": "ts-node ./src/index.ts",
+    "pretest": "mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/init/*.test.ts'",
     "test": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/**/*.test.ts'",
     "test-unit": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/unit/*.test.ts'",
     "test-groups": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/commands/process/groups*.test.ts'",

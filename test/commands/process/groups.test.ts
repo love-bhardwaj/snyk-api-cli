@@ -1,11 +1,5 @@
 import { expect } from 'chai';
-import {
-  run,
-  expectEndpointErr,
-  expectGroupIdErr,
-  expectOrgIdErr,
-  expectFilePathErr,
-} from '../../utils';
+import { run, expectEndpointErr, expectGroupIdErr, expectOrgIdErr, expectFilePathErr } from '../../utils';
 import { GROUPS_API_ENDPOINTS } from '../../../src/enums/enums';
 
 const orgNotFoundErrString = 'Org test was not found or you may not have the correct permissions to access the org.';

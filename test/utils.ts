@@ -25,6 +25,10 @@ export const run = (args: string) => {
   return execSync(`ts-node src/index ${args}`).toString();
 };
 
+export const authenticateCli = () => {
+  console.log(run('config --auth-token=$SNYK_API_TOKEN'));
+};
+
 export const isValidJSON = (args: any) => {
   try {
     JSON.parse(args);
