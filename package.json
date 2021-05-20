@@ -64,7 +64,7 @@
     "configstore": "^5.0.1",
     "debug": "^4.3.1",
     "ora": "^5.3.0",
-    "prompts": "^2.4.0",
+    "prompts": "^2.4.1",
     "snyk-api-client": "^0.0.1-6",
     "yargs": "^16.2.0"
   },
